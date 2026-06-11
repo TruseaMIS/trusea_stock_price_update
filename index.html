@@ -178,6 +178,26 @@ body {
   border-color: #1a1a2e;
   color: #fff;
 }
+/* ── Date / Month chips ── */
+.mchip {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1.5px solid #e0e0e0;
+  background: #fafafa;
+  color: #888;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.mchip.active {
+  background: #1a1a2e;
+  border-color: #1a1a2e;
+  color: #fff;
+}
 
 /* ── SECTION ── */
 .section { padding: 14px 14px 0; }
@@ -397,169 +417,57 @@ body {
 
 .empty-row { text-align: center; padding: 20px; color: #bbb; font-size: 13px; }
 
-/* ── MAIN PAGE TABS ── */
-.main-tab-row {
-  display: flex;
-  gap: 0;
-  background: #fff;
-  border-bottom: 2px solid #f0f0f0;
-  position: sticky;
-  top: 72px;
-  z-index: 9;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.main-tab-row::-webkit-scrollbar { display: none; }
-.main-tab-btn {
-  flex-shrink: 0;
-  padding: 11px 16px;
-  font-size: 12px;
-  font-weight: 700;
-  border: none;
-  background: none;
-  color: #999;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  margin-bottom: -2px;
-  transition: all 0.15s;
-  white-space: nowrap;
-}
-.main-tab-btn.active {
-  color: #1a1a2e;
-  border-bottom-color: #1a1a2e;
-}
-
-.page-section { display: none; }
-.page-section.active { display: block; }
-
-/* ── WEEK FILTER CHIPS ── */
-.week-chips {
-  display: flex; gap: 6px;
-  padding: 10px 14px;
-  overflow-x: auto; scrollbar-width: none;
-  background: #fff;
-  border-bottom: 1px solid #f0f0f0;
-}
-.week-chips::-webkit-scrollbar { display: none; }
-.week-chip {
-  flex-shrink: 0; padding: 5px 12px;
-  border-radius: 20px; font-size: 11px; font-weight: 700;
-  border: 1.5px solid #e0e0e0;
-  background: #fafafa; color: #888;
-  cursor: pointer; white-space: nowrap;
-}
-.week-chip.active { background: #1a1a2e; border-color: #1a1a2e; color: #fff; }
-
-/* ── WEEKLY FISH TABLE ── */
-.fish-week-card {
-  background: #fff;
-  border-radius: 14px;
-  border: 1px solid #ebebeb;
-  overflow: hidden;
-  margin-bottom: 10px;
-  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
-}
-.fish-week-header {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  padding: 12px 16px;
-  border-bottom: 1px solid #f0f0f0;
-  background: #fafafa;
-}
-.fish-week-title { font-size: 13px; font-weight: 700; color: #1a1a2e; }
-.fish-week-meta  { font-size: 11px; color: #888; }
-.fish-week-totals {
-  display: flex; gap: 16px; padding: 8px 16px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.fwt-item { text-align: center; }
-.fwt-val { font-size: 15px; font-weight: 800; color: #1a1a2e; }
-.fwt-lbl { font-size: 9px; color: #aaa; font-weight: 600; text-transform: uppercase; }
-
-/* ── CUSTOMER TABLE ── */
-.cust-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.cust-table thead th {
-  font-size: 10px; font-weight: 700; color: #888;
-  text-transform: uppercase; letter-spacing: 0.4px;
-  padding: 8px 12px; border-bottom: 1px solid #f0f0f0;
-  text-align: left; background: #fafafa;
-}
-.cust-table tbody td {
-  padding: 9px 12px; border-bottom: 1px solid #f7f7f7;
-  vertical-align: top;
-}
-.cust-table tbody tr:last-child td { border-bottom: none; }
-.cust-table tbody tr:nth-child(even) td { background: #fafafa; }
-.cust-name-cell { font-weight: 600; color: #1a1a2e; font-size: 13px; }
-.cust-phone-cell { font-size: 11px; color: #888; margin-top: 2px; }
-.cust-orders-list { font-size: 11px; color: #555; }
-.cust-order-row { padding: 2px 0; border-bottom: 1px dotted #eee; }
-.cust-order-row:last-child { border-bottom: none; }
-
-/* ── APRIL ARCHIVE ── */
-.archive-badge {
-  display: inline-block;
-  background: #1a1a2e; color: #90e0ef;
-  font-size: 10px; font-weight: 800;
-  text-transform: uppercase; letter-spacing: 1px;
-  border-radius: 20px; padding: 3px 10px;
-  margin-bottom: 10px;
-}
-.archive-fish-item {
-  display: flex; align-items: center;
-  justify-content: space-between;
-  padding: 9px 0; border-bottom: 1px solid #f7f7f7;
-  gap: 8px;
-}
-.archive-fish-item:last-child { border-bottom: none; }
-.afi-name  { font-size: 12px; font-weight: 600; color: #1a1a2e; flex: 1; }
-.afi-size  { font-size: 11px; color: #0077b6; font-weight: 600; white-space: nowrap; }
-.afi-qty   { font-size: 13px; font-weight: 800; color: #1a1a2e; white-space: nowrap; min-width: 40px; text-align: right; }
-.afi-kg    { font-size: 11px; color: #16a34a; font-weight: 700; white-space: nowrap; min-width: 55px; text-align: right; }
-.afi-val   { font-size: 12px; font-weight: 700; color: #1a1a2e; white-space: nowrap; min-width: 65px; text-align: right; }
-
-/* ── PDF BUTTON ── */
-.pdf-btn {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  background: #1a1a2e;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  padding: 9px 16px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  margin: 12px 14px 0;
-  width: calc(100% - 28px);
-  justify-content: center;
-  transition: opacity 0.2s;
-}
-.pdf-btn:active { opacity: 0.75; }
-.pdf-btn .pdf-icon { font-size: 15px; }
-
-/* ── MONTH WISE FISH ── */
-.month-fish-chips {
-  display: flex; gap: 6px;
-  padding: 10px 14px;
-  overflow-x: auto; scrollbar-width: none;
-  background: #fff; border-bottom: 1px solid #f0f0f0;
-}
-.month-fish-chips::-webkit-scrollbar { display: none; }
-.mchip {
-  flex-shrink: 0; padding: 5px 13px;
-  border-radius: 20px; font-size: 11px; font-weight: 700;
-  border: 1.5px solid #e0e0e0;
-  background: #fafafa; color: #888;
-  cursor: pointer; white-space: nowrap;
-  transition: all 0.15s;
-}
-.mchip.active { background: #1a1a2e; border-color: #1a1a2e; color: #fff; }
-
 /* ── FOOTER ── */
 .footer-note { text-align: center; font-size: 11px; color: #bbb; padding: 20px; }
+
+/* ── COMPARATIVE CHART SECTION ── */
+.comp-tab-row {
+  display: flex; gap: 0;
+  background: #fff;
+  border-bottom: 2px solid #f0f0f0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.comp-tab-row::-webkit-scrollbar { display: none; }
+.comp-tab {
+  flex-shrink: 0; padding: 10px 16px;
+  font-size: 12px; font-weight: 700;
+  border: none; background: none;
+  color: #999; cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px; white-space: nowrap;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+.comp-tab.active { color: #1a1a2e; border-bottom-color: #1a1a2e; }
+.comp-panel { display: none; }
+.comp-panel.active { display: block; }
+.comp-chart-wrap { padding: 14px; position: relative; }
+.comp-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+.comp-table thead th {
+  font-size: 10px; font-weight: 700; color: #fff;
+  background: #1a1a2e; padding: 8px 10px;
+  text-align: left; white-space: nowrap;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.comp-table thead th:not(:first-child) { text-align: right; }
+.comp-table tbody td { padding: 9px 10px; border-bottom: 1px solid #f5f5f5; font-size: 12px; }
+.comp-table tbody tr:nth-child(even) td { background: #fafafa; }
+.comp-table tbody td:not(:first-child) { text-align: right; font-weight: 700; }
+.comp-table tfoot td { padding: 9px 10px; font-weight: 800; background: #f0f0f0; border-top: 2px solid #1a1a2e; }
+.comp-table tfoot td:not(:first-child) { text-align: right; }
+.change-up   { color: #16a34a; font-size: 11px; font-weight: 700; }
+.change-down { color: #dc2626; font-size: 11px; font-weight: 700; }
+.change-nil  { color: #aaa; font-size: 11px; }
+.metric-card-row {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 8px; padding: 12px 14px;
+}
+.mc { background: #f8fafc; border-radius: 10px; padding: 12px 10px; text-align: center; border: 1px solid #e8edf2; }
+.mc-val { font-size: 18px; font-weight: 800; color: #1a1a2e; letter-spacing: -0.5px; }
+.mc-val.money { font-size: 14px; }
+.mc-lbl { font-size: 9px; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-top: 3px; }
+.best-month { background: #1a1a2e; color: #90e0ef; border-radius: 6px; padding: 2px 8px; font-size: 10px; font-weight: 700; display: inline-block; margin-top: 4px; }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </head>
 <body>
 
@@ -585,17 +493,75 @@ body {
   </div>
 </div>
 
-<!-- MAIN TABS -->
-<div class="main-tab-row">
-  <button class="main-tab-btn active" onclick="showPage('overview',this)">📊 Overview</button>
-  <button class="main-tab-btn" onclick="showPage('fish',this)">🐟 Fish Report</button>
-  <button class="main-tab-btn" onclick="showPage('customers',this)">👥 Customers</button>
-  <button class="main-tab-btn" id="archiveTabBtn" onclick="showPage('april',this)">📅 Month Wise Sale Report</button>
-</div>
-
 <!-- CONTENT -->
 <div id="content">
   <div class="loading"><div class="spinner"></div>Fetching data from sheets…</div>
+</div>
+
+<!-- MONTHLY COMPARATIVE SECTION -->
+<div id="compSection" style="display:none;padding:14px 14px 0">
+  <div class="section-title">📊 Monthly Comparative Report</div>
+  <div class="mis-card" style="overflow:hidden">
+    <div class="mis-card-header">
+      <div>
+        <div class="mis-card-title">Month vs Month Analysis</div>
+        <div class="mis-card-range" id="compRange">All months · YTD</div>
+      </div>
+      <button onclick="downloadSectionPDF('compSection','Monthly Comparative Report')" style="background:#1a1a2e;color:#fff;border:none;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">⬇️ PDF</button>
+    </div>
+
+    <!-- Key metrics strip -->
+    <div class="metric-card-row" id="compMetricStrip"></div>
+
+    <!-- Sub tabs -->
+    <div class="comp-tab-row">
+      <button class="comp-tab active" onclick="showCompTab('revenue',this)">📈 Revenue</button>
+      <button class="comp-tab" onclick="showCompTab('orders',this)">📦 Orders</button>
+      <button class="comp-tab" onclick="showCompTab('qty',this)">🐟 Fish Qty</button>
+      <button class="comp-tab" onclick="showCompTab('customers',this)">👥 Customers</button>
+      <button class="comp-tab" onclick="showCompTab('table',this)">📋 Full Table</button>
+    </div>
+
+    <!-- Revenue chart -->
+    <div class="comp-panel active" id="comp_revenue">
+      <div class="comp-chart-wrap" style="height:260px">
+        <canvas id="chartRevenue"></canvas>
+      </div>
+      <div id="compRevTable" style="padding:0 14px 14px"></div>
+    </div>
+
+    <!-- Orders chart -->
+    <div class="comp-panel" id="comp_orders">
+      <div class="comp-chart-wrap" style="height:260px">
+        <canvas id="chartOrders"></canvas>
+      </div>
+      <div id="compOrdTable" style="padding:0 14px 14px"></div>
+    </div>
+
+    <!-- Fish Qty chart -->
+    <div class="comp-panel" id="comp_qty">
+      <div class="comp-chart-wrap" style="height:260px">
+        <canvas id="chartQty"></canvas>
+      </div>
+      <div id="compQtyTable" style="padding:0 14px 14px"></div>
+    </div>
+
+    <!-- Customers chart -->
+    <div class="comp-panel" id="comp_customers">
+      <div class="comp-chart-wrap" style="height:260px">
+        <canvas id="chartCusts"></canvas>
+      </div>
+      <div id="compCustTable" style="padding:0 14px 14px"></div>
+    </div>
+
+    <!-- Full table -->
+    <div class="comp-panel" id="comp_table">
+      <div style="overflow-x:auto;padding:14px">
+        <div id="compFullTable"></div>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <div class="footer-note" id="footerNote"></div>
@@ -667,14 +633,10 @@ function parseOrders(table) {
     i = labels.findIndex(c=>c.toLowerCase()===name.toLowerCase()); if(i>=0)return i;
     return labels.findIndex(c=>c.toLowerCase().includes(name.toLowerCase()));
   };
-  const iTs      = fi('Timestamp');
-  const iName    = fi('Name');
-  const iPhone   = fi('Phone');
-  const iTotal   = fi('Order Total');
-  const iReport  = fi('Product Report');   // Col L
-  const iBooked  = fi('Booked Date');      // Col M
-  const iDeliv   = fi('Delivered Date');   // Col N ← main date for archive
-  const iFishSold= fi('Fish Sold');        // Col O ← fish sold details
+  const iTs     = fi('Timestamp');
+  const iName   = fi('Name');
+  const iTotal  = fi('Order Total');
+  const iReport = fi('Product Report'); // Col L
 
   const v  = (r,i)=>(i>=0&&r.c[i]&&r.c[i].v!=null)?String(r.c[i].v).trim():'';
   const fv = (r,i)=>(i>=0&&r.c[i])?(r.c[i].f||v(r,i)):'';
@@ -687,21 +649,15 @@ function parseOrders(table) {
       return new Date(+p[0],+p[1],+p[2],+(p[3]||0),+(p[4]||0));
     }
     if(r.c[i].f){ const d=new Date(r.c[i].f); if(!isNaN(d))return d; }
-    // Try plain string parse
-    const d = new Date(String(r.c[i].v));
-    return isNaN(d) ? null : d;
+    return null;
   };
   const parseTotal = str=>{ if(!str)return 0; const n=parseFloat(str.replace(/[^0-9.]/g,'')); return isNaN(n)?0:n; };
 
   return (table.rows||[]).map(r=>({
     name:          v(r,iName),
-    phone:         v(r,iPhone),
-    ts:            parseTs(r,iTs),       // Timestamp — for overview/MTD/YTD
-    bookedDate:    parseTs(r,iBooked),   // Col M
-    deliveredDate: parseTs(r,iDeliv),    // Col N — used for archive reports
-    fishSold:      v(r,iFishSold),       // Col O — fish sold string
+    ts:            parseTs(r,iTs),
     total:         parseTotal(fv(r,iTotal)||v(r,iTotal)),
-    productReport: v(r,iReport),
+    productReport: v(r,iReport), // "Seer – Small Slices - 1kg ×2 | Baracuda – Medium Slices - 500g"
   })).filter(o=>o.name&&o.name.length>1&&o.ts);
 }
 
@@ -726,20 +682,14 @@ function buildFishReport(orders) {
   const map = {};
   orders.forEach(o=>{
     if(!o.productReport) return;
-    const items = parseProductReport(o.productReport);
-    const totalItemQty = items.reduce((a,item)=>a+item.qty, 0);
-    items.forEach(item=>{
-      if(!map[item.key]) map[item.key] = { key:item.key, name:item.name, size:item.size, totalQty:0, totalKg:0, totalValue:0 };
+    parseProductReport(o.productReport).forEach(item=>{
+      if(!map[item.key]) map[item.key] = { key:item.key, name:item.name, size:item.size, totalQty:0, totalKg:0 };
       map[item.key].totalQty += item.qty;
       const kg = item.size.endsWith('kg')
         ? parseFloat(item.size)*item.qty
         : item.size.endsWith('g')
           ? (parseFloat(item.size)/1000)*item.qty : 0;
       map[item.key].totalKg += kg;
-      // Apportion order total by qty share
-      if (totalItemQty > 0 && o.total > 0) {
-        map[item.key].totalValue += o.total * item.qty / totalItemQty;
-      }
     });
   });
   return Object.values(map).sort((a,b)=>b.totalQty-a.totalQty);
@@ -770,550 +720,11 @@ function parseCampaigns(table) {
 }
 
 // ── HELPERS ─────────────────────────────────────────
-// PRIMARY DATE = deliveredDate (Col N). Fallback to ts only if Col N is empty.
-function getOrderDate(o) { return o.deliveredDate || o.ts; }
-function inRange(o, start, end) {
-  const d = getOrderDate(o);
-  if (!d) return false;
-  return d >= start && d <= end;
-}
-function delivInRange(o, start, end) { return inRange(o, start, end); } // same now
+function inRange(o, start, end) { if(!o.ts)return false; return o.ts>=start&&o.ts<=end; }
 function sumTotal(list) { return list.reduce((acc,o)=>acc+o.total,0); }
 
-// ── MONTH WEEK HELPERS ───────────────────────────────
-// Get calendar weeks for a given year/month
-// Week 1 = day 1-7, Week 2 = 8-14, Week 3 = 15-21, Week 4 = 22-end
-function getMonthWeeks(year, month) {
-  const lastDay = new Date(year, month+1, 0).getDate();
-  return [
-    { n:1, label:'Week 1', start: new Date(year,month,1),  end: new Date(year,month,7,23,59,59),
-      dateLabel: `${fmtShort(new Date(year,month,1))} – ${fmtShort(new Date(year,month,7))}` },
-    { n:2, label:'Week 2', start: new Date(year,month,8),  end: new Date(year,month,14,23,59,59),
-      dateLabel: `${fmtShort(new Date(year,month,8))} – ${fmtShort(new Date(year,month,14))}` },
-    { n:3, label:'Week 3', start: new Date(year,month,15), end: new Date(year,month,21,23,59,59),
-      dateLabel: `${fmtShort(new Date(year,month,15))} – ${fmtShort(new Date(year,month,21))}` },
-    { n:4, label:'Week 4', start: new Date(year,month,22), end: new Date(year,month,lastDay,23,59,59),
-      dateLabel: `${fmtShort(new Date(year,month,22))} – ${fmtShort(new Date(year,month,lastDay))}` },
-  ];
-}
-
-// ── GLOBAL STATE ─────────────────────────────────────
-let _allOrders = [];
-let _allCamps  = [];
-let _activePage = 'overview';
-
-// ── MAIN PAGE TAB SWITCHER ────────────────────────────
-function showPage(page, el) {
-  _activePage = page;
-  document.querySelectorAll('.main-tab-btn').forEach(b => b.classList.remove('active'));
-  if (el) el.classList.add('active');
-  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-  const sec = document.getElementById('page_' + page);
-  if (sec) sec.classList.add('active');
-}
-
-// ── WEEKLY HELPERS ────────────────────────────────────
-// Get ISO week number
-function getWeekNum(d) {
-  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  const day = date.getUTCDay() || 7;
-  date.setUTCDate(date.getUTCDate() + 4 - day);
-  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-  return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
-}
-
-// Get Monday of the week containing date d
-function weekStart(d) {
-  const date = new Date(d);
-  const day = date.getDay() || 7;
-  date.setDate(date.getDate() - day + 1);
-  date.setHours(0,0,0,0);
-  return date;
-}
-function weekEnd(d) {
-  const ws = weekStart(d);
-  const we = new Date(ws);
-  we.setDate(ws.getDate() + 6);
-  we.setHours(23,59,59,999);
-  return we;
-}
-
-// Build list of weeks from a set of orders (using deliveryDate if available, else ts)
-function getWeeksFromOrders(orders) {
-  const weekMap = {};
-  orders.forEach(o => {
-    const useDate = o.deliveryDate || o.ts;
-    const ws = weekStart(useDate);
-    const key = ws.toISOString().slice(0,10);
-    if (!weekMap[key]) weekMap[key] = { ws, we: weekEnd(useDate), orders: [] };
-    weekMap[key].orders.push(o);
-  });
-  return Object.entries(weekMap)
-    .sort((a,b) => new Date(b[0]) - new Date(a[0]))
-    .map(([k, v]) => ({ key: k, ws: v.ws, we: v.we, orders: v.orders }));
-}
-
-// Platform badge helper
-function platformBadge(p) {
-  const pl = (p||'').toLowerCase();
-  if(pl.includes('meta')||pl.includes('facebook')) return `<span class="camp-platform meta">Meta</span>`;
-  if(pl.includes('google')) return `<span class="camp-platform google">Google</span>`;
-  if(pl.includes('insta')) return `<span class="camp-platform insta">Instagram</span>`;
-  return `<span class="camp-platform">${p||'—'}</span>`;
-}
-
-// ── RENDER FISH TABLE (existing, unchanged) ───────────
-function renderFishTable(fishList) {
-  if(!fishList.length) return `<div class="empty-row">No product report data yet.<br><span style="font-size:11px;color:#bbb">Run Apps Script → generateAll() to fill Column L</span></div>`;
-  const totalQty = fishList.reduce((a,f)=>a+f.totalQty,0);
-  const totalKg  = fishList.reduce((a,f)=>a+f.totalKg,0);
-  const rows = fishList.map(f => {
-    const pct = totalQty > 0 ? Math.round((f.totalQty/totalQty)*100) : 0;
-    const kgStr = f.totalKg > 0 ? f.totalKg.toFixed(2)+'kg' : '—';
-    return `
-      <div class="breakdown-row" style="flex-direction:column;align-items:stretch;gap:4px;padding:10px 0">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
-          <div class="br-name" style="font-size:12px;font-weight:600">${f.key}</div>
-          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-            <span style="font-size:11px;color:#888">${kgStr}</span>
-            <span class="br-val" style="min-width:28px;text-align:right">${f.totalQty} qty</span>
-          </div>
-        </div>
-        <div style="height:5px;background:#f0f0f0;border-radius:10px;overflow:hidden">
-          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#1a1a2e,#0f3460);border-radius:10px;transition:width 0.4s"></div>
-        </div>
-        <div style="font-size:9px;color:#bbb;text-align:right">${pct}% of total</div>
-      </div>`;
-  }).join('');
-  return `
-    <div class="breakdown">
-      <div class="breakdown-title">Fish · Variant · Size → Qty sold</div>
-      ${rows}
-      <div class="breakdown-row" style="border-top:1.5px solid #e0e0e0;margin-top:6px;padding-top:10px">
-        <div class="br-name" style="font-weight:700">Total</div>
-        <div style="display:flex;gap:12px;align-items:center">
-          <span style="font-size:12px;color:#666">${totalKg.toFixed(2)}kg</span>
-          <span class="br-val">${totalQty} qty</span>
-        </div>
-      </div>
-    </div>`;
-}
-
-// ── RENDER WEEKLY FISH TABLE (for Fish Report tab) ────
-function renderWeeklyFishSection(allOrders, ytdStart, ytdEnd) {
-  // Use deliveryDate (Col M) if available, fallback to timestamp
-  const ordersWithDate = allOrders.filter(o => inRange(o, ytdStart, ytdEnd));
-  const weeks = getWeeksFromOrders(ordersWithDate);
-  if (!weeks.length) return `<div class="empty-row">No data available</div>`;
-
-  // Build week chip buttons
-  const chips = weeks.map((w, i) => {
-    const label = `W${getWeekNum(w.ws)}: ${fmtShort(w.ws)}–${fmtShort(w.we)}`;
-    return `<button class="week-chip ${i===0?'active':''}" id="wchip_${i}" onclick="showWeek(${i})">${label}</button>`;
-  }).join('');
-
-  // Build week panels
-  const panels = weeks.map((w, i) => {
-    const fish = buildFishReport(w.orders);
-    const rev  = sumTotal(w.orders);
-    const totalQty = fish.reduce((a,f)=>a+f.totalQty,0);
-    const totalKg  = fish.reduce((a,f)=>a+f.totalKg,0);
-
-    const fishRows = fish.length
-      ? fish.map(f => `
-          <div class="archive-fish-item">
-            <div class="afi-name">${f.key}</div>
-            <div class="afi-qty">${f.totalQty} qty</div>
-            <div class="afi-kg">${f.totalKg.toFixed(2)} kg</div>
-          </div>`).join('')
-      : `<div class="empty-row" style="font-size:12px">No product data for this week</div>`;
-
-    return `
-      <div id="week_panel_${i}" class="fish-week-card" ${i>0?'style="display:none"':''}>
-        <div class="fish-week-header">
-          <div>
-            <div class="fish-week-title">Week ${getWeekNum(w.ws)} · ${fmtShort(w.ws)} – ${fmtShort(w.we)}</div>
-            <div class="fish-week-meta">${w.orders.length} orders · ${fmtMoney(rev)}</div>
-          </div>
-        </div>
-        <div class="fish-week-totals">
-          <div class="fwt-item"><div class="fwt-val">${w.orders.length}</div><div class="fwt-lbl">Orders</div></div>
-          <div class="fwt-item"><div class="fwt-val">${totalQty}</div><div class="fwt-lbl">Total Qty</div></div>
-          <div class="fwt-item"><div class="fwt-val">${totalKg.toFixed(1)}kg</div><div class="fwt-lbl">Weight</div></div>
-          <div class="fwt-item"><div class="fwt-val">${fmtMoney(rev)}</div><div class="fwt-lbl">Revenue</div></div>
-        </div>
-        <div class="breakdown" style="padding:0 16px 12px">
-          <div class="breakdown-title" style="padding-top:10px">Fish sold this week</div>
-          ${fishRows}
-        </div>
-      </div>`;
-  }).join('');
-
-  return `
-    <div class="week-chips" id="weekChips">${chips}</div>
-    <div style="padding:10px 14px 0">${panels}</div>`;
-}
-
-// ── RENDER CUSTOMER REPORT ────────────────────────────
-function renderCustomerReport(allOrders) {
-  const custMap = buildCustMap(allOrders);
-  const custs   = Object.values(custMap)
-    .sort((a, b) => b.totalSpend - a.totalSpend || b.orders.length - a.orders.length);
-
-  if (!custs.length) return `<div class="empty-row">No customer data</div>`;
-
-  // All unique months
-  const monthSet = {};
-  allOrders.forEach(o => {
-    const d = o.deliveredDate || o.ts;
-    if (!d) return;
-    const k = d.getFullYear() + '-' + String(d.getMonth()).padStart(2,'0');
-    if (!monthSet[k]) monthSet[k] = {
-      key:k, year:d.getFullYear(), month:d.getMonth(),
-      label: d.toLocaleDateString('en-IN',{month:'short',year:'numeric'})
-    };
-  });
-  const months = Object.values(monthSet).sort((a,b)=>a.key.localeCompare(b.key));
-
-  const rows = custs.map((c, i) => {
-    // Fish summary for this customer
-    const fishMap = {};
-    c.orders.forEach(o => {
-      const raw = o.productReport || '';
-      if (!raw) return;
-      raw.split('|').map(s => s.trim()).filter(Boolean).forEach(seg => {
-        const dashIdx = seg.lastIndexOf(' - ');
-        const name = dashIdx > 0 ? seg.slice(0, dashIdx).trim() : seg;
-        fishMap[name] = (fishMap[name] || 0) + 1;
-      });
-    });
-    const fishItems = Object.entries(fishMap)
-      .sort((a,b) => b[1]-a[1])
-      .map(([name, qty]) => `<div style="font-size:11px;color:#1a1a2e;padding:2px 0;border-bottom:1px solid #f5f5f5;display:flex;justify-content:space-between;gap:8px"><span>${name}</span><span style="font-weight:700;color:#0077b6;white-space:nowrap">${qty} qty</span></div>`)
-      .join('');
-
-    const monthCols = months.map(m => {
-      const mStart  = new Date(m.year, m.month, 1);
-      const mEnd    = new Date(m.year, m.month+1, 0, 23, 59, 59);
-      const mOrders = c.orders.filter(o => {
-        const d = o.deliveredDate || o.ts;
-        return d && d >= mStart && d <= mEnd;
-      });
-      if (!mOrders.length) return `<td style="text-align:center;color:#ddd;font-size:11px">—</td>`;
-      return `<td style="text-align:center;vertical-align:top;padding:7px 6px">
-        <div style="font-size:13px;font-weight:800;color:#1a1a2e">${mOrders.length}</div>
-        <div style="font-size:10px;color:#0077b6;font-weight:600">${fmtMoney(sumTotal(mOrders))}</div>
-      </td>`;
-    }).join('');
-
-    return `<tr>
-      <td style="text-align:center;font-size:11px;color:#888;font-weight:600;padding:8px 6px">${i+1}</td>
-      <td style="padding:8px 10px">
-        <div style="font-size:13px;font-weight:700;color:#1a1a2e">${c.name}</div>
-        ${c.aliases.length ? `<div style="font-size:10px;color:#bbb">${c.aliases.join(', ')}</div>` : ''}
-        <div style="font-size:11px;color:#888">📞 ${c.phone}</div>
-      </td>
-      <td style="text-align:center;font-size:14px;font-weight:800;color:#1a1a2e;padding:8px 6px">${c.orders.length}</td>
-      <td style="text-align:right;font-size:13px;font-weight:800;color:#1a1a2e;white-space:nowrap;padding:8px 10px">${fmtMoney(c.totalSpend)}</td>
-      <td style="padding:8px 10px;min-width:180px">
-        ${fishItems || '<span style="color:#ddd;font-size:11px">—</span>'}
-      </td>
-      ${monthCols}
-    </tr>`;
-  }).join('');
-
-  // Grand total footer
-  const grandOrders = custs.reduce((a,c)=>a+c.orders.length,0);
-  const grandValue  = custs.reduce((a,c)=>a+c.totalSpend,0);
-  const monthTotals = months.map(m => {
-    const mStart = new Date(m.year, m.month, 1);
-    const mEnd   = new Date(m.year, m.month+1, 0, 23, 59, 59);
-    const mOrds  = allOrders.filter(o=>{const d=o.deliveredDate||o.ts;return d&&d>=mStart&&d<=mEnd;});
-    return `<td style="text-align:center;background:#f5f5f5;padding:8px 6px">
-      <div style="font-size:12px;font-weight:800;color:#1a1a2e">${mOrds.length}</div>
-      <div style="font-size:10px;color:#0077b6;font-weight:700">${fmtMoney(sumTotal(mOrds))}</div>
-    </td>`;
-  }).join('');
-
-  return `
-    <div id="customerTableContent">
-      <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
-        <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:520px">
-          <thead>
-            <tr style="background:#1a1a2e;-webkit-print-color-adjust:exact;print-color-adjust:exact">
-              <th style="padding:10px 6px;color:#90e0ef;font-size:10px;text-align:center;width:32px">#</th>
-              <th style="padding:10px 12px;color:#90e0ef;font-size:10px;text-align:left">Customer</th>
-              <th style="padding:10px 6px;color:#90e0ef;font-size:10px;text-align:center">Orders</th>
-              <th style="padding:10px 8px;color:#90e0ef;font-size:10px;text-align:right">Total Value</th>
-              <th style="padding:10px 10px;color:#90e0ef;font-size:10px;text-align:left;min-width:180px">Order Items</th>
-              ${months.map(m=>`<th style="padding:10px 6px;color:#90e0ef;font-size:10px;text-align:center;white-space:nowrap">${m.label}</th>`).join('')}
-            </tr>
-          </thead>
-          <tbody>${rows}</tbody>
-          <tfoot>
-            <tr style="background:#f0f0f0;border-top:2px solid #1a1a2e">
-              <td colspan="3" style="padding:10px 12px;font-size:12px;font-weight:800;color:#1a1a2e">Total</td>
-              <td style="padding:10px 6px;text-align:center;font-size:14px;font-weight:800;color:#1a1a2e">${grandOrders}</td>
-              <td style="padding:10px 8px;text-align:right;font-size:13px;font-weight:800;color:#1a1a2e;white-space:nowrap">${fmtMoney(grandValue)}</td>
-              <td style="padding:10px 10px"></td>
-              ${monthTotals}
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-    </div>`;
-}
-
-// ── RENDER MONTHLY ARCHIVE (dynamic — always previous month) ─────
-
-// ── BUILD ARCHIVE MONTH CHIPS ────────────────────────
-function buildArchiveMonthChips(allOrders, allCamps) {
-  const monthSet = {};
-  allOrders.forEach(o => {
-    const d = getOrderDate(o);
-    if (!d) return;
-    const k = d.getFullYear() + '-' + String(d.getMonth()).padStart(2,'0');
-    if (!monthSet[k]) monthSet[k] = {
-      key:k, year:d.getFullYear(), month:d.getMonth(),
-      label: d.toLocaleDateString('en-IN',{month:'short',year:'numeric'}),
-      fullLabel: d.toLocaleDateString('en-IN',{month:'long',year:'numeric'}),
-    };
-  });
-
-  const months = Object.values(monthSet).sort((a,b)=>b.key.localeCompare(a.key));
-  const chipsEl = document.getElementById('archiveMonthChips');
-  if (!chipsEl) return;
-
-  if (!months.length) {
-    chipsEl.innerHTML = '<div style="padding:10px;font-size:12px;color:#aaa">No delivery date data found (check Column N)</div>';
-    return;
-  }
-
-  chipsEl.innerHTML = months.map((m,i) =>
-    '<button class="mchip ' + (i===0?'active':'') + '" id="archm_'+i+'" onclick="showArchiveMonth('+i+')">'+m.label+'</button>'
-  ).join('');
-
-  window._archMonths = months.map(m => {
-    const mStart = new Date(m.year, m.month, 1);
-    const mEnd   = new Date(m.year, m.month+1, 0, 23, 59, 59);
-    const orders = allOrders.filter(o => inRange(o, mStart, mEnd));
-    return { ...m, mStart, mEnd, orders, allOrders, allCamps };
-  });
-  window._archAllCamps = allCamps;
-
-  showArchiveMonth(0);
-}
-
-function showArchiveMonth(idx) {
-  document.querySelectorAll('[id^="archm_"]').forEach((el,i) => el.classList.toggle('active', i===idx));
-  const data = window._archMonths && window._archMonths[idx];
-  const panel = document.getElementById('archiveAllSections');
-  const allCamps = window._archAllCamps || [];
-  if (!data || !panel) return;
-
-  const { year, month, fullLabel, mStart, mEnd, orders } = data;
-  const weeks   = getMonthWeeks(year, month).map(w => ({
-    ...w,
-    orders: orders.filter(o => inRange(o, w.start, w.end))
-  }));
-
-  const rev      = sumTotal(orders);
-  const archSpend= allCamps.reduce((a,c)=>a+c.amount,0);
-  const profit   = rev - archSpend;
-  const fish     = buildFishReport(orders);
-  const totalQty = fish.reduce((a,f)=>a+f.totalQty,0);
-  const totalKg  = fish.reduce((a,f)=>a+f.totalKg,0);
-
-  // ── 1. SUMMARY ──────────────────────────────────────
-  const summaryHtml = '<div class="mis-card" id="arch_summary">' +
-    '<div class="mis-card-header"><div><div class="mis-card-title">📊 Summary</div><div class="mis-card-range">' + fullLabel + '</div></div>' +
-    '<button class="pdf-btn" onclick="downloadSectionPDF("arch_summary","'+fullLabel+' Summary")" style="margin:0;width:auto;padding:5px 10px;font-size:11px">⬇️ PDF</button></div>' +
-    '<div class="metrics three">' +
-    '<div class="metric"><div class="metric-val">' + orders.length + '</div><div class="metric-lbl">Orders</div></div>' +
-    '<div class="metric"><div class="metric-val money">' + fmtMoney(rev) + '</div><div class="metric-lbl">Revenue</div></div>' +
-    '<div class="metric"><div class="metric-val money ' + (profit>=0?'green':'red') + '">' + fmtMoney(Math.abs(profit)) + '</div><div class="metric-lbl">Net Profit</div></div>' +
-    '</div>' +
-    '<div class="breakdown"><div class="breakdown-title">Key Stats</div>' +
-    '<div class="breakdown-row"><div class="br-name">Total fish sold</div><div class="br-val">' + totalQty + ' qty · ' + totalKg.toFixed(2) + ' kg</div></div>' +
-    '<div class="breakdown-row"><div class="br-name">Avg order value</div><div class="br-val">' + (orders.length ? fmtMoney(Math.round(rev/orders.length)) : '—') + '</div></div>' +
-    '<div class="breakdown-row"><div class="br-name">Campaign spend</div><div class="br-val red">− ' + fmtMoney(archSpend) + '</div></div>' +
-    '</div></div>';
-
-  // ── 2. DATE WISE ─────────────────────────────────────
-  const dayMap = {};
-  orders.forEach(o => {
-    const d = getOrderDate(o); if (!d) return;
-    const k = d.toISOString().slice(0,10);
-    if (!dayMap[k]) dayMap[k] = { date: new Date(d), orders: [] };
-    dayMap[k].orders.push(o);
-  });
-  const dayRows = Object.entries(dayMap).sort((a,b)=>b[0].localeCompare(a[0])).map(([k,v]) => {
-    const dr = sumTotal(v.orders);
-    const df = buildFishReport(v.orders);
-    const dq = df.reduce((a,f)=>a+f.totalQty,0);
-    const fishNames = df.slice(0,2).map(f=>f.key.split('–')[0].trim()).join(', ');
-    return '<div class="breakdown-row" style="flex-direction:column;align-items:stretch;gap:3px;padding:9px 0">' +
-      '<div style="display:flex;justify-content:space-between;align-items:center">' +
-      '<div class="br-name" style="font-weight:700">' + v.date.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short'}) + '</div>' +
-      '<div style="display:flex;gap:10px"><span class="br-time">' + v.orders.length + ' orders · ' + dq + ' qty</span><span class="br-val">' + fmtMoney(dr) + '</span></div>' +
-      '</div>' +
-      (fishNames ? '<div style="font-size:11px;color:#888">🐟 ' + fishNames + (df.length>2?' +more':'') + '</div>' : '') +
-      '</div>';
-  }).join('');
-  const dateWiseHtml = '<div class="mis-card" id="arch_datewise">' +
-    '<div class="mis-card-header"><div><div class="mis-card-title">📅 Date Wise — Fish Sold</div><div class="mis-card-range">' + fullLabel + ' · by delivered date (Col N)</div></div>' +
-    '<button class="pdf-btn" onclick="downloadSectionPDF("arch_datewise","'+fullLabel+' Date Wise")" style="margin:0;width:auto;padding:5px 10px;font-size:11px">⬇️ PDF</button></div>' +
-    '<div class="breakdown"><div class="breakdown-title">Date · Orders · Qty · Revenue</div>' +
-    (dayRows || '<div class="empty-row">No data</div>') +
-    '</div></div>';
-
-  // ── 3. WEEK WISE ──────────────────────────────────────
-  const weekRows = weeks.map(w => {
-    const wr = sumTotal(w.orders);
-    const wf = buildFishReport(w.orders);
-    const wq = wf.reduce((a,f)=>a+f.totalQty,0);
-    const wk = wf.reduce((a,f)=>a+f.totalKg,0);
-    return '<div class="breakdown-row">' +
-      '<div class="br-name">' + w.label + ' <span style="font-size:10px;color:#aaa">(' + w.dateLabel + ')</span></div>' +
-      '<div class="br-time">' + w.orders.length + ' orders · ' + wq + ' qty · ' + wk.toFixed(1) + 'kg</div>' +
-      '<div class="br-val">' + fmtMoney(wr) + '</div>' +
-      '</div>';
-  }).join('');
-  const weekWiseHtml = '<div class="mis-card" id="arch_weekwise">' +
-    '<div class="mis-card-header"><div><div class="mis-card-title">📆 Week Wise — Fish Sold</div><div class="mis-card-range">' + fullLabel + '</div></div>' +
-    '<button class="pdf-btn" onclick="downloadSectionPDF("arch_weekwise","'+fullLabel+' Week Wise")" style="margin:0;width:auto;padding:5px 10px;font-size:11px">⬇️ PDF</button></div>' +
-    '<div class="breakdown"><div class="breakdown-title">Week · Date Range · Orders · Qty · Weight · Revenue</div>' +
-    (weekRows || '<div class="empty-row">No weekly data</div>') +
-    '</div></div>';
-
-  // ── 4. FISH SOLD ──────────────────────────────────────
-  const avgPerKg  = totalKg > 0 ? rev / totalKg : 0;
-  const fishTableRows = fish.map((f,i) => {
-    const pct    = totalQty > 0 ? Math.round(f.totalQty/totalQty*100) : 0;
-    const kgStr  = f.totalKg > 0 ? f.totalKg.toFixed(2)+' kg' : '—';
-    const estVal = f.totalValue > 0 ? fmtMoney(Math.round(f.totalValue)) : '—';
-    const dashIdx = f.key.lastIndexOf(' - ');
-    const fishDisplay = dashIdx > 0 ? f.key.slice(0,dashIdx).trim() : f.key;
-    const sizeDisplay = f.size || (dashIdx > 0 ? f.key.slice(dashIdx+3).trim() : '—');
-
-    // Week breakdown for this fish
-    const wkCols = weeks.map(w => {
-      const wf = buildFishReport(w.orders).find(x=>x.key===f.key);
-      if (!wf) return '<td style="text-align:center;color:#e0e0e0;font-size:11px;padding:6px">—</td><td style="text-align:center;color:#e0e0e0;font-size:11px;padding:6px">—</td>';
-      return '<td style="text-align:center;font-size:12px;font-weight:800;color:#1a1a2e;padding:6px 8px">' + wf.totalQty + '</td>' +
-             '<td style="text-align:right;font-size:11px;font-weight:700;color:#0077b6;padding:6px 8px;white-space:nowrap">' + fmtMoney(Math.round(wf.totalValue)) + '</td>';
-    }).join('');
-
-    return '<tr style="' + (i%2===0?'':'background:#fafafa') + '">' +
-      '<td style="padding:8px 10px">' +
-        '<div style="font-size:13px;font-weight:700;color:#1a1a2e">' + fishDisplay + '</div>' +
-        '<div style="font-size:11px;color:#0077b6;font-weight:600">' + sizeDisplay + '</div>' +
-        '<div style="height:4px;background:#f0f0f0;border-radius:10px;overflow:hidden;margin-top:4px">' +
-          '<div style="height:100%;width:' + pct + '%;background:linear-gradient(90deg,#1a1a2e,#0f3460);border-radius:10px"></div>' +
-        '</div>' +
-      '</td>' +
-      '<td style="text-align:center;font-size:14px;font-weight:900;color:#1a1a2e;padding:8px 8px">' + f.totalQty + '</td>' +
-      '<td style="text-align:right;font-size:12px;font-weight:700;color:#1a1a2e;padding:8px 8px;white-space:nowrap">' + estVal + '</td>' +
-      '<td style="text-align:right;font-size:11px;color:#888;padding:8px 8px">' + kgStr + '</td>' +
-      wkCols +
-      '</tr>';
-  }).join('');
-
-  const weekColHeaders = weeks.map(w =>
-    '<th colspan="2" style="padding:7px 6px;color:#90e0ef;font-size:10px;text-align:center;border-left:1px solid rgba(255,255,255,0.1)">' +
-    w.label + '<br><span style="font-size:9px;opacity:0.7">' + w.dateLabel + '</span></th>'
-  ).join('');
-
-  const weekTotals2 = weeks.map(w => {
-    const wf = buildFishReport(w.orders);
-    const wq = wf.reduce((a,f)=>a+f.totalQty,0);
-    const wr = sumTotal(w.orders);
-    return '<td style="text-align:center;font-size:12px;font-weight:800;color:#1a1a2e;background:#f0f0f0;padding:8px">' + wq + '</td>' +
-           '<td style="text-align:right;font-size:11px;font-weight:800;color:#0077b6;background:#f0f0f0;padding:8px;white-space:nowrap">' + fmtMoney(wr) + '</td>';
-  }).join('');
-
-  const fishSoldHtml = '<div class="mis-card" id="arch_fishsold">' +
-    '<div class="mis-card-header"><div><div class="mis-card-title">🐟 Fish Sold — ' + fullLabel + '</div>' +
-    '<div class="mis-card-range">' + fish.length + ' varieties · ' + totalQty + ' qty · ' + totalKg.toFixed(2) + ' kg</div></div>' +
-    '<button class="pdf-btn" onclick="downloadSectionPDF("arch_fishsold","'+fullLabel+' Fish Sold")" style="margin:0;width:auto;padding:5px 10px;font-size:11px">⬇️ PDF</button></div>' +
-    '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">' +
-    '<table style="width:100%;border-collapse:collapse;font-size:12px;min-width:620px">' +
-    '<thead>' +
-    '<tr style="background:#e8edf2">' +
-      '<td colspan="4" style="padding:6px 10px;font-size:11px;font-weight:700;color:#1a1a2e">' + fullLabel + '</td>' +
-      weekColHeaders.replace(/th /g,'td ').replace(/<\/th>/g,'</td>') +
-    '</tr>' +
-    '<tr style="background:#1a1a2e">' +
-      '<th style="padding:8px 10px;color:#90e0ef;font-size:10px;text-align:left;min-width:180px">Fish / Product</th>' +
-      '<th style="padding:8px 8px;color:#90e0ef;font-size:10px;text-align:center">Total Qty</th>' +
-      '<th style="padding:8px 8px;color:#90e0ef;font-size:10px;text-align:right">Total ₹</th>' +
-      '<th style="padding:8px 8px;color:#90e0ef;font-size:10px;text-align:right">Weight</th>' +
-      weeks.map(w=>'<th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:center;border-left:1px solid rgba(255,255,255,0.1)">Qty</th><th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:right">₹</th>').join('') +
-    '</tr>' +
-    '</thead><tbody>' + (fishTableRows || '<tr><td colspan="' + (4+weeks.length*2) + '" class="empty-row">No fish data</td></tr>') + '</tbody>' +
-    '<tfoot><tr style="border-top:2px solid #1a1a2e">' +
-      '<td style="padding:8px 10px;font-size:12px;font-weight:800;background:#f0f0f0">Total</td>' +
-      '<td style="text-align:center;font-size:13px;font-weight:800;background:#f0f0f0;padding:8px">' + totalQty + '</td>' +
-      '<td style="text-align:right;font-size:12px;font-weight:800;background:#f0f0f0;padding:8px;white-space:nowrap">' + fmtMoney(rev) + '</td>' +
-      '<td style="text-align:right;font-size:11px;font-weight:700;background:#f0f0f0;padding:8px">' + totalKg.toFixed(2) + ' kg</td>' +
-      weekTotals2 +
-    '</tr></tfoot></table></div></div>';
-
-  // ── 5. CUSTOMER PURCHASE ──────────────────────────────
-  const custMap  = buildCustMap(orders);
-  const custs    = Object.values(custMap).sort((a,b)=>b.totalSpend-a.totalSpend);
-  const custRows = custs.map((c,i) => {
-    const fishMap = {};
-    c.orders.forEach(o => {
-      (o.productReport||'').split('|').map(s=>s.trim()).filter(Boolean).forEach(seg => {
-        const di = seg.lastIndexOf(' - ');
-        const nm = di>0?seg.slice(0,di).trim():seg;
-        fishMap[nm]=(fishMap[nm]||0)+1;
-      });
-    });
-    const fishStr = Object.entries(fishMap).sort((a,b)=>b[1]-a[1])
-      .map(([n,q])=>n+' <b style="color:#0077b6">'+q+'</b>').join(' · ');
-    return '<tr style="' + (i%2===0?'':'background:#fafafa') + '">' +
-      '<td style="text-align:center;font-size:11px;color:#888;padding:8px 6px;font-weight:600">' + (i+1) + '</td>' +
-      '<td style="padding:8px 10px"><div style="font-size:13px;font-weight:700;color:#1a1a2e">' + c.name + '</div>' +
-        (c.aliases.length?'<div style="font-size:10px;color:#bbb">' + c.aliases.join(', ') + '</div>':'') +
-        '<div style="font-size:11px;color:#888">📞 ' + c.phone + '</div></td>' +
-      '<td style="text-align:center;font-size:13px;font-weight:800;color:#1a1a2e;padding:8px 6px">' + c.orders.length + '</td>' +
-      '<td style="text-align:right;font-size:13px;font-weight:800;color:#1a1a2e;white-space:nowrap;padding:8px 10px">' + fmtMoney(c.totalSpend) + '</td>' +
-      '<td style="padding:8px 10px;font-size:11px;color:#1a1a2e;line-height:1.8">' + (fishStr||'—') + '</td>' +
-      '</tr>';
-  }).join('');
-  const custHtml = '<div class="mis-card" id="arch_customers">' +
-    '<div class="mis-card-header"><div><div class="mis-card-title">👥 Customer Purchase — ' + fullLabel + '</div>' +
-    '<div class="mis-card-range">' + custs.length + ' customers · ' + orders.length + ' orders</div></div>' +
-    '<button class="pdf-btn" onclick="downloadSectionPDF("arch_customers","'+fullLabel+' Customers")" style="margin:0;width:auto;padding:5px 10px;font-size:11px">⬇️ PDF</button></div>' +
-    '<div style="overflow-x:auto;-webkit-overflow-scrolling:touch">' +
-    '<table style="width:100%;border-collapse:collapse;font-size:12px;min-width:480px">' +
-    '<thead><tr style="background:#1a1a2e">' +
-      '<th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:center;width:32px">#</th>' +
-      '<th style="padding:8px 12px;color:#90e0ef;font-size:10px;text-align:left">Customer</th>' +
-      '<th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:center">Orders</th>' +
-      '<th style="padding:8px 8px;color:#90e0ef;font-size:10px;text-align:right">Value</th>' +
-      '<th style="padding:8px 10px;color:#90e0ef;font-size:10px;text-align:left">Fish Ordered</th>' +
-    '</tr></thead>' +
-    '<tbody>' + (custRows||'<tr><td colspan="5" class="empty-row">No orders</td></tr>') + '</tbody>' +
-    '<tfoot><tr style="background:#f0f0f0;border-top:2px solid #1a1a2e">' +
-      '<td colspan="2" style="padding:8px 12px;font-size:12px;font-weight:800;color:#1a1a2e">Total</td>' +
-      '<td style="text-align:center;font-size:13px;font-weight:800;color:#1a1a2e;padding:8px">' + orders.length + '</td>' +
-      '<td style="text-align:right;font-size:13px;font-weight:800;color:#1a1a2e;white-space:nowrap;padding:8px">' + fmtMoney(rev) + '</td>' +
-      '<td></td>' +
-    '</tr></tfoot></table></div></div>';
-
-  // Combine all sections
-  panel.innerHTML = '<div id="archiveContent">' +
-    summaryHtml + dateWiseHtml + weekWiseHtml + fishSoldHtml + custHtml +
-    '</div>';
-}
-
+// ── RENDER ───────────────────────────────────────────
 function renderMIS(allOrders, allCamps) {
-  _allOrders = allOrders;
-  _allCamps  = allCamps;
-
   const todayOrders = allOrders.filter(o=>inRange(o,todayStart,todayEnd));
   const mtdOrders   = allOrders.filter(o=>inRange(o,mtdStart,mtdEnd));
   const ytdOrders   = allOrders.filter(o=>inRange(o,ytdStart,ytdEnd));
@@ -1323,23 +734,31 @@ function renderMIS(allOrders, allCamps) {
   const ytdSum   = sumTotal(ytdOrders);
 
   const totalSpend = allCamps.reduce((a,c)=>a+c.amount, 0);
+  const mtdSpend   = allCamps.reduce((a,c)=>a+c.amount, 0); // all camps for now
   const ytdProfit  = ytdSum - totalSpend;
   const mtdProfit  = mtdSum - totalSpend;
   const roi        = totalSpend > 0 ? ((ytdSum/totalSpend)*100).toFixed(0) : null;
 
-  const latestOrder = todayOrders.length ? todayOrders.slice().sort((a,b)=>b.ts-a.ts)[0] : null;
+  const latestOrder = todayOrders.length
+    ? todayOrders.slice().sort((a,b)=>b.ts-a.ts)[0]
+    : null;
   const avgToday = todayOrders.length ? Math.round(todaySum/todayOrders.length) : 0;
   const avgMtd   = mtdOrders.length   ? Math.round(mtdSum/mtdOrders.length) : 0;
-  const nowStr   = new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});
+
+  const nowStr = new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});
+
+  // Platform badge
+  function platformBadge(p) {
+    const pl = (p||'').toLowerCase();
+    if(pl.includes('meta')||pl.includes('facebook')) return `<span class="camp-platform meta">Meta</span>`;
+    if(pl.includes('google')) return `<span class="camp-platform google">Google</span>`;
+    if(pl.includes('insta')) return `<span class="camp-platform insta">Instagram</span>`;
+    return `<span class="camp-platform">${p||'—'}</span>`;
+  }
 
   const html = `
 
-  <!-- ══════════════════════════════════════ -->
-  <!--  PAGE 1: OVERVIEW                      -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="page-section active" id="page_overview">
-
-    <!-- TOP PROFIT STRIP -->
+    <!-- ══ TOP PROFIT STRIP ══ -->
     <div class="profit-strip">
       <div class="profit-strip-title">💰 Revenue · Spend · Profit — Quick View</div>
       <div class="profit-3col">
@@ -1361,13 +780,14 @@ function renderMIS(allOrders, allCamps) {
       </div>
     </div>
 
-    <!-- OVERVIEW SNAPSHOT -->
+    <!-- ══ OVERVIEW SNAPSHOT ══ -->
     <div class="overview-snap" id="overviewSnap">
       <div class="snap-header">
         <div class="snap-brand">🐟 TruSea Fish</div>
         <div class="snap-title">MIS Report</div>
         <div class="snap-time">${nowStr}</div>
       </div>
+
       <div class="snap-grid">
         <div class="snap-col">
           <div class="snap-col-label">📦 Today</div>
@@ -1382,6 +802,7 @@ function renderMIS(allOrders, allCamps) {
           <div class="snap-sub-lbl">Avg / Order</div>
           ${latestOrder ? `<div class="snap-divider"></div><div class="snap-small-val">${fmtTime(latestOrder.ts)}</div><div class="snap-sub-lbl">Latest Order</div>` : ''}
         </div>
+
         <div class="snap-col snap-col-mid">
           <div class="snap-col-label">📅 MTD</div>
           <div class="snap-col-date">${fmtShort(mtdStart)} – ${fmtShort(today)}</div>
@@ -1397,6 +818,7 @@ function renderMIS(allOrders, allCamps) {
           <div class="snap-small-val">${today.getDate()} days</div>
           <div class="snap-sub-lbl">Days Elapsed</div>
         </div>
+
         <div class="snap-col">
           <div class="snap-col-label">📊 YTD</div>
           <div class="snap-col-date">${fmtShort(ytdStart)} – ${fmtShort(today)}</div>
@@ -1413,11 +835,24 @@ function renderMIS(allOrders, allCamps) {
           <div class="snap-sub-lbl">Days Elapsed</div>
         </div>
       </div>
+
+      <!-- Profit summary row inside snapshot -->
       <div class="snap-profit-row">
-        <div class="snap-profit-cell"><div class="spc-label">💸 Spend</div><div class="spc-val red">${fmtMoney(totalSpend)}</div></div>
-        <div class="snap-profit-cell"><div class="spc-label">📈 Revenue</div><div class="spc-val">${fmtMoney(ytdSum)}</div></div>
-        <div class="snap-profit-cell"><div class="spc-label">✅ Profit</div><div class="spc-val ${ytdProfit>=0?'green':'red'}">${fmtMoney(Math.abs(ytdProfit))}</div></div>
+        <div class="snap-profit-cell">
+          <div class="spc-label">💸 Spend</div>
+          <div class="spc-val red">${fmtMoney(totalSpend)}</div>
+        </div>
+        <div class="snap-profit-cell">
+          <div class="spc-label">📈 Revenue</div>
+          <div class="spc-val">${fmtMoney(ytdSum)}</div>
+        </div>
+        <div class="snap-profit-cell">
+          <div class="spc-label">✅ Profit</div>
+          <div class="spc-val ${ytdProfit>=0?'green':'red'}">${fmtMoney(Math.abs(ytdProfit))}</div>
+        </div>
       </div>
+
+      <!-- Today's orders -->
       <div class="snap-today-orders">
         <div class="snap-today-title">Today's Orders</div>
         ${todayOrders.length===0
@@ -1428,22 +863,50 @@ function renderMIS(allOrders, allCamps) {
               <div class="snap-order-name">${o.name}</div>
               <div class="snap-order-time">${fmtTime(o.ts)}</div>
               <div class="snap-order-val">${o.total?fmtMoney(o.total):'—'}</div>
-            </div>`).join('')}
+            </div>`).join('')
+        }
         ${todayOrders.length>0?`
         <div class="snap-order-total-row">
           <div style="flex:1;font-weight:700;font-size:12px">Total</div>
           <div class="snap-order-val" style="font-weight:800;color:#1a1a2e">${fmtMoney(todaySum)}</div>
         </div>`:''}
       </div>
+
       <div class="snap-footer">Powered by TruSea Fish · Auto-synced from Google Sheets</div>
     </div>
 
-    <!-- PDF DOWNLOAD -->
-    <button class="pdf-btn" onclick="downloadPDF()">
-      <span class="pdf-icon">⬇️</span> Download Full Summary as PDF
-    </button>
+    <!-- ══ FISH SOLD REPORT ══ -->
+    <div class="section">
+      <div class="section-title">🐟 Fish Sold — Product Report</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px">
+        <button class="tab-btn active" id="ftab_mtd" onclick="showFishTab('mtd')">This Month</button>
+        <button class="tab-btn" id="ftab_today" onclick="showFishTab('today')">Today</button>
+        <button class="tab-btn" id="ftab_ytd" onclick="showFishTab('ytd')">Year to Date</button>
+      </div>
+      <div id="fish_mtd" class="mis-card">
+        <div class="mis-card-header">
+          <div><div class="mis-card-title">Monthly Fish Sales</div><div class="mis-card-range">${fmtShort(mtdStart)} – ${fmtShort(today)}</div></div>
+          <div class="mis-card-icon">📊</div>
+        </div>
+        ${renderFishTable(buildFishReport(mtdOrders))}
+      </div>
+      <div id="fish_today" class="mis-card" style="display:none">
+        <div class="mis-card-header">
+          <div><div class="mis-card-title">Today's Fish Sales</div><div class="mis-card-range">${fmt(today)}</div></div>
+          <div class="mis-card-icon">📦</div>
+        </div>
+        ${renderFishTable(buildFishReport(todayOrders))}
+      </div>
+      <div id="fish_ytd" class="mis-card" style="display:none">
+        <div class="mis-card-header">
+          <div><div class="mis-card-title">Yearly Fish Sales</div><div class="mis-card-range">${fmtShort(ytdStart)} – ${fmtShort(today)}</div></div>
+          <div class="mis-card-icon">📈</div>
+        </div>
+        ${renderFishTable(buildFishReport(ytdOrders))}
+      </div>
+    </div>
 
-    <!-- TODAY -->
+    <!-- ══ TODAY ORDERS ══ -->
     <div class="section">
       <div class="section-title">Today</div>
       <div class="mis-card">
@@ -1452,8 +915,14 @@ function renderMIS(allOrders, allCamps) {
           <div class="mis-card-icon">📦</div>
         </div>
         <div class="metrics">
-          <div class="metric"><div class="metric-val">${todayOrders.length}</div><div class="metric-lbl">Total Orders</div></div>
-          <div class="metric"><div class="metric-val money">${fmtMoney(todaySum)}</div><div class="metric-lbl">Order Value</div></div>
+          <div class="metric">
+            <div class="metric-val">${todayOrders.length}</div>
+            <div class="metric-lbl">Total Orders</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money">${fmtMoney(todaySum)}</div>
+            <div class="metric-lbl">Order Value</div>
+          </div>
         </div>
         <div class="breakdown">
           <div class="breakdown-title">Order Breakdown</div>
@@ -1464,12 +933,13 @@ function renderMIS(allOrders, allCamps) {
                 <div class="br-name">${o.name}</div>
                 <div class="br-time">${fmtTime(o.ts)}</div>
                 <div class="br-val">${o.total?fmtMoney(o.total):'—'}</div>
-              </div>`).join('')}
+              </div>`).join('')
+          }
         </div>
       </div>
     </div>
 
-    <!-- MTD -->
+    <!-- ══ MTD ══ -->
     <div class="section">
       <div class="section-title">Month to Date</div>
       <div class="mis-card">
@@ -1478,9 +948,18 @@ function renderMIS(allOrders, allCamps) {
           <div class="mis-card-icon">📅</div>
         </div>
         <div class="metrics three">
-          <div class="metric"><div class="metric-val">${mtdOrders.length}</div><div class="metric-lbl">Orders</div></div>
-          <div class="metric"><div class="metric-val money">${fmtMoney(mtdSum)}</div><div class="metric-lbl">Revenue</div></div>
-          <div class="metric"><div class="metric-val money ${mtdProfit>=0?'green':'red'}">${fmtMoney(Math.abs(mtdProfit))}</div><div class="metric-lbl">Net Profit</div></div>
+          <div class="metric">
+            <div class="metric-val">${mtdOrders.length}</div>
+            <div class="metric-lbl">Orders</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money">${fmtMoney(mtdSum)}</div>
+            <div class="metric-lbl">Revenue</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money ${mtdProfit>=0?'green':'red'}">${fmtMoney(Math.abs(mtdProfit))}</div>
+            <div class="metric-lbl">Net Profit</div>
+          </div>
         </div>
         <div class="breakdown">
           <div class="breakdown-title">Daily Breakdown</div>
@@ -1489,7 +968,7 @@ function renderMIS(allOrders, allCamps) {
       </div>
     </div>
 
-    <!-- YTD -->
+    <!-- ══ YTD ══ -->
     <div class="section">
       <div class="section-title">Year to Date</div>
       <div class="mis-card">
@@ -1498,9 +977,18 @@ function renderMIS(allOrders, allCamps) {
           <div class="mis-card-icon">📊</div>
         </div>
         <div class="metrics three">
-          <div class="metric"><div class="metric-val">${ytdOrders.length}</div><div class="metric-lbl">Orders</div></div>
-          <div class="metric"><div class="metric-val money">${fmtMoney(ytdSum)}</div><div class="metric-lbl">Revenue</div></div>
-          <div class="metric"><div class="metric-val money ${ytdProfit>=0?'green':'red'}">${fmtMoney(Math.abs(ytdProfit))}</div><div class="metric-lbl">Net Profit</div></div>
+          <div class="metric">
+            <div class="metric-val">${ytdOrders.length}</div>
+            <div class="metric-lbl">Orders</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money">${fmtMoney(ytdSum)}</div>
+            <div class="metric-lbl">Revenue</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money ${ytdProfit>=0?'green':'red'}">${fmtMoney(Math.abs(ytdProfit))}</div>
+            <div class="metric-lbl">Net Profit</div>
+          </div>
         </div>
         <div class="breakdown">
           <div class="breakdown-title">Monthly Breakdown</div>
@@ -1509,7 +997,7 @@ function renderMIS(allOrders, allCamps) {
       </div>
     </div>
 
-    <!-- CAMPAIGN SPEND -->
+    <!-- ══ CAMPAIGN SPEND ══ -->
     <div class="section">
       <div class="section-title">Campaign Spend</div>
       <div class="mis-card">
@@ -1518,9 +1006,18 @@ function renderMIS(allOrders, allCamps) {
           <div class="mis-card-icon">📣</div>
         </div>
         <div class="metrics three">
-          <div class="metric"><div class="metric-val">${allCamps.length}</div><div class="metric-lbl">Campaigns</div></div>
-          <div class="metric"><div class="metric-val money red">${fmtMoney(totalSpend)}</div><div class="metric-lbl">Total Spend</div></div>
-          <div class="metric"><div class="metric-val money">${roi ? roi+'%' : '—'}</div><div class="metric-lbl">Revenue ROI</div></div>
+          <div class="metric">
+            <div class="metric-val">${allCamps.length}</div>
+            <div class="metric-lbl">Campaigns</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money red">${fmtMoney(totalSpend)}</div>
+            <div class="metric-lbl">Total Spend</div>
+          </div>
+          <div class="metric">
+            <div class="metric-val money">${roi ? roi+'%' : '—'}</div>
+            <div class="metric-lbl">Revenue ROI</div>
+          </div>
         </div>
         <div class="breakdown">
           <div class="breakdown-title">Campaign Breakdown</div>
@@ -1534,7 +1031,8 @@ function renderMIS(allOrders, allCamps) {
                   ${c.notes?`<div class="camp-notes">${c.notes}</div>`:''}
                 </div>
                 <div class="camp-amount">- ${fmtMoney(c.amount)}</div>
-              </div>`).join('')}
+              </div>`).join('')
+          }
           ${allCamps.length>0?`
           <div class="breakdown-row" style="margin-top:6px;border-top:1.5px solid #e0e0e0;padding-top:10px">
             <div class="br-name" style="font-weight:700">Total Spent</div>
@@ -1544,7 +1042,7 @@ function renderMIS(allOrders, allCamps) {
       </div>
     </div>
 
-    <!-- PROFIT & LOSS -->
+    <!-- ══ PROFIT & LOSS ══ -->
     <div class="section">
       <div class="section-title">Profit & Loss</div>
       <div class="mis-card">
@@ -1565,148 +1063,73 @@ function renderMIS(allOrders, allCamps) {
             <div class="br-name" style="font-size:15px;font-weight:800">${ytdProfit>=0?'✅ Net Profit':'❌ Net Loss'}</div>
             <div class="br-val ${ytdProfit>=0?'green':'red'}" style="font-size:17px">${fmtMoney(Math.abs(ytdProfit))}</div>
           </div>
-          ${roi?`<div style="padding:10px 0;text-align:center">
-            <span class="roi-pill ${ytdProfit>=0?'good':'bad'}">${ytdProfit>=0?'▲':'▼'} ROI: Every ₹1 spent → ₹${(ytdSum/totalSpend).toFixed(2)} revenue</span>
+          ${roi?`
+          <div style="padding:10px 0;text-align:center">
+            <span class="roi-pill ${ytdProfit>=0?'good':'bad'}">
+              ${ytdProfit>=0?'▲':'▼'} ROI: Every ₹1 spent → ₹${(ytdSum/totalSpend).toFixed(2)} revenue
+            </span>
           </div>`:''}
         </div>
       </div>
     </div>
-
-  </div><!-- /page_overview -->
-
-  <!-- ══════════════════════════════════════ -->
-  <!--  PAGE 2: FISH REPORT                   -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="page-section" id="page_fish">
-
-    <!-- Period tabs (Today/Month/Year) -->
-    <div class="section">
-      <div class="section-title">🐟 Fish Sold — Product Report</div>
-      <div style="display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px">
-        <button class="tab-btn active" id="ftab_mtd" onclick="showFishTab('mtd')">This Month</button>
-        <button class="tab-btn" id="ftab_today" onclick="showFishTab('today')">Today</button>
-        <button class="tab-btn" id="ftab_ytd" onclick="showFishTab('ytd')">Year to Date</button>
-      </div>
-      <div id="fish_mtd" class="mis-card">
-        <div class="mis-card-header"><div><div class="mis-card-title">Monthly Fish Sales</div><div class="mis-card-range">${fmtShort(mtdStart)} – ${fmtShort(today)}</div></div><div class="mis-card-icon">📊</div></div>
-        ${renderFishTable(buildFishReport(mtdOrders))}
-      </div>
-      <div id="fish_today" class="mis-card" style="display:none">
-        <div class="mis-card-header"><div><div class="mis-card-title">Today's Fish Sales</div><div class="mis-card-range">${fmt(today)}</div></div><div class="mis-card-icon">📦</div></div>
-        ${renderFishTable(buildFishReport(todayOrders))}
-      </div>
-      <div id="fish_ytd" class="mis-card" style="display:none">
-        <div class="mis-card-header"><div><div class="mis-card-title">Yearly Fish Sales</div><div class="mis-card-range">${fmtShort(ytdStart)} – ${fmtShort(today)}</div></div><div class="mis-card-icon">📈</div></div>
-        ${renderFishTable(buildFishReport(ytdOrders))}
-      </div>
-    </div>
-
-    <!-- DAY-WISE fish report -->
-    <div class="section">
-      <div class="section-title">📅 Day Wise Fish Sales</div>
-      <div class="mis-card" style="overflow:hidden">
-        <div class="mis-card-header">
-          <div><div class="mis-card-title">Daily Fish Report</div><div class="mis-card-range">Select a day</div></div>
-          <div class="mis-card-icon">📅</div>
-        </div>
-        <div class="month-fish-chips" id="dayFishChips"></div>
-        <div id="dayFishPanel"></div>
-      </div>
-    </div>
-
-    <!-- WEEK-WISE fish report -->
-    <div class="section">
-      <div class="section-title">📆 Week Wise Fish Sales</div>
-      <div class="mis-card" style="overflow:hidden">
-        <div class="mis-card-header">
-          <div><div class="mis-card-title">Weekly Fish Report</div><div class="mis-card-range">Based on Delivered Date (Col N)</div></div>
-          <div class="mis-card-icon">📆</div>
-        </div>
-        ${renderWeeklyFishSection(allOrders, ytdStart, ytdEnd)}
-      </div>
-    </div>
-
-    <!-- MONTH-WISE fish report -->
-    <div class="section">
-      <div class="section-title">🗓️ Month Wise Fish Sales</div>
-      <div class="mis-card" style="overflow:hidden">
-        <div class="mis-card-header">
-          <div><div class="mis-card-title">Monthly Fish Breakdown</div>
-          <div class="mis-card-range">Select a month</div></div>
-          <div class="mis-card-icon">📅</div>
-        </div>
-        <div class="month-fish-chips" id="monthFishChips"></div>
-        <div id="monthFishPanel"></div>
-      </div>
-    </div>
-
-  </div><!-- /page_fish -->
-
-  <!-- ══════════════════════════════════════ -->
-  <!--  PAGE 3: CUSTOMERS                     -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="page-section" id="page_customers">
-    <div class="section">
-      <div class="section-title">⭐ Premium Customers</div>
-      <div id="premiumCustomerCard"></div>
-    </div>
-    <div class="section">
-      <div class="section-title">📅 Customer Purchase — Date Wise</div>
-      <div class="mis-card" style="overflow:hidden">
-        <div class="mis-card-header">
-          <div>
-            <div class="mis-card-title">Who Bought What — By Date</div>
-            <div class="mis-card-range">Based on Delivered Date (Col N)</div>
-          </div>
-          <div class="mis-card-icon">🗓️</div>
-        </div>
-        <!-- Date chips -->
-        <div id="custDateChips" style="display:flex;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;background:#fafafa;border-bottom:1px solid #f0f0f0;flex-wrap:nowrap"></div>
-        <!-- Panel -->
-        <div id="custDatePanel"></div>
-      </div>
-    </div>
-    <div class="section">
-      <div class="section-title">👥 All Customers — Month Wise Report</div>
-      <div class="mis-card">
-        <div class="mis-card-header">
-          <div><div class="mis-card-title">Customer Summary</div><div class="mis-card-range">S.No · Name · Orders · Value · Month-wise</div></div>
-          <button class="pdf-btn" onclick="downloadCustomerPDF()" style="margin:0;width:auto;padding:7px 14px;font-size:11px">⬇️ PDF</button>
-        </div>
-        ${renderCustomerReport(allOrders)}
-      </div>
-    </div>
-  </div><!-- /page_customers -->
-
-  <!-- ══════════════════════════════════════ -->
-  <!--  PAGE 4: MONTHLY ARCHIVE               -->
-  <!-- ══════════════════════════════════════ -->
-  <div class="page-section" id="page_april">
-    <div class="section" style="padding-top:12px">
-      <div class="section-title">📅 Month Wise Sale Report</div>
-
-      <!-- Month toggle chips -->
-      <div class="month-fish-chips" id="archiveMonthChips" style="background:#fff;border-radius:12px;margin-bottom:10px;border:1px solid #eee"></div>
-
-      <!-- PDF download -->
-      <button class="pdf-btn" id="archivePdfBtn" onclick="downloadArchivePDF()">
-        <span class="pdf-icon">⬇️</span> Download This Month as PDF
-      </button>
-
-      <!-- All section panels rendered here -->
-      <div id="archiveAllSections"></div>
-    </div>
-  </div><!-- /page_april -->
 
   `;
 
   document.getElementById('content').innerHTML = html;
   document.getElementById('footerNote').textContent =
     `Orders: ${allOrders.length} records · Campaigns: ${allCamps.length} entries · Last sync: ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}`;
-
-  // Restore active tab
-  showPage(_activePage, document.querySelector(`.main-tab-btn[onclick*="${_activePage}"]`));
 }
+
+// ── FISH TABLE RENDER ────────────────────────────────
+function renderFishTable(fishList) {
+  if(!fishList.length) return `<div class="empty-row">No product report data yet.<br><span style="font-size:11px;color:#bbb">Run Apps Script → generateAll() to fill Column L</span></div>`;
+
+  const totalQty = fishList.reduce((a,f)=>a+f.totalQty,0);
+  const totalKg  = fishList.reduce((a,f)=>a+f.totalKg,0);
+
+  const rows = fishList.map(f => {
+    const pct = totalQty > 0 ? Math.round((f.totalQty/totalQty)*100) : 0;
+    const kgStr = f.totalKg > 0 ? f.totalKg.toFixed(2)+'kg' : '—';
+    return `
+      <div class="breakdown-row" style="flex-direction:column;align-items:stretch;gap:4px;padding:10px 0">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <div class="br-name" style="font-size:12px;font-weight:600">${f.key}</div>
+          <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+            <span style="font-size:11px;color:#888">${kgStr}</span>
+            <span class="br-val" style="min-width:28px;text-align:right">${f.totalQty} qty</span>
+          </div>
+        </div>
+        <div style="height:5px;background:#f0f0f0;border-radius:10px;overflow:hidden">
+          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#1a1a2e,#0f3460);border-radius:10px;transition:width 0.4s"></div>
+        </div>
+        <div style="font-size:9px;color:#bbb;text-align:right">${pct}% of total</div>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="breakdown">
+      <div class="breakdown-title">Fish · Variant · Size → Qty sold</div>
+      ${rows}
+      <div class="breakdown-row" style="border-top:1.5px solid #e0e0e0;margin-top:6px;padding-top:10px">
+        <div class="br-name" style="font-weight:700">Total</div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <span style="font-size:12px;color:#666">${totalKg.toFixed(2)}kg</span>
+          <span class="br-val">${totalQty} qty</span>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── FISH TAB SWITCHER ────────────────────────────────
+function showFishTab(tab) {
+  ['mtd','today','ytd'].forEach(t => {
+    const el = document.getElementById('fish_'+t);
+    const btn = document.getElementById('ftab_'+t);
+    if(el)  el.style.display  = t===tab ? '' : 'none';
+    if(btn) btn.classList.toggle('active', t===tab);
+  });
+}
+
 // ── DAILY BREAKDOWN ─────────────────────────────────
 function renderDailyBreakdown(orders, start, end) {
   if(!orders.length) return `<div class="empty-row">No orders this month yet</div>`;
@@ -1720,12 +1143,11 @@ function renderDailyBreakdown(orders, start, end) {
   }
   return days.slice().reverse().map(d=>`
     <div class="breakdown-row">
-      <div class="br-name">${d.date.toLocaleDateString("en-IN",{weekday:"short",day:"2-digit",month:"short"})}</div>
-      <div class="br-time">${d.count} order${d.count>1?"s":""}</div>
+      <div class="br-name">${d.date.toLocaleDateString('en-IN',{weekday:'short',day:'2-digit',month:'short'})}</div>
+      <div class="br-time">${d.count} order${d.count>1?'s':''}</div>
       <div class="br-val">${fmtMoney(d.total)}</div>
-    </div>`).join("");
+    </div>`).join('');
 }
-
 
 // ── MONTHLY BREAKDOWN ────────────────────────────────
 function renderMonthlyBreakdown(orders, start, end) {
@@ -1747,706 +1169,6 @@ function renderMonthlyBreakdown(orders, start, end) {
     </div>`).join('');
 }
 
-// ── SECTION PDF DOWNLOAD ─────────────────────────────
-function downloadSectionPDF(sectionId, title) {
-  const el = document.getElementById(sectionId);
-  if (!el) { alert('Section not loaded yet.'); return; }
-  openPrintWindow(el.outerHTML, title);
-}
-
-// ── SECTION PDF DOWNLOAD ─────────────────────────────
-function downloadSectionPDF(sectionId, title) {
-  const el = document.getElementById(sectionId);
-  if (!el) { alert('Section not loaded yet.'); return; }
-  openPrintWindow(el.outerHTML, title);
-}
-
-// ── SET ARCHIVE TAB NAME ─────────────────────────────
-function setArchiveTabName() {
-  // Tab stays as "Month Wise Sale Report" — static
-  const btn = document.getElementById('archiveTabBtn');
-  if (btn) btn.textContent = '📅 Month Wise Sale Report';
-}
-
-// ── PDF DOWNLOAD ─────────────────────────────────────
-function downloadPDF() {
-  // Show print dialog — browser prints/saves as PDF
-  // First switch to overview to print the full summary
-  showPage('overview', document.querySelector('.main-tab-btn'));
-
-  // Hide tabs and action buttons during print
-  const style = document.createElement('style');
-  style.id = 'printStyle';
-  style.textContent = `
-    @media print {
-      .main-tab-row, .sync-row, .pdf-btn, .tab-row, .week-chips,
-      .month-fish-chips, .sync-btn { display: none !important; }
-      .page-section { display: block !important; }
-      .header { position: relative !important; }
-      body { background: #fff !important; }
-      .profit-strip { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .overview-snap { break-inside: avoid; }
-      .mis-card { break-inside: avoid; margin-bottom: 8px; }
-      @page { margin: 15mm; size: A4; }
-    }
-  `;
-  document.head.appendChild(style);
-
-  setTimeout(() => {
-    window.print();
-    setTimeout(() => {
-      const s = document.getElementById('printStyle');
-      if (s) s.remove();
-    }, 1000);
-  }, 300);
-}
-
-// ── MONTH-WISE FISH REPORT ────────────────────────────
-function buildMonthFishChips(allOrders) {
-  // Find all months that have orders (from ytdStart onwards)
-  const monthSet = {};
-  allOrders.forEach(o => {
-    const d = o.ts;
-    if (!d) return;
-    const key = d.getFullYear() + '-' + String(d.getMonth()).padStart(2,'0');
-    if (!monthSet[key]) {
-      monthSet[key] = {
-        year:  d.getFullYear(),
-        month: d.getMonth(),
-        label: d.toLocaleDateString('en-IN', { month: 'short', year: 'numeric' }),
-        fullLabel: d.toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }),
-      };
-    }
-  });
-
-  const months = Object.entries(monthSet)
-    .sort((a, b) => b[0].localeCompare(a[0])) // newest first
-    .map(([k, v]) => v);
-
-  if (!months.length) {
-    document.getElementById('monthFishChips').innerHTML = '<div style="padding:10px;font-size:12px;color:#aaa">No data available</div>';
-    return;
-  }
-
-  // Build chips
-  document.getElementById('monthFishChips').innerHTML = months.map((m, i) =>
-    `<button class="mchip ${i===0?'active':''}" id="mchip_${i}" onclick="showMonthFish(${i})">${m.label}</button>`
-  ).join('');
-
-  // Store months globally for showMonthFish
-  window._monthFishData = months.map(m => {
-    const mStart = new Date(m.year, m.month, 1);
-    const mEnd   = new Date(m.year, m.month + 1, 0, 23, 59, 59);
-    const mOrders = allOrders.filter(o => inRange(o, mStart, mEnd));
-    return { ...m, mStart, mEnd, orders: mOrders };
-  });
-
-  // Show first month by default
-  showMonthFish(0);
-}
-
-function showMonthFish(idx) {
-  document.querySelectorAll('#monthFishChips .mchip').forEach((el, i) => {
-    el.classList.toggle('active', i === idx);
-  });
-
-  const data = window._monthFishData && window._monthFishData[idx];
-  if (!data) return;
-
-  const panel = document.getElementById('monthFishPanel');
-  if (!panel) return;
-
-  if (!data.orders.length) {
-    panel.innerHTML = `<div class="empty-row" style="padding:20px">No orders in ${data.fullLabel}</div>`;
-    return;
-  }
-
-  // Get all 4 weeks of this month with proper date ranges
-  const weeks = getMonthWeeks(data.year, data.month).map(w => ({
-    ...w,
-    orders: data.orders.filter(o => inRange(o, w.start, w.end))
-  }));
-
-  // All fish across full month
-  const fish     = buildFishReport(data.orders);
-  const rev      = sumTotal(data.orders);
-  const totalQty = fish.reduce((a,f)=>a+f.totalQty,0);
-  const totalKg  = fish.reduce((a,f)=>a+f.totalKg,0);
-  const totalVal = fish.reduce((a,f)=>a+f.totalValue,0);
-
-  if (!fish.length) {
-    panel.innerHTML = `<div class="empty-row" style="padding:20px">No product report data — run Apps Script generateAll()</div>`;
-    return;
-  }
-
-  // Build week fish maps
-  const weekFish = weeks.map(w => {
-    const wf = buildFishReport(w.orders);
-    const wmap = {};
-    wf.forEach(f => { wmap[f.key] = f; });
-    return { label: w.label, orders: w.orders, map: wmap, rev: sumTotal(w.orders) };
-  });
-
-  // Header: Fish | (kgs) | Week1 Sales ₹ | (kgs) | Week2 ... | Total ₹ | (kgs)
-  const weekHeaders = weekFish.map(w =>
-    `<th style="text-align:right;padding:8px 8px;color:#90e0ef;font-size:10px;white-space:nowrap">Sales (₹)</th>
-     <th style="text-align:right;padding:8px 6px;color:#90e0ef;font-size:10px">(qty)</th>`
-  ).join('');
-
-  const fishRows = fish.map((f, i) => {
-    const weekCols = weekFish.map(w => {
-      const wf = w.map[f.key];
-      if (!wf) return `<td style="text-align:right;color:#e0e0e0;font-size:11px;padding:7px 8px">—</td>
-                       <td style="text-align:right;color:#e0e0e0;font-size:11px;padding:7px 6px">—</td>`;
-      return `<td style="text-align:right;font-size:12px;font-weight:700;color:#1a1a2e;padding:7px 8px;white-space:nowrap">${fmtMoney(Math.round(wf.totalValue))}</td>
-              <td style="text-align:right;font-size:11px;color:#0077b6;font-weight:600;padding:7px 6px">${wf.totalQty}</td>`;
-    }).join('');
-
-    return `<tr style="${i%2===0?'':'background:#fafafa'}">
-      <td style="padding:7px 10px;font-size:12px;font-weight:600;color:#1a1a2e;max-width:180px">${f.key}</td>
-      <td style="text-align:right;font-size:12px;font-weight:800;color:#1a1a2e;padding:7px 8px;white-space:nowrap">${fmtMoney(Math.round(f.totalValue))}</td>
-      <td style="text-align:right;font-size:12px;font-weight:800;color:#0077b6;padding:7px 6px">${f.totalQty}</td>
-      ${weekCols}
-    </tr>`;
-  }).join('');
-
-  // Total rows per week
-  const weekTotals = weekFish.map(w => {
-    const wqty = Object.values(w.map).reduce((a,f)=>a+f.totalQty,0);
-    return `<td style="text-align:right;font-size:12px;font-weight:800;color:#1a1a2e;padding:8px 8px;background:#f0f0f0;white-space:nowrap">${fmtMoney(Math.round(w.rev))}</td>
-            <td style="text-align:right;font-size:12px;font-weight:800;color:#0077b6;padding:8px 6px;background:#f0f0f0">${wqty}</td>`;
-  }).join('');
-
-  panel.innerHTML = `
-    <!-- Summary strip -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:1px;background:#f0f0f0;border-bottom:1px solid #eee">
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:18px;font-weight:800;color:#1a1a2e">${data.orders.length}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Orders</div>
-      </div>
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:18px;font-weight:800;color:#1a1a2e">${fish.length}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Varieties</div>
-      </div>
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:18px;font-weight:800;color:#1a1a2e">${totalQty}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Total Qty</div>
-      </div>
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:15px;font-weight:800;color:#1a1a2e">${fmtMoney(Math.round(rev))}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Revenue</div>
-      </div>
-    </div>
-
-    <!-- Week header row -->
-    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
-      <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:600px">
-        <thead>
-          <!-- Month label row -->
-          <tr style="background:#e8edf2">
-            <td colspan="3" style="padding:6px 10px;font-size:11px;font-weight:700;color:#1a1a2e">${data.fullLabel}</td>
-            ${weekFish.map(w=>`<td colspan="2" style="padding:6px 8px;text-align:center;font-size:10px;font-weight:700;color:#1a1a2e;border-left:1px solid #d0d8e0">${w.label}<br><span style="font-size:9px;font-weight:500;color:#666">${w.dateLabel}</span></td>`).join('')}
-          </tr>
-          <!-- Column headers -->
-          <tr style="background:#1a1a2e">
-            <th style="padding:8px 10px;color:#90e0ef;font-size:10px;text-align:left;min-width:160px">Fish / Product</th>
-            <th style="padding:8px 8px;color:#90e0ef;font-size:10px;text-align:right">Total ₹</th>
-            <th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:right">Qty</th>
-            ${weekHeaders}
-          </tr>
-        </thead>
-        <tbody>${fishRows}</tbody>
-        <tfoot>
-          <tr style="border-top:2px solid #1a1a2e">
-            <td style="padding:8px 10px;font-size:12px;font-weight:800;color:#1a1a2e;background:#f0f0f0">Total</td>
-            <td style="text-align:right;font-size:12px;font-weight:800;color:#1a1a2e;padding:8px 8px;background:#f0f0f0;white-space:nowrap">${fmtMoney(Math.round(rev))}</td>
-            <td style="text-align:right;font-size:12px;font-weight:800;color:#0077b6;padding:8px 6px;background:#f0f0f0">${totalQty}</td>
-            ${weekTotals}
-          </tr>
-        </tfoot>
-      </table>
-    </div>`;
-}
-
-// ── SHARED PDF HELPER ─────────────────────────────────
-function openPrintWindow(contentHtml, title) {
-  const now = new Date().toLocaleString('en-IN',{
-    day:'2-digit',month:'short',year:'numeric',
-    hour:'2-digit',minute:'2-digit',hour12:true
-  });
-
-  const fullHtml = `<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>${title}</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#1a1a2e;font-size:12px;padding:16px}
-.print-header{background:#1a1a2e;color:#fff;padding:14px 18px;border-radius:10px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.print-header h1{font-size:17px;font-weight:800;color:#90e0ef}
-.print-header p{font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px}
-.print-time{font-size:10px;color:rgba(255,255,255,0.45);text-align:right}
-.section{padding:0 0 12px}
-.section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:#888;margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid #eee}
-.archive-badge{background:#1a1a2e;color:#90e0ef;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;border-radius:20px;padding:2px 8px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.mis-card{background:#fff;border-radius:10px;border:1px solid #e0e0e0;overflow:hidden;margin-bottom:10px;break-inside:avoid}
-.mis-card-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #f0f0f0}
-.mis-card-title{font-size:13px;font-weight:700;color:#1a1a2e}
-.mis-card-range{font-size:10px;color:#888;margin-top:1px}
-.mis-card-icon{font-size:18px;opacity:0.5}
-.metrics{display:grid;grid-template-columns:1fr 1fr}
-.metrics.three{grid-template-columns:1fr 1fr 1fr}
-.metric{padding:10px 8px;text-align:center;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.metric:last-child{border-right:none}
-.metric-val{font-size:20px;font-weight:800;letter-spacing:-1px;color:#1a1a2e}
-.metric-val.money{font-size:15px}
-.metric-val.green{color:#16a34a}
-.metric-val.red{color:#dc2626}
-.metric-lbl{font-size:9px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;margin-top:2px}
-.breakdown{padding:0 14px 10px}
-.breakdown-title{font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;padding:8px 0 5px;border-top:1px solid #f5f5f5}
-.breakdown-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f7f7f7;gap:8px;flex-wrap:wrap}
-.breakdown-row:last-child{border-bottom:none}
-.br-name{font-size:11px;font-weight:500;color:#1a1a2e;flex:1}
-.br-time{font-size:10px;color:#aaa}
-.br-val{font-size:12px;font-weight:700;color:#1a1a2e;white-space:nowrap}
-.br-val.red{color:#dc2626}
-.empty-row{text-align:center;padding:14px;color:#bbb;font-size:11px}
-table{width:100%;border-collapse:collapse;font-size:11px}
-th{padding:7px 8px;text-align:left;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.3px;border-bottom:1px solid #e0e0e0;background:#fafafa;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-td{padding:7px 8px;border-bottom:1px solid #f5f5f5;vertical-align:top}
-tr:nth-child(even) td{background:#fafafa;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-tfoot td{background:#f0f0f0;font-weight:700;border-top:2px solid #1a1a2e;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.afi-name{font-size:11px;font-weight:600;color:#1a1a2e}
-.afi-qty{text-align:right;font-size:12px;font-weight:800;color:#1a1a2e}
-.afi-kg{text-align:right;font-size:11px;color:#16a34a;font-weight:700}
-.afi-val{text-align:right;font-size:11px;font-weight:700}
-.archive-fish-item{display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f5f5;gap:6px}
-.archive-fish-item:last-child{border-bottom:none}
-@media print{
-  body{padding:0}
-  .mis-card{break-inside:avoid;box-shadow:none}
-  @page{margin:10mm;size:A4}
-}
-</style>
-</head>
-<body>
-<div class="print-header">
-  <div><h1>🐟 TruSea Fish</h1><p>${title}</p></div>
-  <div class="print-time">Generated: ${now}</div>
-</div>
-${contentHtml}
-<script>
-window.onload=function(){
-  setTimeout(function(){window.print();},400);
-};
-<\/script>
-</body></html>`;
-
-  const blob = new Blob([fullHtml], {type:'text/html'});
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href     = url;
-  a.target   = '_blank';
-  a.click();
-  setTimeout(()=>URL.revokeObjectURL(url), 10000);
-}
-
-// ── ARCHIVE PDF DOWNLOAD ─────────────────────────────
-function downloadArchivePDF() {
-  const el = document.getElementById('archiveContent');
-  if (!el) { alert('Please select a month first.'); return; }
-  const tabBtn = document.getElementById('archiveTabBtn');
-  openPrintWindow(el.innerHTML, 'Month Wise Sale Report');
-}
-
-// ── CUSTOMER PDF DOWNLOAD ─────────────────────────────
-function downloadCustomerPDF() {
-  const el = document.getElementById('customerTableContent');
-  if (!el) { alert('Customer data not loaded yet.'); return; }
-  openPrintWindow(el.outerHTML, 'Customer Report — All Months');
-}
-
-// ── SHARED CUSTOMER DEDUP (phone-only key) ─────────────
-function buildCustMap(allOrders) {
-  const custMap = {};
-  allOrders.forEach(o => {
-    // Phone-only as primary key — handles name variations
-    const phone = (o.phone || '').replace(/\s/g, '').replace(/[^\d]/g, '');
-    const key   = phone || ('noPhone_' + o.name.toLowerCase().trim());
-
-    if (!custMap[key]) custMap[key] = {
-      phone:      o.phone || '—',
-      orders:     [],
-      totalSpend: 0,
-      nameCount:  {},  // track name frequency
-    };
-    custMap[key].orders.push(o);
-    custMap[key].totalSpend += o.total;
-    // Count name occurrences to pick most frequent
-    const nm = o.name.trim();
-    custMap[key].nameCount[nm] = (custMap[key].nameCount[nm] || 0) + 1;
-  });
-
-  // Pick most-frequent name as display name
-  Object.values(custMap).forEach(c => {
-    c.name = Object.entries(c.nameCount)
-      .sort((a, b) => b[1] - a[1])[0][0];
-    // Collect all name aliases for reference
-    c.aliases = Object.keys(c.nameCount).filter(n => n !== c.name);
-  });
-
-  return custMap;
-}
-
-// ── PREMIUM CUSTOMER CARD ─────────────────────────────
-function buildPremiumCustomerCard(allOrders) {
-  const custMap = buildCustMap(allOrders);
-  const sorted  = Object.values(custMap)
-    .sort((a, b) => b.totalSpend - a.totalSpend || b.orders.length - a.orders.length);
-  const top3    = sorted.slice(0, 3);
-
-  if (!top3.length) {
-    document.getElementById('premiumCustomerCard').innerHTML = '<div class="empty-row">No customer data yet</div>';
-    return;
-  }
-
-  // Collect all unique months from all orders for month-wise columns
-  const monthSet = {};
-  allOrders.forEach(o => {
-    const d = o.deliveredDate || o.ts;
-    if (!d) return;
-    const mk = d.getFullYear() + '-' + String(d.getMonth()).padStart(2,'0');
-    if (!monthSet[mk]) monthSet[mk] = {
-      key: mk, year: d.getFullYear(), month: d.getMonth(),
-      label: d.toLocaleDateString('en-IN', {month:'short', year:'numeric'})
-    };
-  });
-  const months = Object.values(monthSet).sort((a,b) => a.key.localeCompare(b.key));
-
-  const medals     = ['🥇','🥈','🥉'];
-  const borderClrs = ['#f59e0b','#9ca3af','#b45309'];
-
-  const html = top3.map((c, i) => {
-    // Fish stats from productReport (Col L)
-    const fishMap = {};
-    c.orders.forEach(o => {
-      const raw = o.productReport || '';
-      if (!raw) return;
-      raw.split('|').map(s => s.trim()).filter(Boolean).forEach(seg => {
-        // "Seer - Vanjaram – Small Slices - 1kg" — use segment as key
-        const dashIdx = seg.lastIndexOf(' - ');
-        const name = dashIdx > 0 ? seg.slice(0, dashIdx).trim() : seg;
-        fishMap[name] = (fishMap[name] || 0) + 1;
-      });
-    });
-    const fishList     = Object.entries(fishMap).sort((a,b)=>b[1]-a[1]).slice(0,5);
-    const totalFishQty = Object.values(fishMap).reduce((a,b)=>a+b,0);
-
-    // Month-wise purchase value
-    const monthCols = months.map(m => {
-      const mStart  = new Date(m.year, m.month, 1);
-      const mEnd    = new Date(m.year, m.month+1, 0, 23, 59, 59);
-      const mOrders = c.orders.filter(o => {
-        const d = o.deliveredDate || o.ts;
-        return d && d >= mStart && d <= mEnd;
-      });
-      if (!mOrders.length) return null;
-      return {
-        label:  m.label,
-        count:  mOrders.length,
-        value:  sumTotal(mOrders),
-      };
-    }).filter(Boolean);
-
-    // Order dates
-    const dates = c.orders.map(o => {
-      const d = o.deliveredDate || o.ts;
-      return d ? d.toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'2-digit'}) : null;
-    }).filter(Boolean);
-    const uniqueDates = [...new Set(dates)];
-
-    return `
-      <div class="mis-card" style="margin-bottom:10px;border-left:4px solid ${borderClrs[i]};-webkit-print-color-adjust:exact">
-
-        <!-- Header -->
-        <div style="padding:12px 16px 10px;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
-          <div style="flex:1">
-            <div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">
-              ${medals[i]} ${i===0?'Top Customer':i===1?'2nd Most Loyal':'3rd Most Loyal'}
-            </div>
-            <div style="font-size:17px;font-weight:800;color:#1a1a2e;line-height:1.2">${c.name}</div>
-            ${c.aliases.length ? `<div style="font-size:10px;color:#aaa;margin-top:2px">Also: ${c.aliases.join(', ')}</div>` : ''}
-            <div style="font-size:12px;color:#888;margin-top:3px">📞 ${c.phone}</div>
-          </div>
-          <div style="text-align:right;flex-shrink:0">
-            <div style="font-size:24px;font-weight:900;color:#1a1a2e;line-height:1">${c.orders.length}</div>
-            <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Orders</div>
-            <div style="font-size:15px;font-weight:800;color:#0077b6;margin-top:6px">${fmtMoney(c.totalSpend)}</div>
-            <div style="font-size:10px;color:#888">Total Spent</div>
-            <div style="font-size:11px;color:#888;margin-top:3px">Avg ${fmtMoney(Math.round(c.totalSpend/c.orders.length))}</div>
-          </div>
-        </div>
-
-        <!-- Month-wise value -->
-        ${monthCols.length ? `
-        <div style="padding:10px 16px;border-bottom:1px solid #f0f0f0">
-          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">
-            💰 Month-wise Purchase Value
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px">
-            ${monthCols.map(m => `
-              <div style="background:#f8fafc;border:1px solid #e8edf2;border-radius:8px;padding:6px 10px;text-align:center;min-width:70px">
-                <div style="font-size:10px;color:#888;font-weight:600">${m.label}</div>
-                <div style="font-size:13px;font-weight:800;color:#1a1a2e;margin-top:1px">${fmtMoney(m.value)}</div>
-                <div style="font-size:10px;color:#0077b6">${m.count} order${m.count>1?'s':''}</div>
-              </div>`).join('')}
-          </div>
-        </div>` : ''}
-
-        <!-- Fish purchased -->
-        ${fishList.length ? `
-        <div style="padding:10px 16px;border-bottom:1px solid #f0f0f0">
-          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px">
-            🐟 Fish Purchased (${totalFishQty} qty total)
-          </div>
-          ${fishList.map(([name,qty]) => `
-            <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid #f7f7f7">
-              <span style="font-size:12px;color:#1a1a2e;font-weight:500">${name}</span>
-              <span style="font-size:12px;font-weight:800;color:#0077b6">${qty} qty</span>
-            </div>`).join('')}
-        </div>` : ''}
-
-        <!-- Dates -->
-        ${uniqueDates.length ? `
-        <div style="padding:8px 16px">
-          <div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">
-            📅 Order Dates (${uniqueDates.length})
-          </div>
-          <div style="font-size:11px;color:#555;line-height:1.8">
-            ${uniqueDates.join(' · ')}
-          </div>
-        </div>` : ''}
-
-      </div>`;
-  }).join('');
-
-  document.getElementById('premiumCustomerCard').innerHTML = html;
-}
-
-// ── DAY-WISE FISH CHIPS ───────────────────────────────
-function buildDayFishChips(allOrders) {
-  // Collect all unique days with orders (last 30 days)
-  // Use LOCAL date key (not UTC) to avoid IST timezone split bug
-  const dayMap = {};
-  allOrders.forEach(o => {
-    const d = o.deliveredDate || o.ts;
-    if (!d) return;
-    // Local date key: YYYY-MM-DD in IST (not UTC which can differ by +5:30)
-    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    if (!dayMap[key]) dayMap[key] = { date: new Date(d.getFullYear(), d.getMonth(), d.getDate()), orders: [] };
-    dayMap[key].orders.push(o);
-  });
-
-  const days = Object.entries(dayMap)
-    .sort((a,b) => b[0].localeCompare(a[0]))
-    .slice(0, 30)
-    .map(([k,v]) => v);
-
-  const chipsEl = document.getElementById('dayFishChips');
-  const panelEl = document.getElementById('dayFishPanel');
-  if (!chipsEl || !panelEl) return;
-
-  if (!days.length) {
-    chipsEl.innerHTML = '<div style="padding:10px;font-size:12px;color:#aaa">No data</div>';
-    return;
-  }
-
-  chipsEl.innerHTML = days.map((d, i) =>
-    `<button class="mchip ${i===0?'active':''}" id="dchip_${i}" onclick="showDayFish(${i})">${d.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})}</button>`
-  ).join('');
-
-  window._dayFishData = days;
-  showDayFish(0);
-}
-
-function showDayFish(idx) {
-  document.querySelectorAll('[id^="dchip_"]').forEach((el,i) => el.classList.toggle('active', i===idx));
-  const data = window._dayFishData && window._dayFishData[idx];
-  if (!data) return;
-
-  const fish     = buildFishReport(data.orders);
-  const rev      = sumTotal(data.orders);
-  const totalQty = fish.reduce((a,f)=>a+f.totalQty,0);
-  const totalKg  = fish.reduce((a,f)=>a+f.totalKg,0);
-  const panel    = document.getElementById('dayFishPanel');
-  if (!panel) return;
-
-  if (!data.orders.length) { panel.innerHTML=`<div class="empty-row">No orders</div>`; return; }
-  if (!fish.length) { panel.innerHTML=`<div class="empty-row">No fish data for this day</div>`; return; }
-
-  panel.innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#f0f0f0">
-      <div style="background:#fff;padding:10px 8px;text-align:center"><div style="font-size:18px;font-weight:800;color:#1a1a2e">${data.orders.length}</div><div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Orders</div></div>
-      <div style="background:#fff;padding:10px 8px;text-align:center"><div style="font-size:18px;font-weight:800;color:#1a1a2e">${totalQty}</div><div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Qty</div></div>
-      <div style="background:#fff;padding:10px 8px;text-align:center"><div style="font-size:15px;font-weight:800;color:#1a1a2e">${fmtMoney(rev)}</div><div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Revenue</div></div>
-    </div>
-    <div style="padding:8px 14px 4px;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.4px;border-top:1px solid #f0f0f0">
-      ${data.date.toLocaleDateString('en-IN',{weekday:'long',day:'2-digit',month:'long'})} · ${totalKg.toFixed(2)}kg total
-    </div>
-    ${fish.map(f => {
-      const pct = totalQty>0?Math.round(f.totalQty/totalQty*100):0;
-      return `<div style="padding:8px 14px;border-bottom:1px solid #f7f7f7">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
-          <div style="font-size:12px;font-weight:600;color:#1a1a2e;flex:1">${f.key}</div>
-          <div style="display:flex;gap:8px;flex-shrink:0">
-            <span style="font-size:11px;color:#888">${f.totalKg>0?f.totalKg.toFixed(2)+'kg':'—'}</span>
-            <span style="font-size:13px;font-weight:800;color:#1a1a2e">${f.totalQty} qty</span>
-          </div>
-        </div>
-        <div style="height:4px;background:#f0f0f0;border-radius:10px;overflow:hidden">
-          <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#1a1a2e,#0f3460);border-radius:10px"></div>
-        </div>
-      </div>`;
-    }).join('')}
-    <div style="display:flex;justify-content:space-between;padding:8px 14px;border-top:2px solid #1a1a2e;background:#fafafa">
-      <span style="font-size:12px;font-weight:800">Total</span>
-      <div style="display:flex;gap:12px">
-        <span style="font-size:11px;color:#666;font-weight:600">${totalKg.toFixed(2)}kg</span>
-        <span style="font-size:12px;font-weight:800">${totalQty} qty</span>
-      </div>
-    </div>`;
-}
-
-// ── CUSTOMER DATE-WISE PURCHASE ──────────────────────
-function buildCustomerDateWise(allOrders) {
-  const chipsEl = document.getElementById('custDateChips');
-  const panelEl = document.getElementById('custDatePanel');
-  if (!chipsEl || !panelEl) return;
-
-  // Group by local date (IST) using deliveredDate or ts
-  const dayMap = {};
-  allOrders.forEach(o => {
-    const d = o.deliveredDate || o.ts;
-    if (!d) return;
-    const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
-    if (!dayMap[key]) dayMap[key] = { date: new Date(d.getFullYear(), d.getMonth(), d.getDate()), orders: [] };
-    dayMap[key].orders.push(o);
-  });
-
-  const days = Object.entries(dayMap)
-    .sort((a,b) => b[0].localeCompare(a[0]))  // latest first
-    .map(([k,v]) => v);
-
-  if (!days.length) {
-    chipsEl.innerHTML = '<div style="padding:10px;font-size:12px;color:#aaa">No data</div>';
-    return;
-  }
-
-  chipsEl.innerHTML = days.map((d, i) =>
-    `<button class="mchip ${i===0?'active':''}" id="cdchip_${i}" onclick="showCustDate(${i})"
-      style="white-space:nowrap">${d.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})}</button>`
-  ).join('');
-
-  window._custDateData = days;
-  showCustDate(0);
-}
-
-function showCustDate(idx) {
-  document.querySelectorAll('[id^="cdchip_"]').forEach((el,i) => el.classList.toggle('active', i===idx));
-  const data = window._custDateData && window._custDateData[idx];
-  const panelEl = document.getElementById('custDatePanel');
-  if (!data || !panelEl) return;
-
-  const orders    = data.orders;
-  const dateLabel = data.date.toLocaleDateString('en-IN',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
-  const dayTotal  = orders.reduce((a,o)=>a+o.total,0);
-
-  if (!orders.length) {
-    panelEl.innerHTML = `<div class="empty-row">No orders on this date</div>`;
-    return;
-  }
-
-  // Summary row
-  let html = `
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#f0f0f0">
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:20px;font-weight:800;color:#1a1a2e">${orders.length}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Orders</div>
-      </div>
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:15px;font-weight:800;color:#1a1a2e">${fmtMoney(dayTotal)}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Total</div>
-      </div>
-      <div style="background:#fff;padding:10px 8px;text-align:center">
-        <div style="font-size:15px;font-weight:800;color:#1a1a2e">${fmtMoney(Math.round(dayTotal/orders.length))}</div>
-        <div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Avg/Order</div>
-      </div>
-    </div>
-    <div style="padding:8px 14px 6px;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.4px;border-bottom:1px solid #f0f0f0">
-      ${dateLabel}
-    </div>`;
-
-  // Customer rows
-  html += orders.map((o, i) => {
-    const products = o.productReport || '';
-    // Parse product list for display
-    const productLines = products ? products.split('|').map(p=>p.trim()).filter(Boolean) : [];
-    return `
-      <div style="padding:10px 14px;border-bottom:1px solid #f7f7f7">
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px">
-          <div style="flex:1;min-width:0">
-            <div style="font-size:13px;font-weight:700;color:#1a1a2e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
-              ${i+1}. ${o.name}
-            </div>
-            ${o.phone ? `<div style="font-size:11px;color:#888;margin-top:1px">${o.phone}</div>` : ''}
-            ${productLines.length ? `
-              <div style="margin-top:5px">
-                ${productLines.map(p=>`
-                  <div style="font-size:11px;color:#555;padding:2px 0;border-bottom:1px solid #f5f5f5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
-                    • ${p}
-                  </div>`).join('')}
-              </div>` : ''}
-          </div>
-          <div style="text-align:right;flex-shrink:0">
-            <div style="font-size:14px;font-weight:800;color:#1a1a2e">${fmtMoney(o.total)}</div>
-            ${o.ts ? `<div style="font-size:10px;color:#aaa;margin-top:2px">${o.ts.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit',hour12:true})}</div>` : ''}
-          </div>
-        </div>
-      </div>`;
-  }).join('');
-
-  // Total row
-  html += `
-    <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:2px solid #1a1a2e;background:#fafafa">
-      <span style="font-size:12px;font-weight:800;color:#1a1a2e">${orders.length} customer${orders.length>1?'s':''}</span>
-      <span style="font-size:14px;font-weight:900;color:#1a1a2e">${fmtMoney(dayTotal)}</span>
-    </div>`;
-
-  panelEl.innerHTML = html;
-}
-
-// ── WEEK PANEL SWITCHER ───────────────────────────────
-function showWeek(idx) {
-  document.querySelectorAll('[id^="week_panel_"]').forEach((el, i) => {
-    el.style.display = i === idx ? '' : 'none';
-  });
-  document.querySelectorAll('[id^="wchip_"]').forEach((el, i) => {
-    el.classList.toggle('active', i === idx);
-  });
-}
-
-// ── FISH PERIOD TAB SWITCHER ─────────────────────────
-function showFishTab(tab) {
-  ['mtd','today','ytd'].forEach(t => {
-    const el  = document.getElementById('fish_'+t);
-    const btn = document.getElementById('ftab_'+t);
-    if(el)  el.style.display = t===tab ? '' : 'none';
-    if(btn) btn.classList.toggle('active', t===tab);
-  });
-}
-
 // ── INIT ─────────────────────────────────────────────
 async function init() {
   document.getElementById('syncInfo').textContent = 'Syncing…';
@@ -2460,12 +1182,6 @@ async function init() {
     const orders = parseOrders(ordersTable);
     const camps  = parseCampaigns(campsTable);
     renderMIS(orders, camps);
-    setArchiveTabName();
-    buildMonthFishChips(orders);
-    buildDayFishChips(orders);
-    buildCustomerDateWise(orders);
-    buildPremiumCustomerCard(orders);
-    buildArchiveMonthChips(orders, camps);
     document.getElementById('syncInfo').textContent =
       `✓ Synced · ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`;
   } catch(e) {
@@ -2475,6 +1191,596 @@ async function init() {
   }
 }
 
+// ── PRIMARY DATE: Col N (Delivered Date) ─────────────
+function getOrderDate(o) { return o.deliveredDate || o.ts; }
+
+// Override inRange to use Col N
+function inRange(o, start, end) {
+  const d = getOrderDate(o);
+  if (!d) return false;
+  return d >= start && d <= end;
+}
+
+// ── WEEK RANGES (date-based, not ISO weeks) ───────────
+// Week 1=1-7, Week 2=8-14, Week 3=15-21, Week 4=22-end
+function getMonthWeeks(year, month) {
+  const lastDay = new Date(year, month+1, 0).getDate();
+  return [
+    { n:1, label:'Week 1', dateLabel:`${fmtShort(new Date(year,month,1))} – ${fmtShort(new Date(year,month,7))}`,
+      start:new Date(year,month,1), end:new Date(year,month,7,23,59,59) },
+    { n:2, label:'Week 2', dateLabel:`${fmtShort(new Date(year,month,8))} – ${fmtShort(new Date(year,month,14))}`,
+      start:new Date(year,month,8), end:new Date(year,month,14,23,59,59) },
+    { n:3, label:'Week 3', dateLabel:`${fmtShort(new Date(year,month,15))} – ${fmtShort(new Date(year,month,21))}`,
+      start:new Date(year,month,15), end:new Date(year,month,21,23,59,59) },
+    { n:4, label:'Week 4', dateLabel:`${fmtShort(new Date(year,month,22))} – ${fmtShort(new Date(year,month,lastDay))}`,
+      start:new Date(year,month,22), end:new Date(year,month,lastDay,23,59,59) },
+  ];
+}
+
+// ── SHARED PDF HELPER ─────────────────────────────────
+function openPrintWindow(contentHtml, title) {
+  const now = new Date().toLocaleString('en-IN',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit',hour12:true});
+  const html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${title}</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#fff;color:#1a1a2e;font-size:12px;padding:16px}
+.ph{background:#1a1a2e;color:#fff;padding:12px 16px;border-radius:8px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.ph h1{font-size:16px;font-weight:800;color:#90e0ef}.ph p{font-size:10px;color:rgba(255,255,255,0.5);margin-top:2px}.pt{font-size:10px;color:rgba(255,255,255,0.4)}
+.mis-card{background:#fff;border-radius:10px;border:1px solid #e0e0e0;overflow:hidden;margin-bottom:10px;break-inside:avoid}
+.mis-card-header{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #f0f0f0}
+.mis-card-title{font-size:13px;font-weight:700;color:#1a1a2e}.mis-card-range{font-size:10px;color:#888;margin-top:1px}
+.metrics{display:grid;grid-template-columns:1fr 1fr}.metrics.three{grid-template-columns:1fr 1fr 1fr}
+.metric{padding:10px 8px;text-align:center;border-right:1px solid #f0f0f0;border-bottom:1px solid #f0f0f0}
+.metric:last-child{border-right:none}.metric-val{font-size:20px;font-weight:800;color:#1a1a2e}
+.metric-val.money{font-size:14px}.metric-val.green{color:#16a34a}.metric-val.red{color:#dc2626}
+.metric-lbl{font-size:9px;color:#888;font-weight:600;text-transform:uppercase;margin-top:2px}
+.breakdown{padding:0 14px 10px}.breakdown-title{font-size:9px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.5px;padding:8px 0 5px;border-top:1px solid #f5f5f5}
+.breakdown-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid #f7f7f7;gap:8px}
+.breakdown-row:last-child{border-bottom:none}.br-name{font-size:11px;font-weight:500;color:#1a1a2e;flex:1}
+.br-time{font-size:10px;color:#aaa}.br-val{font-size:12px;font-weight:700;color:#1a1a2e;white-space:nowrap}
+.br-val.red{color:#dc2626}.empty-row{text-align:center;padding:14px;color:#bbb;font-size:11px}
+table{width:100%;border-collapse:collapse;font-size:11px}
+th{padding:7px 8px;font-size:10px;font-weight:700;color:#fff;background:#1a1a2e;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+td{padding:7px 8px;border-bottom:1px solid #f5f5f5;vertical-align:top}
+tr:nth-child(even) td{background:#fafafa;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+tfoot td{background:#f0f0f0;font-weight:700;border-top:2px solid #1a1a2e;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+@media print{body{padding:0}.mis-card{break-inside:avoid;box-shadow:none}@page{margin:10mm;size:A4}}
+</style></head><body>
+<div class="ph"><div><h1>🐟 TruSea Fish</h1><p>${title}</p></div><div class="pt">Generated: ${now}</div></div>
+${contentHtml}
+<script>window.onload=function(){setTimeout(function(){window.print();},400);};<\/script>
+</body></html>`;
+  const blob = new Blob([html],{type:'text/html'});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href=url; a.target='_blank'; a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),10000);
+}
+function downloadSectionPDF(sectionId, title) {
+  const el = document.getElementById(sectionId);
+  if (!el) { alert('Section not loaded yet.'); return; }
+  openPrintWindow(el.outerHTML, title);
+}
+
+// ── CUSTOMER DEDUP BY PHONE ───────────────────────────
+function buildCustMap(orders) {
+  const map = {};
+  orders.forEach(o => {
+    const phone = (o.phone||'').replace(/\s/g,'').replace(/[^\d]/g,'');
+    const key   = phone || ('noPhone_'+o.name.toLowerCase().trim());
+    if (!map[key]) map[key] = { phone:o.phone||'—', orders:[], totalSpend:0, nameCount:{} };
+    map[key].orders.push(o);
+    map[key].totalSpend += o.total;
+    const nm = o.name.trim();
+    map[key].nameCount[nm] = (map[key].nameCount[nm]||0) + 1;
+  });
+  Object.values(map).forEach(c => {
+    c.name    = Object.entries(c.nameCount).sort((a,b)=>b[1]-a[1])[0][0];
+    c.aliases = Object.keys(c.nameCount).filter(n=>n!==c.name);
+  });
+  return map;
+}
+
+// ── buildFishReport with totalValue ──────────────────
+function buildFishReport(orders) {
+  const map = {};
+  orders.forEach(o => {
+    if (!o.productReport) return;
+    const items = parseProductReport(o.productReport);
+    const tq    = items.reduce((a,i)=>a+i.qty,0);
+    items.forEach(item => {
+      if (!map[item.key]) map[item.key] = { key:item.key, name:item.name, size:item.size, totalQty:0, totalKg:0, totalValue:0 };
+      map[item.key].totalQty   += item.qty;
+      const kg = item.size.endsWith('kg') ? parseFloat(item.size)*item.qty
+               : item.size.endsWith('g')  ? parseFloat(item.size)/1000*item.qty : 0;
+      map[item.key].totalKg    += kg;
+      if (tq > 0 && o.total > 0) map[item.key].totalValue += o.total * item.qty / tq;
+    });
+  });
+  return Object.values(map).sort((a,b)=>b.totalQty-a.totalQty);
+}
+
+// ── DAY WISE FISH CHIPS ───────────────────────────────
+function buildDayFishChips(allOrders) {
+  const dayMap = {};
+  allOrders.forEach(o => {
+    const d = getOrderDate(o); if (!d) return;
+    const k = d.toISOString().slice(0,10);
+    if (!dayMap[k]) dayMap[k] = { date:new Date(d), orders:[] };
+    dayMap[k].orders.push(o);
+  });
+  // Deduplicate by date key — no duplicates
+  const days = Object.entries(dayMap)
+    .sort((a,b) => b[0].localeCompare(a[0]))
+    .slice(0, 60)
+    .map(([k,v]) => v);
+
+  const chipsEl = document.getElementById('dayFishChips');
+  const panelEl = document.getElementById('dayFishPanel');
+  if (!chipsEl || !panelEl) return;
+  if (!days.length) { chipsEl.innerHTML='<div style="padding:10px;font-size:12px;color:#aaa">No delivery dates found (check Col N)</div>'; return; }
+
+  chipsEl.innerHTML = days.map((d,i) =>
+    `<button class="mchip ${i===0?'active':''}" id="dchip_${i}" onclick="showDayFish(${i})">${d.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})}</button>`
+  ).join('');
+
+  window._dayFishData = days;
+  showDayFish(0);
+}
+
+function showDayFish(idx) {
+  document.querySelectorAll('[id^="dchip_"]').forEach((el,i)=>el.classList.toggle('active',i===idx));
+  const data  = window._dayFishData && window._dayFishData[idx];
+  const panel = document.getElementById('dayFishPanel');
+  if (!data || !panel) return;
+
+  const fish     = buildFishReport(data.orders);
+  const rev      = sumTotal(data.orders);
+  const totalQty = fish.reduce((a,f)=>a+f.totalQty,0);
+  const totalKg  = fish.reduce((a,f)=>a+f.totalKg,0);
+  const dateStr  = data.date.toLocaleDateString('en-IN',{weekday:'long',day:'2-digit',month:'long'}).toUpperCase();
+
+  if (!fish.length) { panel.innerHTML=`<div class="empty-row" style="padding:20px">${data.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})} — No product report data</div>`; return; }
+
+  const fishRows = fish.map(f => {
+    const pct = totalQty>0?Math.round(f.totalQty/totalQty*100):0;
+    return `<div style="padding:8px 14px;border-bottom:1px solid #f7f7f7">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+        <div style="font-size:12px;font-weight:600;color:#1a1a2e;flex:1">${f.key}</div>
+        <div style="display:flex;gap:10px;flex-shrink:0">
+          ${f.totalKg>0?`<span style="font-size:11px;color:#888">${f.totalKg.toFixed(2)}kg</span>`:''}
+          <span style="font-size:13px;font-weight:800;color:#1a1a2e">${f.totalQty} qty</span>
+        </div>
+      </div>
+      <div style="height:4px;background:#f0f0f0;border-radius:10px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#1a1a2e,#0f3460);border-radius:10px"></div>
+      </div>
+    </div>`;
+  }).join('');
+
+  panel.innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:#f0f0f0">
+      <div style="background:#fff;padding:10px 8px;text-align:center"><div style="font-size:18px;font-weight:800;color:#1a1a2e">${data.orders.length}</div><div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Orders</div></div>
+      <div style="background:#fff;padding:10px 8px;text-align:center"><div style="font-size:18px;font-weight:800;color:#1a1a2e">${totalQty}</div><div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Qty</div></div>
+      <div style="background:#fff;padding:10px 8px;text-align:center"><div style="font-size:15px;font-weight:800;color:#1a1a2e">${fmtMoney(rev)}</div><div style="font-size:10px;color:#888;font-weight:600;text-transform:uppercase">Revenue</div></div>
+    </div>
+    <div style="padding:7px 14px;font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.4px;border-top:1px solid #f0f0f0">${dateStr} · ${totalKg.toFixed(2)}KG TOTAL</div>
+    ${fishRows}
+    <div style="display:flex;justify-content:space-between;padding:8px 14px;border-top:2px solid #1a1a2e;background:#fafafa">
+      <span style="font-size:12px;font-weight:800">Total</span>
+      <div style="display:flex;gap:12px"><span style="font-size:11px;color:#666;font-weight:600">${totalKg.toFixed(2)}kg</span><span style="font-size:12px;font-weight:800">${totalQty} qty</span></div>
+    </div>`;
+}
+
+// ── CUSTOMER DATE-WISE PURCHASE ───────────────────────
+function buildCustomerDateWise(allOrders) {
+  const dayMap = {};
+  allOrders.forEach(o => {
+    const d = getOrderDate(o); if (!d) return;
+    const k = d.toISOString().slice(0,10);
+    if (!dayMap[k]) dayMap[k] = { date:new Date(d), orders:[] };
+    dayMap[k].orders.push(o);
+  });
+
+  const days = Object.entries(dayMap)
+    .sort((a,b) => b[0].localeCompare(a[0]))
+    .map(([k,v]) => v);
+
+  const chipsEl = document.getElementById('custDateChips');
+  const panelEl = document.getElementById('custDatePanel');
+  if (!chipsEl || !panelEl) return;
+  if (!days.length) { chipsEl.innerHTML='<div style="padding:10px;font-size:12px;color:#aaa">No delivery date data (check Col N)</div>'; return; }
+
+  chipsEl.innerHTML = days.map((d,i) =>
+    `<button class="mchip ${i===0?'active':''}" id="cdchip_${i}" onclick="showCustDate(${i})">${d.date.toLocaleDateString('en-IN',{day:'2-digit',month:'short'})}</button>`
+  ).join('');
+
+  window._custDateData = days;
+  showCustDate(0);
+}
+
+function showCustDate(idx) {
+  document.querySelectorAll('[id^="cdchip_"]').forEach((el,i)=>el.classList.toggle('active',i===idx));
+  const data  = window._custDateData && window._custDateData[idx];
+  const panel = document.getElementById('custDatePanel');
+  if (!data || !panel) return;
+
+  const custMap = buildCustMap(data.orders);
+  const custs   = Object.values(custMap).sort((a,b)=>b.totalSpend-a.totalSpend);
+  const rev     = sumTotal(data.orders);
+  const dateStr = data.date.toLocaleDateString('en-IN',{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+
+  const rows = custs.map((c,i) => {
+    // Fish bought
+    const fishMap = {};
+    c.orders.forEach(o => {
+      (o.productReport||'').split('|').map(s=>s.trim()).filter(Boolean).forEach(seg=>{
+        const di=seg.lastIndexOf(' - ');
+        const nm=di>0?seg.slice(0,di).trim():seg;
+        fishMap[nm]=(fishMap[nm]||0)+1;
+      });
+    });
+    const fishItems = Object.entries(fishMap).sort((a,b)=>b[1]-a[1]).map(([n,q])=>
+      `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f8f8f8;font-size:11px">
+        <span style="color:#1a1a2e">${n}</span>
+        <span style="font-weight:700;color:#0077b6">${q} qty</span>
+      </div>`
+    ).join('');
+
+    return `<tr>
+      <td style="text-align:center;font-size:11px;color:#888;font-weight:600;padding:8px 6px">${i+1}</td>
+      <td style="padding:8px 10px">
+        <div style="font-size:13px;font-weight:700;color:#1a1a2e">${c.name}</div>
+        ${c.aliases.length?`<div style="font-size:10px;color:#bbb">${c.aliases.join(', ')}</div>`:''}
+        <div style="font-size:11px;color:#888">📞 ${c.phone}</div>
+      </td>
+      <td style="text-align:center;font-size:13px;font-weight:800;color:#1a1a2e;padding:8px 6px">${c.orders.length}</td>
+      <td style="text-align:right;font-size:13px;font-weight:800;color:#1a1a2e;white-space:nowrap;padding:8px 10px">${fmtMoney(c.totalSpend)}</td>
+      <td style="padding:8px 10px;min-width:200px">${fishItems||'<span style="color:#ddd;font-size:11px">—</span>'}</td>
+    </tr>`;
+  }).join('');
+
+  panel.innerHTML = `
+    <div style="padding:8px 14px;background:#1a1a2e;color:#fff;font-size:11px;font-weight:600">
+      ${dateStr} · ${custs.length} customer${custs.length!==1?'s':''} · ${fmtMoney(rev)}
+    </div>
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch">
+      <table style="width:100%;border-collapse:collapse;font-size:12px;min-width:500px">
+        <thead>
+          <tr style="background:#1a1a2e">
+            <th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:center;width:32px">#</th>
+            <th style="padding:8px 12px;color:#90e0ef;font-size:10px;text-align:left">Customer</th>
+            <th style="padding:8px 6px;color:#90e0ef;font-size:10px;text-align:center">Orders</th>
+            <th style="padding:8px 8px;color:#90e0ef;font-size:10px;text-align:right">Value</th>
+            <th style="padding:8px 10px;color:#90e0ef;font-size:10px;text-align:left">What they bought</th>
+          </tr>
+        </thead>
+        <tbody>${rows||'<tr><td colspan="5" class="empty-row">No orders</td></tr>'}</tbody>
+        <tfoot>
+          <tr style="background:#f0f0f0;border-top:2px solid #1a1a2e">
+            <td colspan="2" style="padding:8px 12px;font-size:12px;font-weight:800;color:#1a1a2e">Total</td>
+            <td style="text-align:center;font-size:13px;font-weight:800;color:#1a1a2e;padding:8px">${data.orders.length}</td>
+            <td style="text-align:right;font-size:13px;font-weight:800;color:#1a1a2e;white-space:nowrap;padding:8px">${fmtMoney(rev)}</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>`;
+}
+
+// ── UPDATED RENDER: inject new sections + tabs ────────
+const _origRenderMIS = renderMIS;
+function renderMIS(allOrders, allCamps) {
+  _origRenderMIS(allOrders, allCamps);
+
+  // Inject Day Wise Fish section into content after existing fish section
+  const content = document.getElementById('content');
+  if (!content) return;
+
+  // 1. Day Wise Fish Sales section (CSS chips + panel already styled via .mchip)
+  const daySection = document.createElement('div');
+  daySection.className = 'section';
+  daySection.innerHTML = `
+    <div class="section-title">📅 Day Wise Fish Sales</div>
+    <div class="mis-card" style="overflow:hidden">
+      <div class="mis-card-header">
+        <div><div class="mis-card-title">Daily Fish Report</div><div class="mis-card-range">Select a day</div></div>
+        <div class="mis-card-icon">📅</div>
+      </div>
+      <div class="month-fish-chips" id="dayFishChips" style="display:flex;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #f0f0f0;flex-wrap:nowrap"></div>
+      <div id="dayFishPanel"></div>
+    </div>`;
+  content.appendChild(daySection);
+
+  // 2. Customer date-wise section
+  const custSection = document.createElement('div');
+  custSection.className = 'section';
+  custSection.innerHTML = `
+    <div class="section-title">👥 Customer Purchase — Date Wise</div>
+    <div class="mis-card" id="custDateCard" style="overflow:hidden">
+      <div class="mis-card-header">
+        <div><div class="mis-card-title">Who Bought What — By Delivered Date</div><div class="mis-card-range">Col N · Select a date</div></div>
+        <button onclick="downloadSectionPDF('custDateCard','Customer Date-wise Purchase')" style="background:#1a1a2e;color:#fff;border:none;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:700;cursor:pointer">⬇️ PDF</button>
+      </div>
+      <div class="month-fish-chips" id="custDateChips" style="display:flex;gap:6px;padding:10px 14px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #f0f0f0;flex-wrap:nowrap"></div>
+      <div id="custDatePanel"></div>
+    </div>`;
+  content.appendChild(custSection);
+
+  // Build after DOM is ready
+  setTimeout(() => {
+    buildDayFishChips(allOrders);
+    buildCustomerDateWise(allOrders);
+  }, 100);
+}
+
+// ── UPDATED INIT ──────────────────────────────────────
+const _origInit = init;
+async function init() {
+  document.getElementById('syncInfo').textContent = 'Syncing…';
+  document.getElementById('content').innerHTML =
+    '<div class="loading"><div class="spinner"></div>Fetching data…</div>';
+  try {
+    const [ordersTable, campsTable] = await Promise.all([
+      fetchSheetByGID(GID_ORDERS),
+      fetchSheetByGID(GID_CAMPS),
+    ]);
+    // Updated parseOrders with Col N, O, phone
+    const labels  = (ordersTable.cols||[]).map(c=>(c.label||'').trim());
+    const fi = name => {
+      let i=labels.findIndex(c=>c===name); if(i>=0)return i;
+      i=labels.findIndex(c=>c.toLowerCase()===name.toLowerCase()); if(i>=0)return i;
+      return labels.findIndex(c=>c.toLowerCase().includes(name.toLowerCase()));
+    };
+    const iTs=fi('Timestamp'), iName=fi('Name'), iPhone=fi('Phone'),
+          iTotal=fi('Order Total'), iReport=fi('Product Report'),
+          iDeliv=fi('Delivered Date'), iBooked=fi('Booked Date');
+    const v=(r,i)=>(i>=0&&r.c[i]&&r.c[i].v!=null)?String(r.c[i].v).trim():'';
+    const fv=(r,i)=>(i>=0&&r.c[i])?(r.c[i].f||v(r,i)):'';
+    const parseD=(r,i)=>{
+      if(i<0||!r.c[i]||r.c[i].v==null)return null;
+      const raw=r.c[i].v;
+      if(typeof raw==='string'&&raw.startsWith('Date(')){
+        const p=raw.replace('Date(','').replace(')','').split(',');
+        return new Date(+p[0],+p[1],+p[2],+(p[3]||0),+(p[4]||0));
+      }
+      if(r.c[i].f){const d=new Date(r.c[i].f);if(!isNaN(d))return d;}
+      const d=new Date(String(r.c[i].v));return isNaN(d)?null:d;
+    };
+    const parseTotal=str=>{if(!str)return 0;const n=parseFloat(str.replace(/[^0-9.]/g,''));return isNaN(n)?0:n;};
+
+    const orders = (ordersTable.rows||[]).map(r=>({
+      name:          v(r,iName),
+      phone:         v(r,iPhone),
+      ts:            parseD(r,iTs),
+      deliveredDate: parseD(r,iDeliv),
+      bookedDate:    parseD(r,iBooked),
+      total:         parseTotal(fv(r,iTotal)||v(r,iTotal)),
+      productReport: v(r,iReport),
+    })).filter(o=>o.name&&o.name.length>1&&o.ts);
+
+    const camps = parseCampaigns(campsTable);
+    renderMIS(orders, camps);
+    buildComparativeReport(orders);
+    document.getElementById('syncInfo').textContent =
+      `✓ Synced · ${new Date().toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})}`;
+  } catch(e) {
+    document.getElementById('syncInfo').textContent = '⚠ Could not connect';
+    document.getElementById('content').innerHTML =
+      `<div class="loading">⚠ ${e.message}<br><br>Make sure sheet is shared as<br>"Anyone with the link → Viewer"</div>`;
+  }
+}
+
+// ── MONTHLY COMPARATIVE REPORT ────────────────────────
+let _compCharts = {};
+
+function showCompTab(tab, el) {
+  document.querySelectorAll('.comp-tab').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.comp-panel').forEach(p => p.classList.remove('active'));
+  if (el) el.classList.add('active');
+  const panel = document.getElementById('comp_' + tab);
+  if (panel) panel.classList.add('active');
+}
+
+function buildComparativeReport(allOrders) {
+  // Collect all months that have data (using Col N)
+  const monthSet = {};
+  allOrders.forEach(o => {
+    const d = getOrderDate(o); if (!d) return;
+    const k = d.getFullYear() + '-' + String(d.getMonth()).padStart(2,'0');
+    if (!monthSet[k]) monthSet[k] = {
+      key: k, year: d.getFullYear(), month: d.getMonth(),
+      label: d.toLocaleDateString('en-IN', {month:'short', year:'numeric'}),
+      shortLabel: d.toLocaleDateString('en-IN', {month:'short'}),
+      orders: []
+    };
+    monthSet[k].orders.push(o);
+  });
+
+  const months = Object.values(monthSet).sort((a,b) => a.key.localeCompare(b.key));
+  if (months.length < 1) return;
+
+  // Per-month metrics
+  const data = months.map(m => {
+    const rev   = sumTotal(m.orders);
+    const fish  = buildFishReport(m.orders);
+    const qty   = fish.reduce((a,f) => a+f.totalQty, 0);
+    const custs = Object.keys(buildCustMap(m.orders)).length;
+    const avg   = m.orders.length > 0 ? Math.round(rev / m.orders.length) : 0;
+    return { ...m, rev, qty, custs, avg, fishCount: fish.length };
+  });
+
+  const labels      = data.map(d => d.label);
+  const shortLabels = data.map(d => d.shortLabel);
+  const revData     = data.map(d => d.rev);
+  const ordData     = data.map(d => d.orders.length);
+  const qtyData     = data.map(d => d.qty);
+  const custData    = data.map(d => d.custs);
+
+  // Best month
+  const bestRevIdx  = revData.indexOf(Math.max(...revData));
+  const bestOrdIdx  = ordData.indexOf(Math.max(...ordData));
+  const totalRev    = revData.reduce((a,b)=>a+b,0);
+  const totalOrds   = ordData.reduce((a,b)=>a+b,0);
+  const totalQty    = qtyData.reduce((a,b)=>a+b,0);
+  const avgRev      = totalOrds > 0 ? Math.round(totalRev / totalOrds) : 0;
+
+  // ── Metric strip ──
+  document.getElementById('compMetricStrip').innerHTML = [
+    { val: months.length, lbl: 'Months', extra: '' },
+    { val: fmtMoney(totalRev), lbl: 'Total Revenue', extra: '', money: true },
+    { val: totalOrds, lbl: 'Total Orders', extra: '' },
+    { val: totalQty, lbl: 'Total Fish Qty', extra: '' },
+    { val: fmtMoney(avgRev), lbl: 'Avg Order Value', extra: '', money: true },
+    { val: data[bestRevIdx]?.shortLabel||'—', lbl: 'Best Month', extra: '', best: true },
+  ].map(m => `
+    <div class="mc">
+      <div class="mc-val ${m.money?'money':''}">${m.val}</div>
+      <div class="mc-lbl">${m.lbl}</div>
+      ${m.best ? `<div class="best-month">🏆 ${m.val}</div>` : ''}
+    </div>`).join('');
+
+  document.getElementById('compMetricStrip').style.gridTemplateColumns = 'repeat(3,1fr)';
+
+  // ── Chart helper ──
+  function makeChart(canvasId, chartData, label, color, type='bar') {
+    const ctx = document.getElementById(canvasId);
+    if (!ctx) return;
+    if (_compCharts[canvasId]) { _compCharts[canvasId].destroy(); delete _compCharts[canvasId]; }
+    _compCharts[canvasId] = new Chart(ctx, {
+      type: type,
+      data: {
+        labels: shortLabels,
+        datasets: [{
+          label,
+          data: chartData,
+          backgroundColor: type === 'bar' ? color + '99' : undefined,
+          borderColor: color,
+          borderWidth: type === 'line' ? 2.5 : 0,
+          borderRadius: type === 'bar' ? 5 : 0,
+          pointRadius: type === 'line' ? 4 : 0,
+          pointBackgroundColor: color,
+          tension: 0.4,
+          fill: type === 'line' ? false : undefined,
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            callbacks: {
+              label: ctx => {
+                const v = ctx.raw;
+                if (label.includes('₹') || label.toLowerCase().includes('revenue') || label.toLowerCase().includes('avg'))
+                  return ' ' + fmtMoney(Math.round(v));
+                return ' ' + v;
+              }
+            }
+          }
+        },
+        scales: {
+          x: { grid: { display: false }, ticks: { font: { size: 11 } } },
+          y: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { font: { size: 10 }, callback: v => label.includes('Revenue')||label.includes('revenue') ? '₹'+v.toLocaleString('en-IN') : v }, border: { dash: [3,3] } }
+        }
+      }
+    });
+  }
+
+  // ── Change % helper ──
+  function changePct(curr, prev) {
+    if (!prev) return '<span class="change-nil">—</span>';
+    const pct = Math.round((curr - prev) / prev * 100);
+    if (pct > 0) return `<span class="change-up">▲ ${pct}%</span>`;
+    if (pct < 0) return `<span class="change-down">▼ ${Math.abs(pct)}%</span>`;
+    return '<span class="change-nil">—</span>';
+  }
+
+  // ── Mini table below chart ──
+  function miniTable(metric, values, formatter) {
+    return `<table class="comp-table">
+      <thead><tr>
+        <th>Month</th>
+        <th>${metric}</th>
+        <th>vs Prev Month</th>
+      </tr></thead>
+      <tbody>
+        ${data.map((d,i) => `<tr>
+          <td style="font-weight:600">${d.label}</td>
+          <td>${formatter(values[i])}</td>
+          <td>${changePct(values[i], i>0?values[i-1]:null)}</td>
+        </tr>`).join('')}
+      </tbody>
+    </table>`;
+  }
+
+  // ── Render each tab ──
+  // Revenue
+  makeChart('chartRevenue', revData, 'Revenue (₹)', '#1a1a2e');
+  document.getElementById('compRevTable').innerHTML = miniTable('Revenue', revData, v => fmtMoney(Math.round(v)));
+
+  // Orders
+  makeChart('chartOrders', ordData, 'Orders', '#0077b6', 'bar');
+  document.getElementById('compOrdTable').innerHTML = miniTable('Orders', ordData, v => v);
+
+  // Fish Qty
+  makeChart('chartQty', qtyData, 'Fish Qty Sold', '#06d6a0', 'bar');
+  document.getElementById('compQtyTable').innerHTML = miniTable('Fish Qty', qtyData, v => v + ' qty');
+
+  // Customers
+  makeChart('chartCusts', custData, 'Unique Customers', '#7c3aed', 'line');
+  document.getElementById('compCustTable').innerHTML = miniTable('Customers', custData, v => v);
+
+  // ── Full comparison table ──
+  const fullRows = data.map((d, i) => `
+    <tr>
+      <td style="font-weight:700;white-space:nowrap">${d.label}</td>
+      <td>${d.orders.length}</td>
+      <td>${fmtMoney(Math.round(d.rev))}</td>
+      <td style="font-size:11px">${changePct(d.rev, i>0?data[i-1].rev:null)}</td>
+      <td>${d.qty}</td>
+      <td style="font-size:11px">${changePct(d.qty, i>0?data[i-1].qty:null)}</td>
+      <td>${d.custs}</td>
+      <td>${fmtMoney(d.avg)}</td>
+      <td>${d.fishCount}</td>
+    </tr>`).join('');
+
+  document.getElementById('compFullTable').innerHTML = `
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Month</th>
+          <th>Orders</th>
+          <th>Revenue</th>
+          <th>Rev Δ</th>
+          <th>Fish Qty</th>
+          <th>Qty Δ</th>
+          <th>Customers</th>
+          <th>Avg Order</th>
+          <th>Varieties</th>
+        </tr>
+      </thead>
+      <tbody>${fullRows}</tbody>
+      <tfoot>
+        <tr>
+          <td>TOTAL</td>
+          <td>${totalOrds}</td>
+          <td>${fmtMoney(totalRev)}</td>
+          <td>—</td>
+          <td>${totalQty}</td>
+          <td>—</td>
+          <td>—</td>
+          <td>${fmtMoney(avgRev)}</td>
+          <td>—</td>
+        </tr>
+      </tfoot>
+    </table>`;
+
+  document.getElementById('compRange').textContent = `${data[0]?.label} – ${data[data.length-1]?.label} · ${months.length} months`;
+  document.getElementById('compSection').style.display = 'block';
+}
+
+// ── Re-run with updated init ──────────────────────────
 init();
 setInterval(init, 10 * 60 * 1000);
 </script>
