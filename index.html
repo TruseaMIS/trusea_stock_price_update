@@ -4,341 +4,384 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TruSea Fish — Ops Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg:        #eef4fb;
-    --surface:   #ffffff;
-    --surface2:  #f5f9ff;
-    --border:    #ccddf0;
-    --border2:   #ddeaf8;
-    --blue:      #1a6fc4;
-    --blue-dim:  rgba(26,111,196,0.10);
-    --blue-glow: rgba(26,111,196,0.20);
-    --teal:      #0a9e91;
-    --teal-dim:  rgba(10,158,145,0.10);
-    --coral:     #e05340;
-    --coral-dim: rgba(224,83,64,0.10);
-    --gold:      #c07c10;
-    --gold-dim:  rgba(192,124,16,0.10);
-    --text:      #1a2a3a;
-    --muted:     #6b86a3;
-    --success:   #17a058;
-    --success-dim: rgba(23,160,88,0.10);
-    --radius:    14px;
-    --radius-sm: 8px;
-    --shadow:    0 2px 12px rgba(26,111,196,0.08);
-    --shadow-md: 0 4px 24px rgba(26,111,196,0.13);
-  }
+:root {
+  --bg:          #eef4fb;
+  --surface:     #ffffff;
+  --surface2:    #f4f8fd;
+  --border:      #d0e2f4;
+  --border2:     #e2eef8;
+  --blue:        #1a6fc4;
+  --blue-dim:    rgba(26,111,196,0.09);
+  --blue-glow:   rgba(26,111,196,0.18);
+  --teal:        #0a9e91;
+  --teal-dim:    rgba(10,158,145,0.09);
+  --coral:       #e05340;
+  --coral-dim:   rgba(224,83,64,0.09);
+  --gold:        #b87209;
+  --gold-dim:    rgba(184,114,9,0.09);
+  --text:        #1a2a3a;
+  --muted:       #7090b0;
+  --success:     #17a058;
+  --success-dim: rgba(23,160,88,0.09);
+  --radius:      16px;
+  --radius-sm:   10px;
+  --shadow:      0 2px 14px rgba(26,111,196,0.07);
+  --shadow-md:   0 6px 28px rgba(26,111,196,0.13);
+}
 
-  html, body {
-    min-height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Poppins', sans-serif;
-    font-size: 14px;
-    line-height: 1.5;
-  }
+html, body {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* ── HEADER ── */
-  header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 16px 32px;
-    background: var(--surface);
-    border-bottom: 1.5px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: var(--shadow);
-  }
+/* ── HEADER ── */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1.5px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+  gap: 12px;
+}
 
-  .logo { display: flex; align-items: center; gap: 10px; }
+.logo { display: flex; align-items: center; gap: 10px; min-width: 0; }
 
-  .logo-icon {
-    width: 38px; height: 38px;
-    background: linear-gradient(135deg, #1a6fc4, #0a9e91);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-  }
+.logo-icon {
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: linear-gradient(135deg, #1a6fc4, #0a9e91);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; box-shadow: 0 2px 8px rgba(26,111,196,0.25);
+}
 
-  .logo-text { font-weight: 700; font-size: 16px; color: var(--text); letter-spacing: -0.3px; }
-  .logo-sub  { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.logo-text { font-weight: 800; font-size: 15px; color: var(--text); letter-spacing: -0.3px; line-height: 1.2; }
+.logo-sub  { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; font-weight: 500; }
 
-  .header-right { display: flex; align-items: center; gap: 12px; }
+.header-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-  .sync-btn {
-    display: flex; align-items: center; gap: 6px;
-    background: var(--blue-dim);
-    border: 1.5px solid var(--blue);
-    color: var(--blue);
-    padding: 7px 16px;
-    border-radius: var(--radius-sm);
-    font-family: inherit; font-size: 12px; font-weight: 700;
-    cursor: pointer; transition: all 0.2s; letter-spacing: 0.3px;
-  }
-  .sync-btn:hover { background: var(--blue-glow); }
-  .sync-btn.spinning .sync-icon { animation: spin 0.9s linear infinite; display: inline-block; }
-  @keyframes spin { to { transform: rotate(360deg); } }
+#last-sync { font-size: 10px; color: var(--muted); font-weight: 500; white-space: nowrap; }
 
-  /* ── TABS ── */
-  .tabs { display: flex; gap: 4px; padding: 24px 32px 0; }
+.sync-btn {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--blue-dim);
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
+  padding: 7px 13px;
+  border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.sync-btn:hover { background: var(--blue-glow); }
+.sync-btn.spinning .sync-icon { animation: spin 0.9s linear infinite; display: inline-block; }
+@keyframes spin { to { transform: rotate(360deg); } }
 
-  .tab {
-    padding: 10px 24px;
-    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-    border: 1.5px solid transparent;
-    border-bottom: none;
-    font-family: inherit; font-size: 13px; font-weight: 600;
-    cursor: pointer; background: transparent; color: var(--muted);
-    transition: all 0.18s;
-  }
-  .tab.active {
-    background: var(--surface);
-    border-color: var(--border);
-    color: var(--blue);
-  }
+/* ── TABS ── */
+.tabs { display: flex; gap: 4px; padding: 16px 16px 0; }
 
-  /* ── MAIN ── */
-  main { padding: 0 32px 48px; }
+.tab {
+  padding: 9px 18px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border: 1.5px solid transparent;
+  border-bottom: none;
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  cursor: pointer; background: transparent; color: var(--muted);
+  transition: all 0.18s; flex: 1; text-align: center;
+}
+.tab.active { background: var(--surface); border-color: var(--border); color: var(--blue); }
 
-  .tab-pane {
-    display: none;
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: 0 var(--radius) var(--radius) var(--radius);
-    padding: 28px;
-    box-shadow: var(--shadow);
-    animation: fadeUp 0.2s ease;
-  }
-  .tab-pane.active { display: block; }
-  @keyframes fadeUp { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+/* ── MAIN ── */
+main { padding: 0 16px 48px; }
 
-  /* ── SECTION HEAD ── */
-  .section-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 24px; }
-  .section-title { font-size: 18px; font-weight: 700; color: var(--text); letter-spacing: -0.4px; }
-  .section-desc  { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.tab-pane {
+  display: none;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 0 var(--radius) var(--radius) var(--radius);
+  padding: 20px 16px;
+  box-shadow: var(--shadow);
+  animation: fadeUp 0.2s ease;
+}
+.tab-pane.active { display: block; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
 
-  /* ── STOCK SELECTOR ── */
-  .stock-selector-row {
-    display: grid;
-    grid-template-columns: 1fr 200px auto;
-    gap: 12px; align-items: end;
-    background: var(--surface2);
-    border: 1.5px solid var(--border);
-    padding: 20px; border-radius: var(--radius);
-    margin-bottom: 28px;
-  }
+/* ── SECTION HEAD ── */
+.section-head { margin-bottom: 18px; }
+.section-title { font-size: 17px; font-weight: 800; color: var(--text); letter-spacing: -0.4px; }
+.section-desc  { font-size: 11px; color: var(--muted); margin-top: 3px; font-weight: 400; }
 
-  .field-group { display: flex; flex-direction: column; gap: 6px; }
+/* ── STOCK SELECTOR ── */
+.stock-selector-box {
+  display: flex; flex-direction: column; gap: 12px;
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  padding: 16px; border-radius: var(--radius);
+  margin-bottom: 22px;
+}
 
-  .field-label {
-    font-size: 11px; font-weight: 700; color: var(--muted);
-    text-transform: uppercase; letter-spacing: 0.8px;
-  }
+.field-group { display: flex; flex-direction: column; gap: 5px; }
 
-  select, input[type="number"], .price-search-input {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    color: var(--text);
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    font-family: inherit; font-size: 14px; width: 100%;
-    transition: border-color 0.18s, box-shadow 0.18s;
-    appearance: none; -webkit-appearance: none;
-  }
-  select {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b86a3' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 12px center;
-    padding-right: 34px; cursor: pointer;
-    background-color: var(--surface);
-  }
-  select:focus, input[type="number"]:focus, .price-search-input:focus {
-    outline: none; border-color: var(--blue);
-    box-shadow: 0 0 0 3px var(--blue-dim);
-  }
+.field-label {
+  font-size: 10px; font-weight: 700; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.9px;
+}
 
-  .update-btn {
-    background: linear-gradient(135deg, #1a6fc4, #1559a0);
-    border: none; color: #fff;
-    padding: 11px 26px; border-radius: var(--radius-sm);
-    font-family: inherit; font-weight: 700; font-size: 14px;
-    cursor: pointer; transition: all 0.2s;
-    white-space: nowrap; box-shadow: 0 2px 10px rgba(26,111,196,0.25);
-  }
-  .update-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(26,111,196,0.35); }
-  .update-btn:active { transform: translateY(0); }
-  .update-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+select, input[type="number"] {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: 11px 14px;
+  border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  width: 100%;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  appearance: none; -webkit-appearance: none;
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237090b0' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  background-color: var(--surface);
+  padding-right: 36px; cursor: pointer;
+}
+select:focus, input[type="number"]:focus {
+  outline: none; border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
 
-  /* ── RESULT CARDS ── */
-  #stock-result { display: none; }
+.update-btn {
+  background: linear-gradient(135deg, #1a6fc4, #1457a0);
+  border: none; color: #fff;
+  padding: 13px; border-radius: var(--radius-sm);
+  font-family: inherit; font-weight: 700; font-size: 15px;
+  cursor: pointer; transition: all 0.2s; width: 100%;
+  box-shadow: 0 3px 12px rgba(26,111,196,0.28);
+  letter-spacing: 0.2px;
+}
+.update-btn:hover { box-shadow: 0 6px 20px rgba(26,111,196,0.38); transform: translateY(-1px); }
+.update-btn:active { transform: translateY(0); }
+.update-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
 
-  .result-fish-name {
-    font-size: 20px; font-weight: 700; color: var(--text);
-    margin-bottom: 16px;
-    display: flex; align-items: center; gap: 10px;
-  }
+/* ── RESULT SECTION ── */
+#stock-result { display: none; margin-bottom: 22px; }
 
-  .fish-badge {
-    font-size: 11px; font-weight: 700;
-    padding: 3px 10px; border-radius: 99px;
-    letter-spacing: 0.3px;
-  }
+.result-fish-name {
+  font-size: 18px; font-weight: 800; color: var(--text);
+  margin-bottom: 14px;
+  display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap;
+}
 
-  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-  .metric-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 14px; }
+.fish-badge {
+  font-size: 10px; font-weight: 700;
+  padding: 3px 10px; border-radius: 99px;
+  white-space: nowrap; margin-top: 4px;
+}
 
-  .metric-card {
-    background: var(--surface2);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px; transition: border-color 0.2s;
-  }
-  .metric-card.hi-blue  { border-color: var(--blue);  background: var(--blue-dim); }
-  .metric-card.hi-teal  { border-color: var(--teal);  background: var(--teal-dim); }
-  .metric-card.hi-coral { border-color: var(--coral); background: var(--coral-dim); }
-  .metric-card.hi-gold  { border-color: var(--gold);  background: var(--gold-dim); }
+/* 2x2 metric grid */
+.metric-grid   { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+.metric-grid-3 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 
-  .metric-label {
-    font-size: 10px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.8px; color: var(--muted); margin-bottom: 8px;
-  }
-  .metric-value { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 700; line-height: 1; color: var(--text); }
-  .metric-value.blue  { color: var(--blue); }
-  .metric-value.teal  { color: var(--teal); }
-  .metric-value.coral { color: var(--coral); }
-  .metric-value.gold  { color: var(--gold); }
-  .metric-unit { font-size: 11px; color: var(--muted); margin-top: 5px; }
+.metric-card {
+  background: var(--surface2);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 14px 12px;
+}
+.metric-card.hi-blue  { border-color: #93c0ef; background: var(--blue-dim); }
+.metric-card.hi-coral { border-color: #f0a99e; background: var(--coral-dim); }
+.metric-card.hi-gold  { border-color: #e0b86a; background: var(--gold-dim); }
+.metric-card.hi-teal  { border-color: #7dccc6; background: var(--teal-dim); }
 
-  /* ── FISH TABLE ── */
-  .fish-table-wrap {
-    margin-top: 28px; border: 1.5px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-  }
-  .fish-table-head {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 14px 20px; background: var(--surface2);
-    border-bottom: 1.5px solid var(--border);
-  }
-  .fish-table-title { font-size: 13px; font-weight: 700; color: var(--text); }
-  .fish-count-badge {
-    font-size: 11px; background: var(--surface);
-    border: 1px solid var(--border); color: var(--muted);
-    padding: 3px 10px; border-radius: 99px;
-  }
+.metric-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.9px; color: var(--muted); margin-bottom: 6px;
+}
+.metric-value { font-size: 22px; font-weight: 800; line-height: 1.1; color: var(--text); }
+.metric-value.blue  { color: var(--blue); }
+.metric-value.coral { color: var(--coral); }
+.metric-value.gold  { color: var(--gold); }
+.metric-value.teal  { color: var(--teal); }
+.metric-unit { font-size: 10px; color: var(--muted); margin-top: 4px; font-weight: 400; }
 
-  table { width: 100%; border-collapse: collapse; font-size: 13px; }
-  thead th {
-    background: var(--surface2); padding: 11px 16px; text-align: left;
-    font-size: 10px; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.8px; color: var(--muted);
-    border-bottom: 1.5px solid var(--border); white-space: nowrap;
-  }
-  tbody tr { border-bottom: 1px solid var(--border2); transition: background 0.12s; }
-  tbody tr:last-child { border-bottom: none; }
-  tbody tr:hover { background: var(--blue-dim); }
-  tbody td { padding: 11px 16px; color: var(--text); vertical-align: middle; }
+/* ── FISH LIST (card-based, mobile friendly) ── */
+.fish-list-wrap {
+  margin-top: 22px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.fish-list-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 13px 16px; background: var(--surface2);
+  border-bottom: 1.5px solid var(--border);
+}
+.fish-list-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.fish-count-badge {
+  font-size: 10px; background: var(--surface);
+  border: 1px solid var(--border); color: var(--muted);
+  padding: 3px 10px; border-radius: 99px; font-weight: 600;
+}
 
-  .td-fish { font-weight: 700; }
-  .td-num  { font-family: 'Poppins', sans-serif; font-size: 12px; }
-  .td-blue  { color: var(--blue);  font-weight: 600; }
-  .td-teal  { color: var(--teal);  font-weight: 600; }
-  .td-coral { color: var(--coral); }
-  .td-gold  { color: var(--gold);  }
-  .td-zero  { color: var(--muted); opacity: 0.5; }
+/* Card rows instead of table */
+.fish-row {
+  display: flex; align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border2);
+  gap: 10px;
+  transition: background 0.12s;
+}
+.fish-row:last-child { border-bottom: none; }
+.fish-row:hover { background: var(--blue-dim); }
 
-  .status-pill {
-    display: inline-flex; align-items: center; gap: 4px;
-    font-size: 10px; font-weight: 700; padding: 3px 10px;
-    border-radius: 99px; text-transform: uppercase; letter-spacing: 0.5px;
-    white-space: nowrap;
-  }
-  .status-pill.ok   { background: var(--success-dim); color: var(--success); border: 1px solid rgba(23,160,88,0.25); }
-  .status-pill.low  { background: var(--coral-dim);   color: var(--coral);   border: 1px solid rgba(224,83,64,0.25); }
-  .status-pill.zero { background: var(--surface2);    color: var(--muted);   border: 1px solid var(--border); }
+.fish-row-name {
+  flex: 1; font-weight: 600; font-size: 13px;
+  color: var(--text); min-width: 0;
+}
+.fish-row-kg {
+  font-size: 12px; font-weight: 700;
+  color: var(--blue); white-space: nowrap;
+  min-width: 54px; text-align: right;
+}
+.fish-row-kg.zero { color: var(--muted); font-weight: 400; }
 
-  /* ── PRICE TAB ── */
+.status-pill {
+  display: inline-flex; align-items: center;
+  font-size: 9px; font-weight: 700; padding: 3px 8px;
+  border-radius: 99px; text-transform: uppercase; letter-spacing: 0.5px;
+  white-space: nowrap; flex-shrink: 0;
+}
+.status-pill.ok   { background: var(--success-dim); color: var(--success); border: 1px solid rgba(23,160,88,0.25); }
+.status-pill.low  { background: var(--coral-dim);   color: var(--coral);   border: 1px solid rgba(224,83,64,0.25); }
+.status-pill.zero { background: var(--surface2);    color: var(--muted);   border: 1px solid var(--border); }
+
+/* ── PRICE TAB ── */
+.price-search-wrap { margin-bottom: 18px; }
+.price-search-input {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  padding: 11px 16px;
+  border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 14px;
+  width: 100%;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  appearance: none;
+}
+.price-search-input:focus {
+  outline: none; border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
+
+.price-grid { display: flex; flex-direction: column; gap: 12px; }
+
+/* On wider screens: 2 col grid */
+@media (min-width: 600px) {
+  .price-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .price-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.price-card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
+  box-shadow: var(--shadow);
+}
+.price-card:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.price-card-header {
+  padding: 12px 14px; background: var(--surface2);
+  border-bottom: 1.5px solid var(--border);
+}
+.price-card-fish { font-weight: 700; color: var(--text); font-size: 13px; line-height: 1.3; }
+.price-card-sku {
+  font-size: 10px; color: var(--muted); font-weight: 500;
+  margin-top: 3px; display: inline-block;
+  background: var(--surface); padding: 1px 7px;
+  border-radius: 4px; border: 1px solid var(--border);
+}
+
+.price-weights { display: grid; grid-template-columns: 1fr 1fr; }
+
+.price-weight-cell {
+  padding: 12px 14px;
+  border-right: 1px solid var(--border2);
+  border-bottom: 1px solid var(--border2);
+}
+.price-weight-cell:nth-child(even)      { border-right: none; }
+.price-weight-cell:nth-last-child(-n+2) { border-bottom: none; }
+
+.price-wt-label {
+  font-size: 9px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.8px; color: var(--muted); margin-bottom: 4px;
+}
+.price-wt-value { font-size: 18px; font-weight: 800; color: var(--blue); line-height: 1.1; }
+.price-wt-value.base { color: var(--gold); }
+.price-wt-inr { font-size: 9px; color: var(--muted); margin-top: 2px; font-weight: 500; }
+
+/* ── LOADING / EMPTY / TOAST ── */
+.loading-wrap {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 50px 20px; gap: 12px; color: var(--muted);
+  font-size: 13px; font-weight: 500;
+}
+.spinner {
+  width: 32px; height: 32px;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%; animation: spin 0.8s linear infinite;
+}
+.empty-state { text-align: center; padding: 50px 20px; color: var(--muted); }
+.empty-icon  { font-size: 36px; margin-bottom: 10px; }
+
+.toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+  padding: 11px 20px; border-radius: var(--radius-sm);
+  font-weight: 700; font-size: 13px; z-index: 9999;
+  animation: toastIn 0.3s ease;
+  display: flex; align-items: center; gap: 8px;
+  max-width: 90vw; white-space: nowrap;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.toast.success { background: var(--success); color: #fff; }
+.toast.error   { background: var(--coral);   color: #fff; }
+@keyframes toastIn { from { opacity:0; transform: translateX(-50%) translateY(10px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }
+
+/* ── DESKTOP overrides ── */
+@media (min-width: 700px) {
+  header { padding: 14px 32px; }
+  main, .tabs { padding-left: 32px; padding-right: 32px; }
+  .tab-pane { padding: 28px; }
+  .stock-selector-box { flex-direction: row; align-items: flex-end; }
+  .stock-selector-box .field-group:first-child { flex: 2; }
+  .stock-selector-box .field-group:nth-child(2) { flex: 1; }
+  .update-btn { width: auto; padding: 13px 28px; }
+  .metric-grid   { grid-template-columns: repeat(4, 1fr); }
+  .metric-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .section-head { display: flex; align-items: flex-start; justify-content: space-between; }
+  .price-search-wrap { display: flex; justify-content: flex-end; }
   .price-search-input { width: 260px; }
-
-  .price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
-
-  .price-card {
-    background: var(--surface);
-    border: 1.5px solid var(--border);
-    border-radius: var(--radius); overflow: hidden;
-    transition: border-color 0.18s, box-shadow 0.18s, transform 0.18s;
-    box-shadow: var(--shadow);
-  }
-  .price-card:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-
-  .price-card-header {
-    padding: 13px 16px; background: var(--surface2);
-    border-bottom: 1.5px solid var(--border);
-    display: flex; align-items: center; justify-content: space-between;
-  }
-  .price-card-fish { font-weight: 700; color: var(--text); font-size: 14px; }
-  .price-card-sku {
-    font-family: 'Poppins', sans-serif; font-size: 10px; color: var(--muted);
-    background: var(--surface); padding: 2px 8px; border-radius: 4px;
-    border: 1px solid var(--border);
-  }
-
-  .price-weights { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .price-weight-cell {
-    padding: 14px 16px;
-    border-right: 1px solid var(--border2);
-    border-bottom: 1px solid var(--border2);
-  }
-  .price-weight-cell:nth-child(even)    { border-right: none; }
-  .price-weight-cell:nth-last-child(-n+2) { border-bottom: none; }
-
-  .price-wt-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 5px; }
-  .price-wt-value { font-family: 'Poppins', sans-serif; font-size: 20px; font-weight: 700; color: var(--blue); }
-  .price-wt-value.base { color: var(--gold); }
-  .price-wt-inr { font-size: 10px; color: var(--muted); margin-top: 2px; }
-
-  /* ── LOADING / EMPTY / TOAST ── */
-  .loading-wrap {
-    display: flex; flex-direction: column; align-items: center;
-    justify-content: center; padding: 60px 20px; gap: 14px; color: var(--muted);
-  }
-  .spinner {
-    width: 34px; height: 34px;
-    border: 3px solid var(--border);
-    border-top-color: var(--blue);
-    border-radius: 50%; animation: spin 0.8s linear infinite;
-  }
-  .empty-state { text-align: center; padding: 60px 20px; color: var(--muted); }
-  .empty-icon  { font-size: 40px; margin-bottom: 12px; }
-
-  .toast {
-    position: fixed; bottom: 28px; right: 28px;
-    padding: 12px 20px; border-radius: var(--radius-sm);
-    font-weight: 700; font-size: 13px; z-index: 9999;
-    animation: toastIn 0.3s ease;
-    display: flex; align-items: center; gap: 8px; max-width: 360px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-  }
-  .toast.success { background: var(--success); color: #fff; }
-  .toast.error   { background: var(--coral);   color: #fff; }
-  @keyframes toastIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 860px) {
-    header, main, .tabs { padding-left: 16px; padding-right: 16px; }
-    .stock-selector-row { grid-template-columns: 1fr; }
-    .metric-grid, .metric-grid-3 { grid-template-columns: repeat(2, 1fr); }
-    .price-grid { grid-template-columns: 1fr; }
-  }
+  .toast { left: auto; right: 28px; transform: none; }
+  @keyframes toastIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+}
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="logo">
     <div class="logo-icon">🐟</div>
@@ -348,23 +391,21 @@
     </div>
   </div>
   <div class="header-right">
-    <span id="last-sync" style="font-size:11px;color:var(--muted);">Not synced</span>
+    <span id="last-sync">Not synced</span>
     <button class="sync-btn" onclick="syncAll()">
       <span class="sync-icon">↻</span> Sync Sheet
     </button>
   </div>
 </header>
 
-<!-- TABS -->
 <div class="tabs">
   <button class="tab active" onclick="switchTab('stock', this)">📦 Stock Update</button>
   <button class="tab" onclick="switchTab('price', this)">💰 Fish Prices</button>
 </div>
 
-<!-- MAIN -->
 <main>
 
-  <!-- ══ TAB 1: STOCK UPDATE ══ -->
+  <!-- TAB 1: STOCK -->
   <div id="tab-stock" class="tab-pane active">
     <div class="section-head">
       <div>
@@ -373,23 +414,21 @@
       </div>
     </div>
 
-    <div class="stock-selector-row">
+    <div class="stock-selector-box">
       <div class="field-group">
         <label class="field-label">Fish Name</label>
         <select id="fish-select" onchange="onFishSelect()">
-          <option value="">— Loading fish list... —</option>
+          <option value="">— Loading... —</option>
         </select>
       </div>
       <div class="field-group">
         <label class="field-label">Inward Stock (kg)</label>
         <input type="number" id="inward-input" min="0" step="0.1" placeholder="e.g. 25.5" />
       </div>
-      <button class="update-btn" onclick="submitStockUpdate()" id="update-btn">
-        ✓ Update Sheet
-      </button>
+      <button class="update-btn" onclick="submitStockUpdate()" id="update-btn">✓ Update Sheet</button>
     </div>
 
-    <!-- RESULT -->
+    <!-- RESULT CARDS -->
     <div id="stock-result">
       <div class="result-fish-name">
         <span id="result-name-text">—</span>
@@ -417,45 +456,47 @@
           <div class="metric-unit">kg sellable</div>
         </div>
       </div>
-      <div class="metric-grid-3">
+      <div class="metric-grid-3" style="margin-top:10px;">
         <div class="metric-card">
           <div class="metric-label">Conversion Ratio</div>
-          <div class="metric-value blue" id="r-ratio" style="font-size:20px;">—</div>
+          <div class="metric-value blue" id="r-ratio" style="font-size:18px;">—</div>
           <div class="metric-unit">sellable / inward</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Col E Value</div>
-          <div class="metric-value td-num" id="r-cole" style="font-size:18px;color:var(--text)">—</div>
+          <div class="metric-value" id="r-cole" style="font-size:18px;">—</div>
           <div class="metric-unit">x2 calculated</div>
         </div>
         <div class="metric-card">
           <div class="metric-label">Col F Value</div>
-          <div class="metric-value td-num" id="r-colf" style="font-size:18px;color:var(--text)">—</div>
+          <div class="metric-value" id="r-colf" style="font-size:18px;">—</div>
           <div class="metric-unit">sheet formula</div>
         </div>
       </div>
     </div>
 
-    <!-- ALL FISH TABLE -->
-    <div class="fish-table-wrap">
-      <div class="fish-table-head">
-        <div class="fish-table-title">All Fish — Stock Overview</div>
+    <!-- FISH LIST -->
+    <div class="fish-list-wrap">
+      <div class="fish-list-head">
+        <div class="fish-list-title">All Fish — Stock Overview</div>
         <span class="fish-count-badge" id="fish-count">Loading...</span>
       </div>
-      <div id="fish-table-body">
+      <div id="fish-list-body">
         <div class="loading-wrap"><div class="spinner"></div><div>Fetching from sheet...</div></div>
       </div>
     </div>
   </div>
 
-  <!-- ══ TAB 2: FISH PRICES ══ -->
+  <!-- TAB 2: PRICES -->
   <div id="tab-price" class="tab-pane">
     <div class="section-head">
       <div>
         <div class="section-title">Fish Price Board</div>
-        <div class="section-desc">All prices are <strong>Gross Weight Price</strong> · 250g, 500g, 750g &amp; 1kg auto-calculated from 500g base</div>
+        <div class="section-desc">All prices are <strong>Gross Weight Price</strong> · 250g, 500g, 750g & 1kg auto-calculated</div>
       </div>
-      <input class="price-search-input" type="text" id="price-search" placeholder="🔍 Search fish..." oninput="filterPrices()" />
+      <div class="price-search-wrap">
+        <input class="price-search-input" type="text" id="price-search" placeholder="🔍 Search fish..." oninput="filterPrices()" />
+      </div>
     </div>
     <div id="price-grid-wrap">
       <div class="loading-wrap"><div class="spinner"></div><div>Fetching prices...</div></div>
@@ -465,16 +506,13 @@
 </main>
 
 <script>
-// ══ HARDCODED — no setup needed ══
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytnSGNyl7SA2TjX-8FIuuW95bSMUwnuhkC2iJ2dRsNu464R6t5hKWUePqPjNw8lgOXZQ/exec';
 
 let stockData = [];
 let priceData = [];
 
-// ── INIT ──
 window.onload = () => syncAll();
 
-// ── TABS ──
 function switchTab(tab, btn) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
@@ -482,7 +520,6 @@ function switchTab(tab, btn) {
   document.getElementById('tab-' + tab).classList.add('active');
 }
 
-// ── SYNC ──
 async function syncAll() {
   const btn = document.querySelector('.sync-btn');
   btn.classList.add('spinning'); btn.disabled = true;
@@ -498,15 +535,15 @@ async function syncAll() {
   }
 }
 
-// ── STOCK FETCH ──
+// ── STOCK FETCH via GET (CORS safe) ──
 async function fetchStockData() {
-  const res = await fetch(SCRIPT_URL + '?action=getStock');
+  const res = await fetch(SCRIPT_URL + '?action=getStock', { mode: 'cors' });
   if (!res.ok) throw new Error('HTTP ' + res.status);
   const json = await res.json();
   if (json.error) throw new Error(json.error);
   stockData = json.rows;
   renderFishDropdown(json.rows);
-  renderStockTable(json.rows, json.headers);
+  renderFishList(json.rows, json.headers);
 }
 
 function renderFishDropdown(rows) {
@@ -527,66 +564,47 @@ function onFishSelect() {
   if (row) showStockResult(row, false);
 }
 
-function renderStockTable(rows, headers) {
+function renderFishList(rows, headers) {
   document.getElementById('fish-count').textContent = rows.length + ' fish';
-  const hD = (headers && headers[3])  || 'Inward (kg)';
-  const hE = (headers && headers[4])  || 'Col E';
-  const hF = (headers && headers[5])  || 'Col F';
-  const hK = (headers && headers[10]) || 'Sellable Stock';
-
-  document.getElementById('fish-table-body').innerHTML = `
-    <table>
-      <thead>
-        <tr>
-          <th>Fish Name</th>
-          <th>${hD}</th>
-          <th>${hE}</th>
-          <th>${hF}</th>
-          <th>${hK}</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${rows.map(r => {
-          const inward   = r.inwardKg;
-          const sellable = r.sellableStock;
-          let pill = '';
-          if (!inward || inward == 0) {
-            pill = '<span class="status-pill zero">No Stock</span>';
-          } else if (sellable && sellable > 0) {
-            pill = '<span class="status-pill ok">✓ Ready</span>';
-          } else {
-            pill = '<span class="status-pill low">Low</span>';
-          }
-          return `<tr>
-            <td class="td-fish">${r.fishName}</td>
-            <td class="td-num ${!inward ? 'td-zero' : 'td-blue'}">${inward !== '' && inward !== undefined ? inward + ' kg' : '—'}</td>
-            <td class="td-num">${r.colE !== '' && r.colE !== undefined ? r.colE : '—'}</td>
-            <td class="td-num">${r.colF !== '' && r.colF !== undefined ? r.colF : '—'}</td>
-            <td class="td-num td-teal">${sellable !== '' && sellable !== undefined ? sellable : '—'}</td>
-            <td>${pill}</td>
-          </tr>`;
-        }).join('')}
-      </tbody>
-    </table>`;
+  document.getElementById('fish-list-body').innerHTML = rows.map(r => {
+    const inward   = r.inwardKg;
+    const sellable = r.sellableStock;
+    let pill = '';
+    if (!inward || inward == 0) {
+      pill = '<span class="status-pill zero">No Stock</span>';
+    } else if (sellable && Number(sellable) > 0) {
+      pill = '<span class="status-pill ok">✓ Ready</span>';
+    } else {
+      pill = '<span class="status-pill low">Low</span>';
+    }
+    const hasStock = inward && inward != 0;
+    return `<div class="fish-row">
+      <div class="fish-row-name">${r.fishName}</div>
+      <div class="fish-row-kg ${hasStock ? '' : 'zero'}">${hasStock ? inward + ' kg' : '— kg'}</div>
+      ${pill}
+    </div>`;
+  }).join('');
 }
 
-// ── STOCK UPDATE ──
+// ── STOCK UPDATE via GET with params (CORS safe) ──
 async function submitStockUpdate() {
   const fishName = document.getElementById('fish-select').value;
   const inwardKg = parseFloat(document.getElementById('inward-input').value);
-  if (!fishName)               { showToast('Fish select pannanum da!', 'error'); return; }
+  if (!fishName)                     { showToast('Fish select pannanum!', 'error'); return; }
   if (isNaN(inwardKg) || inwardKg < 0) { showToast('Valid kg enter pannanum!', 'error'); return; }
 
   const btn = document.getElementById('update-btn');
   btn.disabled = true; btn.textContent = 'Updating...';
 
   try {
-    const res = await fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ action: 'updateStock', fishName, inwardKg })
+    // Use GET with params — fully CORS safe for Apps Script
+    const params = new URLSearchParams({
+      action: 'updateStock',
+      fishName: fishName,
+      inwardKg: inwardKg
     });
+    const res = await fetch(SCRIPT_URL + '?' + params.toString(), { mode: 'cors' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     const json = await res.json();
     if (json.error) throw new Error(json.error);
 
@@ -594,7 +612,7 @@ async function submitStockUpdate() {
     if (idx !== -1) stockData[idx] = { ...stockData[idx], ...json.updatedData, inwardKg: json.inwardKg };
 
     showStockResult({ fishName, ...json.updatedData, inwardKg }, true);
-    renderStockTable(stockData, []);
+    renderFishList(stockData, []);
     showToast('✓ Sheet updated — ' + fishName, 'success');
   } catch(e) {
     showToast('Update failed: ' + e.message, 'error');
@@ -606,33 +624,33 @@ async function submitStockUpdate() {
 function showStockResult(row, justUpdated) {
   document.getElementById('stock-result').style.display = 'block';
   document.getElementById('result-name-text').textContent = row.fishName;
-
   const badge = document.getElementById('result-badge');
   badge.textContent = justUpdated ? 'Updated ✓' : 'Current Data';
   badge.style.cssText = justUpdated
-    ? 'background:var(--success-dim);border:1px solid rgba(23,160,88,0.4);color:var(--success)'
-    : 'background:var(--blue-dim);border:1px solid rgba(26,111,196,0.4);color:var(--blue)';
+    ? 'background:var(--success-dim);border:1px solid rgba(23,160,88,0.35);color:var(--success)'
+    : 'background:var(--blue-dim);border:1px solid rgba(26,111,196,0.35);color:var(--blue)';
 
   const inward   = row.inwardKg || 0;
-  const colI     = row.colI !== undefined && row.colI !== '' ? row.colI : '—';
-  const colJ     = row.colJ !== undefined && row.colJ !== '' ? row.colJ : '—';
-  const sellable = row.sellableStock !== undefined && row.sellableStock !== '' ? row.sellableStock : '—';
-  const ratio    = (sellable !== '—' && inward > 0) ? (parseFloat(sellable) / inward).toFixed(2) + 'x' : '—';
+  const colI     = (row.colI !== undefined && row.colI !== '') ? row.colI : '—';
+  const colJ     = (row.colJ !== undefined && row.colJ !== '') ? row.colJ : '—';
+  const sellable = (row.sellableStock !== undefined && row.sellableStock !== '') ? row.sellableStock : '—';
+  const ratio    = (sellable !== '—' && Number(inward) > 0)
+                   ? (parseFloat(sellable) / Number(inward)).toFixed(2) + 'x' : '—';
 
   document.getElementById('r-inward').textContent   = inward + ' kg';
   document.getElementById('r-wastage').textContent  = colI !== '—' ? colI + ' kg' : '—';
   document.getElementById('r-usable').textContent   = colJ !== '—' ? colJ + ' kg' : '—';
   document.getElementById('r-sellable').textContent = sellable !== '—' ? sellable + ' kg' : '—';
   document.getElementById('r-ratio').textContent    = ratio;
-  document.getElementById('r-cole').textContent     = row.colE !== undefined && row.colE !== '' ? row.colE : '—';
-  document.getElementById('r-colf').textContent     = row.colF !== undefined && row.colF !== '' ? row.colF : '—';
+  document.getElementById('r-cole').textContent     = (row.colE !== undefined && row.colE !== '') ? row.colE : '—';
+  document.getElementById('r-colf').textContent     = (row.colF !== undefined && row.colF !== '') ? row.colF : '—';
 
   document.getElementById('stock-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
 // ── PRICE FETCH ──
 async function fetchPriceData() {
-  const res = await fetch(SCRIPT_URL + '?action=getPrices');
+  const res = await fetch(SCRIPT_URL + '?action=getPrices', { mode: 'cors' });
   if (!res.ok) throw new Error('HTTP ' + res.status);
   const json = await res.json();
   if (json.error) throw new Error(json.error);
@@ -647,9 +665,9 @@ function filterPrices() {
   ));
 }
 
-function calcPrice(base500g, weight) {
-  if (!base500g || isNaN(base500g)) return null;
-  return Math.ceil((base500g / 500) * weight);
+function calcPrice(base, weight) {
+  if (!base || isNaN(base)) return null;
+  return Math.ceil((base / 500) * weight);
 }
 
 function renderPriceGrid(rows) {
@@ -664,39 +682,37 @@ function renderPriceGrid(rows) {
     const p750  = calcPrice(p500, 750);
     const p1000 = calcPrice(p500, 1000);
     const fmt   = v => v ? '₹' + v.toLocaleString('en-IN') : '—';
-    return `
-      <div class="price-card">
-        <div class="price-card-header">
-          <div class="price-card-fish">🐟 ${r.fishName}</div>
-          ${r.sku ? `<div class="price-card-sku">${r.sku}</div>` : ''}
+    return `<div class="price-card">
+      <div class="price-card-header">
+        <div class="price-card-fish">🐟 ${r.fishName}</div>
+        ${r.sku ? `<span class="price-card-sku">${r.sku}</span>` : ''}
+      </div>
+      <div class="price-weights">
+        <div class="price-weight-cell">
+          <div class="price-wt-label">250g</div>
+          <div class="price-wt-value">${fmt(p250)}</div>
+          <div class="price-wt-inr">Gross Weight Price</div>
         </div>
-        <div class="price-weights">
-          <div class="price-weight-cell">
-            <div class="price-wt-label">250g</div>
-            <div class="price-wt-value">${fmt(p250)}</div>
-            <div class="price-wt-inr">Gross Weight Price</div>
-          </div>
-          <div class="price-weight-cell">
-            <div class="price-wt-label">500g ★ Base</div>
-            <div class="price-wt-value base">${fmt(p500)}</div>
-            <div class="price-wt-inr">Gross Weight Price</div>
-          </div>
-          <div class="price-weight-cell">
-            <div class="price-wt-label">750g</div>
-            <div class="price-wt-value">${fmt(p750)}</div>
-            <div class="price-wt-inr">Gross Weight Price</div>
-          </div>
-          <div class="price-weight-cell">
-            <div class="price-wt-label">1 kg</div>
-            <div class="price-wt-value">${fmt(p1000)}</div>
-            <div class="price-wt-inr">Gross Weight Price</div>
-          </div>
+        <div class="price-weight-cell">
+          <div class="price-wt-label">500g ★ Base</div>
+          <div class="price-wt-value base">${fmt(p500)}</div>
+          <div class="price-wt-inr">Gross Weight Price</div>
         </div>
-      </div>`;
+        <div class="price-weight-cell">
+          <div class="price-wt-label">750g</div>
+          <div class="price-wt-value">${fmt(p750)}</div>
+          <div class="price-wt-inr">Gross Weight Price</div>
+        </div>
+        <div class="price-weight-cell">
+          <div class="price-wt-label">1 kg</div>
+          <div class="price-wt-value">${fmt(p1000)}</div>
+          <div class="price-wt-inr">Gross Weight Price</div>
+        </div>
+      </div>
+    </div>`;
   }).join('') + '</div>';
 }
 
-// ── TOAST ──
 function showToast(msg, type = 'success') {
   const ex = document.querySelector('.toast');
   if (ex) ex.remove();
