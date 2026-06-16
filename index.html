@@ -590,11 +590,12 @@ async function submitAll() {
 
   for (const idx of toUpdate) {
     const row       = stockData[idx];
-    const newKgStr  = dirtyRows[idx];         // raw string e.g. "0", "5.5"
-    const newKg     = parseFloat(newKgStr);   // NaN if somehow empty (shouldn't happen)
+    const newKgStr  = dirtyRows[idx];
+    const newKg     = parseFloat(newKgStr);
     const addKg     = isNaN(newKg) ? 0 : newKg;
     const currentKg = parseCurrentKg(row);
-    const totalKg   = currentKg + addKg;      // 0+0=0 writes 0, 5+0=5, 5+5=10
+    // 0 typed → replace with 0 (out of stock reset). >0 typed → add to current.
+    const totalKg   = addKg === 0 ? 0 : currentKg + addKg;
 
     try {
       const params = new URLSearchParams({
