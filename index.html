@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
   --bg:          #eef4fb;
   --surface:     #ffffff;
@@ -32,22 +31,16 @@
   --shadow:      0 2px 14px rgba(26,111,196,0.07);
   --shadow-md:   0 6px 28px rgba(26,111,196,0.13);
 }
-
 html, body {
-  min-height: 100%;
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
+  min-height: 100%; background: var(--bg); color: var(--text);
+  font-family: 'Poppins', sans-serif; font-size: 14px; line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
 /* ── HEADER ── */
 header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 12px 16px;
-  background: var(--surface);
+  padding: 12px 16px; background: var(--surface);
   border-bottom: 1.5px solid var(--border);
   position: sticky; top: 0; z-index: 100;
   box-shadow: var(--shadow); gap: 10px;
@@ -87,10 +80,10 @@ header {
 .tab.active { background: var(--surface); border-color: var(--border); color: var(--blue); }
 
 /* ── MAIN ── */
-main { padding: 0 16px 60px; }
+main { padding: 0 16px 90px; } /* bottom padding for sticky bar */
 .tab-pane {
-  display: none;
-  background: var(--surface); border: 1.5px solid var(--border);
+  display: none; background: var(--surface);
+  border: 1.5px solid var(--border);
   border-radius: 0 var(--radius) var(--radius) var(--radius);
   padding: 18px 14px; box-shadow: var(--shadow);
   animation: fadeUp 0.2s ease;
@@ -99,88 +92,100 @@ main { padding: 0 16px 60px; }
 @keyframes fadeUp { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
 
 /* ── SECTION HEAD ── */
-.section-head { margin-bottom: 16px; }
+.section-head { margin-bottom: 14px; }
 .section-title { font-size: 16px; font-weight: 800; color: var(--text); letter-spacing: -0.3px; }
 .section-desc  { font-size: 11px; color: var(--muted); margin-top: 2px; }
 
-/* ── SUBMIT BAR ── */
-.submit-bar {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 10px; margin-bottom: 16px;
-  background: var(--surface2); border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm); padding: 10px 14px;
+/* ── SEARCH + FILTER ROW ── */
+.search-filter-row {
+  display: flex; flex-direction: column; gap: 10px;
+  margin-bottom: 14px;
 }
-.submit-bar-info { font-size: 11px; color: var(--muted); font-weight: 500; }
-.submit-bar-info span { font-weight: 700; color: var(--blue); }
+.stock-search-input {
+  background: var(--surface); border: 1.5px solid var(--border);
+  color: var(--text); padding: 10px 14px; border-radius: var(--radius-sm);
+  font-family: inherit; font-size: 13px; width: 100%;
+  transition: border-color 0.18s, box-shadow 0.18s; appearance: none;
+}
+.stock-search-input:focus {
+  outline: none; border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-dim);
+}
+.filter-btns { display: flex; gap: 6px; }
+.filter-btn {
+  flex: 1; padding: 8px 6px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background: var(--surface2); color: var(--muted);
+  font-family: inherit; font-size: 11px; font-weight: 700;
+  cursor: pointer; transition: all 0.18s; text-align: center;
+  white-space: nowrap;
+}
+.filter-btn.active-all  { background: var(--blue-dim);    border-color: var(--blue);    color: var(--blue); }
+.filter-btn.active-in   { background: var(--success-dim); border-color: var(--success); color: var(--success); }
+.filter-btn.active-out  { background: var(--coral-dim);   border-color: var(--coral);   color: var(--coral); }
+.filter-btn .f-count {
+  display: inline-block; font-size: 10px;
+  background: rgba(0,0,0,0.07); border-radius: 99px;
+  padding: 1px 6px; margin-left: 4px; font-weight: 800;
+}
+
+/* ── STICKY SUBMIT BAR ── */
+.sticky-submit {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: var(--surface); border-top: 1.5px solid var(--border);
+  padding: 12px 16px; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  box-shadow: 0 -4px 20px rgba(26,111,196,0.10);
+}
+.submit-info { font-size: 12px; color: var(--muted); font-weight: 500; }
+.submit-info span { font-weight: 800; color: var(--blue); font-size: 14px; }
 .submit-all-btn {
   background: linear-gradient(135deg, #1a6fc4, #1457a0);
   border: none; color: #fff;
-  padding: 10px 20px; border-radius: var(--radius-sm);
-  font-family: inherit; font-weight: 700; font-size: 13px;
+  padding: 11px 24px; border-radius: var(--radius-sm);
+  font-family: inherit; font-weight: 700; font-size: 14px;
   cursor: pointer; transition: all 0.2s; white-space: nowrap;
-  box-shadow: 0 3px 10px rgba(26,111,196,0.25);
+  box-shadow: 0 3px 10px rgba(26,111,196,0.28);
 }
-.submit-all-btn:hover { box-shadow: 0 5px 16px rgba(26,111,196,0.35); transform: translateY(-1px); }
+.submit-all-btn:hover { box-shadow: 0 5px 16px rgba(26,111,196,0.38); transform: translateY(-1px); }
 .submit-all-btn:active { transform: translateY(0); }
-.submit-all-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.submit-all-btn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
 
 /* ── FISH STOCK LIST ── */
 .fish-stock-list {
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
+  border: 1.5px solid var(--border); border-radius: var(--radius); overflow: hidden;
 }
-
-/* header row */
 .fish-stock-list-header {
-  display: grid;
-  grid-template-columns: 1fr 90px 80px;
-  gap: 8px;
-  padding: 9px 14px;
-  background: var(--surface2);
-  border-bottom: 1.5px solid var(--border);
+  display: grid; grid-template-columns: 1fr 88px 78px;
+  gap: 6px; padding: 9px 14px;
+  background: var(--surface2); border-bottom: 1.5px solid var(--border);
   font-size: 9px; font-weight: 700; text-transform: uppercase;
   letter-spacing: 0.8px; color: var(--muted);
 }
-
-/* each fish row */
 .fish-stock-row {
   border-bottom: 1px solid var(--border2);
   transition: background 0.12s;
 }
 .fish-stock-row:last-child { border-bottom: none; }
 .fish-stock-row.updated { background: rgba(23,160,88,0.05); }
-.fish-stock-row.dirty   { background: rgba(26,111,196,0.04); }
+.fish-stock-row.dirty   { background: rgba(26,111,196,0.05); }
+.fish-stock-row.hidden  { display: none; }
 
-/* top line: name | current | input */
 .fish-row-top {
-  display: grid;
-  grid-template-columns: 1fr 90px 80px;
-  gap: 8px; align-items: center;
-  padding: 10px 14px;
+  display: grid; grid-template-columns: 1fr 88px 78px;
+  gap: 6px; align-items: center; padding: 10px 14px;
 }
+.fish-row-name { font-size: 12px; font-weight: 600; color: var(--text); line-height: 1.3; }
 
-.fish-row-name {
-  font-size: 12px; font-weight: 600; color: var(--text);
-  line-height: 1.3;
-}
-
-.fish-current-stock {
-  text-align: center;
-}
-.fish-current-val {
-  font-size: 13px; font-weight: 700; color: var(--blue);
-  line-height: 1;
-}
+.fish-current-stock { text-align: center; }
+.fish-current-val   { font-size: 13px; font-weight: 700; color: var(--blue); line-height: 1; }
 .fish-current-val.zero { color: var(--muted); font-weight: 500; }
-.fish-current-unit { font-size: 9px; color: var(--muted); margin-top: 1px; }
+.fish-current-unit  { font-size: 9px; color: var(--muted); margin-top: 1px; }
 
 .fish-new-input {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  color: var(--text);
-  padding: 8px 8px;
-  border-radius: var(--radius-sm);
+  background: var(--surface); border: 1.5px solid var(--border);
+  color: var(--text); padding: 8px 6px; border-radius: var(--radius-sm);
   font-family: inherit; font-size: 14px; font-weight: 600;
   width: 100%; text-align: center;
   transition: border-color 0.18s, box-shadow 0.18s;
@@ -191,14 +196,12 @@ main { padding: 0 16px 60px; }
   box-shadow: 0 0 0 3px var(--blue-dim);
 }
 .fish-new-input.has-value {
-  border-color: var(--blue);
-  background: var(--blue-dim);
-  color: var(--blue);
+  border-color: var(--blue); background: var(--blue-dim); color: var(--blue);
 }
 
-/* bottom line: calc values */
+/* stat chips */
 .fish-row-stats {
-  display: flex; flex-wrap: wrap; gap: 6px;
+  display: flex; flex-wrap: wrap; gap: 5px;
   padding: 0 14px 10px;
 }
 .fish-stat-chip {
@@ -207,17 +210,18 @@ main { padding: 0 16px 60px; }
   border-radius: 6px; padding: 3px 8px;
   font-size: 9px; font-weight: 600; color: var(--muted);
 }
-.fish-stat-chip .chip-val {
-  font-weight: 700; font-size: 10px;
-}
+.fish-stat-chip .chip-val { font-weight: 700; font-size: 10px; }
 .fish-stat-chip.wastage  .chip-val { color: var(--coral); }
 .fish-stat-chip.usable   .chip-val { color: var(--gold); }
 .fish-stat-chip.sellable .chip-val { color: var(--teal); }
 .fish-stat-chip.ratio    .chip-val { color: var(--blue); }
-.fish-stat-chip.updated-chip {
-  background: var(--success-dim); border-color: rgba(23,160,88,0.25);
-}
+.fish-stat-chip.updated-chip { background: var(--success-dim); border-color: rgba(23,160,88,0.25); }
 .fish-stat-chip.updated-chip .chip-val { color: var(--success); }
+
+.no-results {
+  padding: 32px 16px; text-align: center;
+  color: var(--muted); font-size: 13px; font-weight: 500;
+}
 
 /* ── PRICE TAB ── */
 .price-top { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
@@ -225,20 +229,12 @@ main { padding: 0 16px 60px; }
   background: var(--surface); border: 1.5px solid var(--border);
   color: var(--text); padding: 11px 14px; border-radius: var(--radius-sm);
   font-family: inherit; font-size: 14px; width: 100%;
-  transition: border-color 0.18s, box-shadow 0.18s;
-  appearance: none;
+  transition: border-color 0.18s, box-shadow 0.18s; appearance: none;
 }
-.price-search-input:focus {
-  outline: none; border-color: var(--blue);
-  box-shadow: 0 0 0 3px var(--blue-dim);
-}
+.price-search-input:focus { outline: none; border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-dim); }
 .price-grid { display: flex; flex-direction: column; gap: 12px; }
-@media (min-width: 580px) {
-  .price-grid { display: grid; grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 900px) {
-  .price-grid { grid-template-columns: repeat(3, 1fr); }
-}
+@media (min-width: 580px) { .price-grid { display: grid; grid-template-columns: repeat(2,1fr); } }
+@media (min-width: 900px) { .price-grid { grid-template-columns: repeat(3,1fr); } }
 .price-card {
   background: var(--surface); border: 1.5px solid var(--border);
   border-radius: var(--radius); overflow: hidden;
@@ -246,10 +242,7 @@ main { padding: 0 16px 60px; }
   box-shadow: var(--shadow);
 }
 .price-card:hover { border-color: var(--blue); box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.price-card-header {
-  padding: 11px 14px; background: var(--surface2);
-  border-bottom: 1.5px solid var(--border);
-}
+.price-card-header { padding: 11px 14px; background: var(--surface2); border-bottom: 1.5px solid var(--border); }
 .price-card-fish { font-weight: 700; color: var(--text); font-size: 13px; line-height: 1.3; }
 .price-card-sku {
   font-size: 10px; color: var(--muted); font-weight: 500; margin-top: 3px;
@@ -257,41 +250,30 @@ main { padding: 0 16px 60px; }
   border-radius: 4px; border: 1px solid var(--border);
 }
 .price-weights { display: grid; grid-template-columns: 1fr 1fr; }
-.price-weight-cell {
-  padding: 11px 14px;
-  border-right: 1px solid var(--border2);
-  border-bottom: 1px solid var(--border2);
-}
-.price-weight-cell:nth-child(even)        { border-right: none; }
-.price-weight-cell:nth-last-child(-n+2)   { border-bottom: none; }
-.price-wt-label {
-  font-size: 9px; font-weight: 700; text-transform: uppercase;
-  letter-spacing: 0.8px; color: var(--muted); margin-bottom: 4px;
-}
+.price-weight-cell { padding: 11px 14px; border-right: 1px solid var(--border2); border-bottom: 1px solid var(--border2); }
+.price-weight-cell:nth-child(even)      { border-right: none; }
+.price-weight-cell:nth-last-child(-n+2) { border-bottom: none; }
+.price-wt-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); margin-bottom: 4px; }
 .price-wt-value { font-size: 18px; font-weight: 800; color: var(--blue); line-height: 1.1; }
 .price-wt-value.base { color: var(--gold); }
 .price-wt-inr { font-size: 9px; color: var(--muted); margin-top: 2px; font-weight: 500; }
 
-/* ── LOADING / EMPTY / TOAST ── */
+/* ── LOADING / TOAST ── */
 .loading-wrap {
   display: flex; flex-direction: column; align-items: center;
   justify-content: center; padding: 50px 20px; gap: 12px;
   color: var(--muted); font-size: 13px; font-weight: 500;
 }
 .spinner {
-  width: 30px; height: 30px;
-  border: 3px solid var(--border); border-top-color: var(--blue);
-  border-radius: 50%; animation: spin 0.8s linear infinite;
+  width: 30px; height: 30px; border: 3px solid var(--border);
+  border-top-color: var(--blue); border-radius: 50%; animation: spin 0.8s linear infinite;
 }
-.empty-state { text-align: center; padding: 40px 20px; color: var(--muted); }
-
 .toast {
-  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  position: fixed; bottom: 76px; left: 50%; transform: translateX(-50%);
   padding: 11px 20px; border-radius: var(--radius-sm);
   font-weight: 700; font-size: 13px; z-index: 9999;
-  animation: toastIn 0.3s ease;
-  display: flex; align-items: center; gap: 8px;
-  max-width: 90vw; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  animation: toastIn 0.3s ease; display: flex; align-items: center; gap: 8px;
+  max-width: 90vw; box-shadow: 0 4px 20px rgba(0,0,0,0.15); white-space: nowrap;
 }
 .toast.success { background: var(--success); color: #fff; }
 .toast.error   { background: var(--coral);   color: #fff; }
@@ -307,10 +289,13 @@ main { padding: 0 16px 60px; }
   .tab-pane { padding: 24px 28px; }
   .fish-stock-list-header { grid-template-columns: 1fr 110px 100px; }
   .fish-row-top           { grid-template-columns: 1fr 110px 100px; }
-  .fish-new-input { font-size: 15px; }
+  .search-filter-row { flex-direction: row; align-items: center; }
+  .stock-search-input { width: 240px; flex-shrink: 0; }
+  .filter-btns { flex: 1; }
+  .sticky-submit { padding: 14px 32px; }
   .price-top { flex-direction: row; align-items: center; justify-content: space-between; }
   .price-search-input { width: 260px; }
-  .toast { left: auto; right: 28px; transform: none; }
+  .toast { left: auto; right: 28px; bottom: 80px; transform: none; }
   @keyframes toastIn { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
 }
 </style>
@@ -339,22 +324,28 @@ main { padding: 0 16px 60px; }
 </div>
 
 <main>
-
   <!-- ══ TAB 1: STOCK ══ -->
   <div id="tab-stock" class="tab-pane active">
     <div class="section-head">
       <div class="section-title">Daily Stock Entry</div>
-      <div class="section-desc">Enter new stock for any fish → Submit All to update sheet</div>
+      <div class="section-desc">Enter new stock for any fish → Submit All updates sheet</div>
     </div>
 
-    <!-- SUBMIT BAR -->
-    <div class="submit-bar">
-      <div class="submit-bar-info">
-        <span id="filled-count">0</span> fish ready to update
+    <!-- SEARCH + FILTER -->
+    <div class="search-filter-row">
+      <input class="stock-search-input" type="text" id="stock-search"
+             placeholder="🔍 Search fish..." oninput="applyFilters()" />
+      <div class="filter-btns">
+        <button class="filter-btn active-all" id="btn-all"     onclick="setFilter('all')">
+          All <span class="f-count" id="cnt-all">0</span>
+        </button>
+        <button class="filter-btn" id="btn-instock"  onclick="setFilter('instock')">
+          ✅ In Stock <span class="f-count" id="cnt-in">0</span>
+        </button>
+        <button class="filter-btn" id="btn-outstock" onclick="setFilter('outstock')">
+          ❌ Out <span class="f-count" id="cnt-out">0</span>
+        </button>
       </div>
-      <button class="submit-all-btn" id="submit-all-btn" onclick="submitAll()">
-        ✓ Submit All
-      </button>
     </div>
 
     <!-- FISH LIST -->
@@ -384,17 +375,27 @@ main { padding: 0 16px 60px; }
       <div class="loading-wrap"><div class="spinner"></div><div>Fetching prices...</div></div>
     </div>
   </div>
-
 </main>
+
+<!-- STICKY SUBMIT BAR -->
+<div class="sticky-submit">
+  <div class="submit-info">
+    <span id="filled-count">0</span> fish ready to update
+  </div>
+  <button class="submit-all-btn" id="submit-all-btn" onclick="submitAll()" disabled>
+    ✓ Submit All
+  </button>
+</div>
 
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbytnSGNyl7SA2TjX-8FIuuW95bSMUwnuhkC2iJ2dRsNu464R6t5hKWUePqPjNw8lgOXZQ/exec';
 
-let stockData  = [];  // [{fishName, inwardKg, colE..K, rowIndex}]
-let priceData  = [];
-let dirtyRows  = {};  // fishName → new kg value (only touched fields)
+let stockData = [];
+let priceData = [];
+// key = idx (string), value = the raw string the user typed (including "0")
+let dirtyRows = {};
+let activeFilter = 'all';
 
-// ══ INIT ══
 window.onload = () => syncAll();
 
 function switchTab(tab, btn) {
@@ -429,22 +430,20 @@ async function fetchStockData() {
   stockData = json.rows;
   dirtyRows = {};
   renderFishStockList();
+  updateCounts();
 }
 
 // ══ RENDER FISH LIST ══
 function renderFishStockList() {
   const body = document.getElementById('fish-stock-body');
   if (!stockData.length) {
-    body.innerHTML = '<div class="empty-state">No fish found</div>';
+    body.innerHTML = '<div class="no-results">No fish found</div>';
     return;
   }
-
   body.innerHTML = stockData.map((r, idx) => {
-    const currentKg = (r.inwardKg !== '' && r.inwardKg !== undefined && r.inwardKg !== null)
-                      ? Number(r.inwardKg) : 0;
-    const isZero = currentKg === 0;
-
-    return `<div class="fish-stock-row" id="row-${idx}">
+    const currentKg = parseCurrentKg(r);
+    const isZero    = currentKg === 0;
+    return `<div class="fish-stock-row" id="row-${idx}" data-idx="${idx}">
       <div class="fish-row-top">
         <div class="fish-row-name">${r.fishName}</div>
         <div class="fish-current-stock">
@@ -454,15 +453,10 @@ function renderFishStockList() {
           <div class="fish-current-unit">kg inward</div>
         </div>
         <input
-          type="number"
-          class="fish-new-input"
-          id="inp-${idx}"
-          min="0"
-          step="0.1"
-          placeholder=""
+          type="number" class="fish-new-input" id="inp-${idx}"
+          min="0" step="0.1" placeholder=""
           data-idx="${idx}"
           oninput="onInputChange(this)"
-          onfocus="onInputFocus(this)"
         />
       </div>
       <div class="fish-row-stats" id="stats-${idx}">
@@ -471,116 +465,165 @@ function renderFishStockList() {
     </div>`;
   }).join('');
 
-  updateFilledCount();
+  applyFilters();
+}
+
+function parseCurrentKg(r) {
+  const v = r.inwardKg;
+  if (v === '' || v === undefined || v === null) return 0;
+  const n = Number(v);
+  return isNaN(n) ? 0 : n;
 }
 
 function buildStatsChips(r, justUpdated) {
-  const wastage  = (r.colI  !== undefined && r.colI  !== '') ? r.colI  : null;
-  const usable   = (r.colJ  !== undefined && r.colJ  !== '') ? r.colJ  : null;
-  const sellable = (r.sellableStock !== undefined && r.sellableStock !== '') ? r.sellableStock : null;
-  const inward   = (r.inwardKg !== undefined && r.inwardKg !== '') ? Number(r.inwardKg) : 0;
+  const wastage  = valOrNull(r.colI);
+  const usable   = valOrNull(r.colJ);
+  const sellable = valOrNull(r.sellableStock);
+  const inward   = parseCurrentKg(r);
   const ratio    = (sellable !== null && inward > 0)
                    ? (parseFloat(sellable) / inward).toFixed(2) + 'x' : null;
-
-  const updClass = justUpdated ? ' updated-chip' : '';
-
+  const u = justUpdated ? ' updated-chip' : '';
   let chips = '';
-  if (wastage  !== null) chips += `<div class="fish-stat-chip wastage${updClass}"><span>Wastage</span><span class="chip-val">${wastage} kg</span></div>`;
-  if (usable   !== null) chips += `<div class="fish-stat-chip usable${updClass}"><span>Usable</span><span class="chip-val">${usable} kg</span></div>`;
-  if (sellable !== null) chips += `<div class="fish-stat-chip sellable${updClass}"><span>Sellable</span><span class="chip-val">${sellable} kg</span></div>`;
-  if (ratio    !== null) chips += `<div class="fish-stat-chip ratio${updClass}"><span>Ratio</span><span class="chip-val">${ratio}</span></div>`;
-
-  return chips || '<div class="fish-stat-chip"><span class="chip-val" style="color:var(--muted)">No data yet</span></div>';
+  if (wastage  !== null) chips += `<div class="fish-stat-chip wastage${u}"><span>Wastage</span><span class="chip-val">${wastage} kg</span></div>`;
+  if (usable   !== null) chips += `<div class="fish-stat-chip usable${u}"><span>Usable</span><span class="chip-val">${usable} kg</span></div>`;
+  if (sellable !== null) chips += `<div class="fish-stat-chip sellable${u}"><span>Sellable</span><span class="chip-val">${sellable} kg</span></div>`;
+  if (ratio    !== null) chips += `<div class="fish-stat-chip ratio${u}"><span>Ratio</span><span class="chip-val">${ratio}</span></div>`;
+  return chips || `<div class="fish-stat-chip"><span class="chip-val" style="color:var(--muted)">No data yet</span></div>`;
 }
 
-// ══ INPUT HANDLERS ══
+function valOrNull(v) {
+  if (v === '' || v === undefined || v === null) return null;
+  return v;
+}
+
+// ══ FILTER + SEARCH ══
+function setFilter(f) {
+  activeFilter = f;
+  document.getElementById('btn-all').className     = 'filter-btn' + (f==='all'      ? ' active-all'  : '');
+  document.getElementById('btn-instock').className = 'filter-btn' + (f==='instock'  ? ' active-in'   : '');
+  document.getElementById('btn-outstock').className= 'filter-btn' + (f==='outstock' ? ' active-out'  : '');
+  applyFilters();
+}
+
+function applyFilters() {
+  const q = (document.getElementById('stock-search')?.value || '').toLowerCase().trim();
+  let visibleCount = 0;
+
+  stockData.forEach((r, idx) => {
+    const rowEl     = document.getElementById('row-' + idx);
+    if (!rowEl) return;
+    const currentKg = parseCurrentKg(r);
+    const inStock   = currentKg > 0;
+
+    const matchSearch = !q || r.fishName.toLowerCase().includes(q);
+    const matchFilter =
+      activeFilter === 'all'      ? true :
+      activeFilter === 'instock'  ? inStock :
+      activeFilter === 'outstock' ? !inStock : true;
+
+    if (matchSearch && matchFilter) {
+      rowEl.classList.remove('hidden');
+      visibleCount++;
+    } else {
+      rowEl.classList.add('hidden');
+    }
+  });
+
+  // show no-results inside list if needed
+  const noRes = document.getElementById('no-results-row');
+  if (visibleCount === 0) {
+    if (!noRes) {
+      const div = document.createElement('div');
+      div.id = 'no-results-row';
+      div.className = 'no-results';
+      div.textContent = 'No fish match this filter';
+      document.getElementById('fish-stock-body').appendChild(div);
+    }
+  } else {
+    if (noRes) noRes.remove();
+  }
+}
+
+function updateCounts() {
+  const total   = stockData.length;
+  const inStock = stockData.filter(r => parseCurrentKg(r) > 0).length;
+  const outStock= total - inStock;
+  document.getElementById('cnt-all').textContent = total;
+  document.getElementById('cnt-in').textContent  = inStock;
+  document.getElementById('cnt-out').textContent = outStock;
+}
+
+// ══ INPUT HANDLER ══
 function onInputChange(input) {
-  const idx  = parseInt(input.dataset.idx);
-  const val  = input.value;
+  const idx = input.dataset.idx;
+  const val = input.value; // raw string — "" means blank/untouched
 
   if (val === '') {
-    // untouched / cleared → remove from dirty
+    // user cleared the field → remove from dirty
     delete dirtyRows[idx];
     input.classList.remove('has-value');
+    document.getElementById('row-' + idx).classList.remove('dirty');
   } else {
-    // any value including 0 → mark dirty
+    // any typed value (including "0") → mark dirty
     dirtyRows[idx] = val;
     input.classList.add('has-value');
+    document.getElementById('row-' + idx).classList.add('dirty');
   }
-
-  // highlight row
-  const row = document.getElementById('row-' + idx);
-  if (val !== '') {
-    row.classList.add('dirty');
-  } else {
-    row.classList.remove('dirty');
-  }
-
   updateFilledCount();
-}
-
-function onInputFocus(input) {
-  // scroll row into view nicely on mobile
-  setTimeout(() => input.scrollIntoView({ behavior: 'smooth', block: 'center' }), 300);
 }
 
 function updateFilledCount() {
   const count = Object.keys(dirtyRows).length;
   document.getElementById('filled-count').textContent = count;
-  document.getElementById('submit-all-btn').disabled = count === 0;
+  document.getElementById('submit-all-btn').disabled  = count === 0;
 }
 
 // ══ SUBMIT ALL ══
 async function submitAll() {
   const toUpdate = Object.keys(dirtyRows);
-  if (toUpdate.length === 0) { showToast('Etha fish update pannanum?', 'error'); return; }
+  if (!toUpdate.length) return;
 
   const btn = document.getElementById('submit-all-btn');
-  btn.disabled = true;
-  btn.textContent = 'Updating...';
+  btn.disabled = true; btn.textContent = 'Updating...';
 
-  let successCount = 0;
-  let failCount    = 0;
+  let successCount = 0, failCount = 0;
 
-  // sequential updates — avoid Apps Script rate limit
   for (const idx of toUpdate) {
-    const row      = stockData[idx];
-    const newKg    = parseFloat(dirtyRows[idx]);
-    const currentKg = (row.inwardKg !== '' && row.inwardKg !== undefined && row.inwardKg !== null)
-                      ? Number(row.inwardKg) : 0;
-    const totalKg  = currentKg + (isNaN(newKg) ? 0 : newKg);
+    const row       = stockData[idx];
+    const newKgStr  = dirtyRows[idx];         // raw string e.g. "0", "5.5"
+    const newKg     = parseFloat(newKgStr);   // NaN if somehow empty (shouldn't happen)
+    const addKg     = isNaN(newKg) ? 0 : newKg;
+    const currentKg = parseCurrentKg(row);
+    const totalKg   = currentKg + addKg;      // 0+0=0 writes 0, 5+0=5, 5+5=10
 
     try {
       const params = new URLSearchParams({
-        action:    'updateStock',
-        fishName:  row.fishName,
-        inwardKg:  totalKg   // send total (current + new)
+        action:   'updateStock',
+        fishName: row.fishName,
+        inwardKg: totalKg
       });
       const res  = await fetch(SCRIPT_URL + '?' + params.toString(), { mode: 'cors' });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
       const json = await res.json();
-
       if (json.error) throw new Error(json.error);
 
       // update local data
-      stockData[idx] = {
-        ...stockData[idx],
-        inwardKg: json.inwardKg,
-        ...json.updatedData
-      };
+      stockData[idx] = { ...stockData[idx], inwardKg: json.inwardKg, ...json.updatedData };
 
-      // update UI for this row
+      // update current stock display
       const curEl = document.getElementById('cur-' + idx);
-      curEl.textContent = json.inwardKg;
-      curEl.classList.remove('zero');
+      const newCur = json.inwardKg;
+      curEl.textContent = (newCur === 0 || newCur === '' || newCur === null) ? '—' : newCur;
+      curEl.classList.toggle('zero', !newCur || newCur === 0);
 
-      const statsEl = document.getElementById('stats-' + idx);
-      statsEl.innerHTML = buildStatsChips(stockData[idx], true);
+      // update chips
+      document.getElementById('stats-' + idx).innerHTML = buildStatsChips(stockData[idx], true);
 
-      const rowEl = document.getElementById('row-' + idx);
+      // clear row state
+      const rowEl  = document.getElementById('row-' + idx);
       rowEl.classList.remove('dirty');
       rowEl.classList.add('updated');
 
-      // clear input
       const inputEl = document.getElementById('inp-' + idx);
       inputEl.value = '';
       inputEl.classList.remove('has-value');
@@ -588,22 +631,24 @@ async function submitAll() {
       successCount++;
     } catch(e) {
       failCount++;
-      console.error('Failed for ' + row.fishName + ':', e.message);
+      console.error('Failed:', row.fishName, e.message);
     }
   }
 
   dirtyRows = {};
   updateFilledCount();
+  updateCounts();
+  applyFilters();
   btn.textContent = '✓ Submit All';
 
   if (failCount === 0) {
-    showToast(`✓ ${successCount} fish updated successfully!`, 'success');
+    showToast(`✓ ${successCount} fish updated!`, 'success');
   } else {
     showToast(`${successCount} updated, ${failCount} failed`, 'error');
   }
 }
 
-// ══ PRICE FETCH ══
+// ══ PRICE ══
 async function fetchPriceData() {
   const res = await fetch(SCRIPT_URL + '?action=getPrices', { mode: 'cors' });
   if (!res.ok) throw new Error('HTTP ' + res.status);
@@ -616,8 +661,7 @@ async function fetchPriceData() {
 function filterPrices() {
   const q = document.getElementById('price-search').value.toLowerCase();
   renderPriceGrid(priceData.filter(r =>
-    r.fishName.toLowerCase().includes(q) ||
-    (r.sku && r.sku.toLowerCase().includes(q))
+    r.fishName.toLowerCase().includes(q) || (r.sku && r.sku.toLowerCase().includes(q))
   ));
 }
 
@@ -628,8 +672,8 @@ function calcPrice(base, weight) {
 
 function renderPriceGrid(rows) {
   const wrap = document.getElementById('price-grid-wrap');
-  if (!rows || rows.length === 0) {
-    wrap.innerHTML = '<div class="empty-state">🐠 No fish found</div>';
+  if (!rows || !rows.length) {
+    wrap.innerHTML = '<div class="no-results">🐠 No fish found</div>';
     return;
   }
   wrap.innerHTML = '<div class="price-grid">' + rows.map(r => {
@@ -637,7 +681,7 @@ function renderPriceGrid(rows) {
     const p250  = calcPrice(p500, 250);
     const p750  = calcPrice(p500, 750);
     const p1000 = calcPrice(p500, 1000);
-    const fmt   = v => v ? '₹' + v.toLocaleString('en-IN') : '—';
+    const fmt   = v => v != null ? '₹' + v.toLocaleString('en-IN') : '—';
     return `<div class="price-card">
       <div class="price-card-header">
         <div class="price-card-fish">🐟 ${r.fishName}</div>
