@@ -594,8 +594,8 @@ async function submitAll() {
     const newKg     = parseFloat(newKgStr);
     const addKg     = isNaN(newKg) ? 0 : newKg;
     const currentKg = parseCurrentKg(row);
-    // 0 typed → replace with 0 (out of stock reset). >0 typed → add to current.
-    const totalKg   = addKg === 0 ? 0 : currentKg + addKg;
+    // Always replace — typed value goes directly to Col D, no addition
+    const totalKg   = addKg;
 
     try {
       const params = new URLSearchParams({
