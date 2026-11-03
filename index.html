@@ -476,12 +476,15 @@ function parseCurrentKg(r) {
 }
 
 function buildStatsChips(r, justUpdated) {
-  const wastage  = valOrNull(r.colI);
-  const usable   = valOrNull(r.colJ);
-  const sellable = valOrNull(r.sellableStock);
+  // Backend currently sends: colI = Usable Stock (sheet col I), colJ = Conversion Ratio (sheet col J)
+  // Wastage (sheet col H) = Inward x2 - Usable
   const inward   = parseCurrentKg(r);
-  const ratio    = (sellable !== null && inward > 0)
-                   ? (parseFloat(sellable) / inward).toFixed(2) + 'x' : null;
+  const usableV  = valOrNull(r.colI);
+  const ratioV   = valOrNull(r.colJ);
+  const sellable = valOrNull(r.sellableStock);
+  const usable   = usableV !== null ? +parseFloat(usableV).toFixed(2) : null;
+  const wastage  = usable !== null ? +(inward * 2 - usable).toFixed(2) : null;
+  const ratio    = ratioV !== null ? parseFloat(ratioV).toFixed(2) + 'x' : null;
   const u = justUpdated ? ' updated-chip' : '';
   let chips = '';
   if (wastage  !== null) chips += `<div class="fish-stat-chip wastage${u}"><span>Wastage</span><span class="chip-val">${wastage} kg</span></div>`;
